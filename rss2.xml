@@ -520,8 +520,8 @@
 <ol>
 <li>创建一个用来共享的存储，在这个例子中它将通过 vue/vuex 注入到组件当中。</li>
 <li>定义组件可以调用的 actions，它们仍然是集中定义的。</li>
-<li>定义实际接触存储状态的 mutations。我们这么做，actions 就可以形成不止一个 mutation，或者执行逻辑去决定调用哪一个 mutation。这意味着你再也不用担心组件当中的业务逻辑了，成功！</li>
-<li>当状态更新时，任何拥有 getter，动态属性和映射到 store 的组件都会被立即更新。</li>
+<li>定义实际接触 store 中 state 的 mutations。我们这么做，actions 内就可以将不止一个 mutation 组合在一起，或者执行逻辑去决定调用哪一个 mutation。这意味着你再也不用担心组件当中的业务逻辑了，成功！</li>
+<li>当状态更新时，任何拥有 getter，计算属性和映射到 store 的组件都会被立即更新。</li>
 </ol>
 <p>同样再来看看代码：</p>
 <h5 id="main-js"><a href="#main-js" class="headerlink" title="main.js"></a>main.js</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">import store from &apos;./vuex/store&apos;</div><div class="line"></div><div class="line">new Vue(&#123; // eslint-disable-line no-new</div><div class="line">  el: &apos;#app&apos;,</div><div class="line">  render: (h) =&gt; h(App),</div><div class="line">  store: store</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
