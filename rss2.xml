@@ -8,8 +8,121 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>llp的程序猿之路走得磕磕绊绊</description>
-    <pubDate>Wed, 07 Dec 2016 02:28:30 GMT</pubDate>
+    <pubDate>Fri, 10 Feb 2017 02:53:24 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>几张 GIF 动图让你看懂弹性盒模型（Flexbox）如何工作</title>
+      <link>http://llp0574.github.io/2017/02/10/an-animated-guide-to-flexbox/</link>
+      <guid>http://llp0574.github.io/2017/02/10/an-animated-guide-to-flexbox/</guid>
+      <pubDate>Fri, 10 Feb 2017 10:49:35 GMT</pubDate>
+      <description>
+      
+        &lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;原文地址：&lt;a href=&quot;https://medium.freecodecamp.com/an-animated-guide-to-flexbox-d280cf6afc35#.u44ga6k7p&quot; target=&quot;_blank&quot; re
+      
+      </description>
+      
+      <content:encoded><![CDATA[<blockquote>
+<ul>
+<li>原文地址：<a href="https://medium.freecodecamp.com/an-animated-guide-to-flexbox-d280cf6afc35#.u44ga6k7p" target="_blank" rel="external">How Flexbox works — explained with big, colorful, animated gifs</a></li>
+<li>原文作者：<a href="https://medium.freecodecamp.com/@scottdomes" target="_blank" rel="external">Scott Domes</a></li>
+<li>译文出自：<a href="https://github.com/xitu/gold-miner" target="_blank" rel="external">掘金翻译计划</a></li>
+<li>译者：<a href="https://github.com/llp0574" target="_blank" rel="external">linpu.li</a></li>
+<li>校对者：<a href="https://github.com/sqrthree" target="_blank" rel="external">sqrthree</a>，<a href="https://github.com/xuzaixian" target="_blank" rel="external">xuzaixian</a></li>
+</ul>
+</blockquote>
+<p>弹性盒模型许诺可以解决纯 CSS 造成的诸多弊端（比如垂直对齐）。</p>
+<p>好吧，它的确兑现了诺言。但是掌握这种新的思路可不是一件简单的事情。</p>
+<p>所以我们将以动图的形式来看看弹性盒模型是怎么工作的，好在以后的工作中使用它来构建更好的布局。</p>
+<p>弹性盒模型的基本原理是让布局变得直观且富有弹性。</p>
+<p>要实现这个目标，它会让容器自己决定如何均匀分布它的子元素，包括子元素的大小和相互之间的间隔。</p>
+<p>这些从原理上讲都很好理解。但让我们来看看在实践当中它又会是什么样子。</p>
+<p>在本文当中，我们将深入弹性盒模型最常用的 5 个属性。探究一下它们做了什么、如何使用它们、以及会产生什么效果。</p>
+<h3 id="第一个属性：Display-Flex"><a href="#第一个属性：Display-Flex" class="headerlink" title="第一个属性：Display: Flex"></a>第一个属性：Display: Flex</h3><p>下面是我们的示例页面：</p>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*ifusEqwI87nBKXgK9oZ_7A.gif" alt=""></p>
+<p>有四个不同大小和颜色的 div，包含在一个灰色的 div 容器里。现在，每个 div 都有一个默认的属性为 <code>display: block</code>，因此每个 div 块都占满了整行的宽度。</p>
+<p>为了使用弹性盒模型，需要将<strong>容器</strong>变成一个<strong>弹性容器</strong>，更改代码如下，很简单：</p>
+<pre><code>#container {
+  display: flex;
+}
+</code></pre><p><img src="https://cdn-images-1.medium.com/max/2000/1*L2W-ziqU45a1BNWV79ijDQ.gif" alt=""></p>
+<p>可以看到并没有改变很多代码，容器里的 div 就展示为行内形式了。但在这个操作背后，其实已经发生了很大的变化，因为<strong>你给每个块赋予了一个叫做弹性上下文的东西</strong>。</p>
+<p>现在你就可以开始在这个上下文里改变它们的位置，相比传统的 CSS 简单多了。</p>
+<h3 id="第二个属性：Flex-Direction"><a href="#第二个属性：Flex-Direction" class="headerlink" title="第二个属性：Flex Direction"></a>第二个属性：Flex Direction</h3><p>弹性盒模型的容器有两个轴：<strong>主轴</strong>和<strong>交叉轴</strong>，它们默认如下所示：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*_Ruy6jFG7gUpSf76IUcJTQ.png" alt=""></p>
+<p><strong>默认状态下，容器里的每一个元素都会从左至右沿着主轴排列</strong>。这也是为什么一旦 <code>display: flex</code> 生效，所有块都会默认排列在一个水平线上。</p>
+<p>但是 <code>Flex-direction</code> 可以让你旋转主轴。</p>
+<pre><code>#container {
+  display: flex;
+  flex-direction: column;
+}
+</code></pre><p><img src="https://cdn-images-1.medium.com/max/2000/1*4yKnG2-vuPF5XA-BmXADLQ.gif" alt=""></p>
+<p>这里有一个很重要的区别：<code>flex-direction: column</code> 并不是把块从主轴移到交叉轴上排列，<strong>而是让主轴自身从水平变成垂直。</strong></p>
+<p>另外 flex-direction 还有两个选项值：<strong>row-reverse</strong> 和 <strong>column-reverse</strong>。</p>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*PBr_ncouIehALaEOWmSbpQ.gif" alt=""></p>
+<h3 id="第三个属性：Justify-Content"><a href="#第三个属性：Justify-Content" class="headerlink" title="第三个属性：Justify Content"></a>第三个属性：Justify Content</h3><p><strong>justify-content</strong> 控制元素在<strong>主轴</strong>上的对齐方式。</p>
+<p>下面，将稍微深入一下主轴和交叉轴的区别。首先，回到 <code>flex-direction: row</code> 的状态。</p>
+<pre><code>#container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+</code></pre><p><strong>justify-content</strong> 有五个可选值：</p>
+<ol>
+<li>Flex-start</li>
+<li>Flex-end</li>
+<li>Center</li>
+<li>Space-between</li>
+<li>Space-around</li>
+</ol>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*2-6Tw8jqWrMKOfIugKyuDA.gif" alt=""></p>
+<p><code>space-around</code> 和 <code>space-between</code> 是最直观的。<strong><code>space-between</code> 使每个块之间产生相同大小的间隔，但不会在容器和块之间产生。</strong></p>
+<p><code>space-around</code> 则会在每个块的两边产生一个相同大小的间隔，也就是说<strong>最外层块和容器之间的间隔大小刚好是两块之间间隔大小的一半</strong>（每个块产生的间隔不重叠，所以间隔变成两倍）。</p>
+<p>最后一个注意点：记住 <strong><code>justify-content</code> 是沿着主轴工作的</strong>，<strong>而 <code>flex-direction</code> 则是用来改变主轴的</strong>。当看到下一个属性的时候就会发现这点很重要。</p>
+<h3 id="第四个属性-Align-Items"><a href="#第四个属性-Align-Items" class="headerlink" title="第四个属性: Align Items"></a>第四个属性: Align Items</h3><p>如果你掌握了 <code>justify-content</code>，<code>align-items</code> 也会很容易掌握。</p>
+<p>前面讲到 <code>justify-content</code> 是沿着主轴工作的，而 <strong><code>align-items</code> 则作用于交叉轴。</strong></p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*_Ruy6jFG7gUpSf76IUcJTQ.png" alt=""></p>
+<p>首先重置 <code>flex-direction</code> 为 row，这样我们的轴就和上图一样了。</p>
+<p>然后，来深入一下 <code>align-items</code> 这个属性，可选值如下：</p>
+<ol>
+<li>flex-start</li>
+<li>flex-end</li>
+<li>center</li>
+<li>stretch</li>
+<li>baseline</li>
+</ol>
+<p>前三个值和 <code>justify-content</code> 的完全一样，所以这里略过。</p>
+<p>但下面两个值有一点不一样。</p>
+<p><code>stretch</code> 状态下，每一项都会占满整个交叉轴，而 <code>baseline</code> 状态下，将按照段落标签的底部对齐（译者注：图中每个块里的数字均由<code>p</code>标签包含，此处就是按照<code>p</code>标签的底部对齐）。</p>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*htfdNmRIIFu_veRaFOj5qA.gif" alt=""></p>
+<p>（注意 <code>align-items: stretch</code>，必须将每一块的高度设置为 <code>auto</code>，否则高度属性（height）就会将 <code>stretch</code> 的作用给覆盖掉。）</p>
+<p>对于 baseline 来说，要意识到如果去掉段落标签，就将按照每个块的底部对齐（译者注：只要是元素标签内没有文字或者子标签内没有文字，均会按照每个块的底部对齐），像下面这样：</p>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*6dd9KnKMUN49lFsbHlJi6A.png" alt=""></p>
+<p>为了更清楚地阐明主轴和交叉轴的区别，下面我们来把 <code>justify-content</code> 和 <code>align-items</code> 合在一起，看看在 <code>flex-direction</code> 两种值的作用下轴心有什么不一样：</p>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*6mq-Uay7t6NhdF2E41Do0g.gif" alt=""></p>
+<p><strong>取值为 row 时，每个块会按照一个水平的主轴进行排列，为 column 时，它们就会按照一个垂直的主轴向下排列。</strong></p>
+<p>虽然这些块在两种情况下都可以水平或者垂直居中，但这两者是不可以相互转化的！</p>
+<h3 id="第五个属性-Align-Self"><a href="#第五个属性-Align-Self" class="headerlink" title="第五个属性: Align Self"></a>第五个属性: Align Self</h3><p><code>align-self</code> 允许你手动设置一个特定元素的对齐方式。</p>
+<p>它会针对一个块覆盖掉 <code>align-items</code> 属性。容器内元素的所有属性都默认为 <code>auto</code>，所以每个块默认会使用容器的 <code>align-items</code> 属性。</p>
+<pre><code>#container {
+  align-items: flex-start;
+}
+
+.square#one {
+  align-self: center;
+}
+// 只有这个块会居中
+</code></pre><p>下面将给两个块设置 <code>align-self</code> 属性，其余的使用 <code>align-items: center</code> 和 <code>flex-direction: row</code>，来看看会是什么效果：</p>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*HIADl1oL6pxXb2dMh_pXSQ.gif" alt=""></p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>尽管我们只介绍了弹性盒模型的一点皮毛，但对于操作基本的对齐，或者垂直排列你的核心内容来说，这些属性应该足够使用了。</p>
+<p>如果你想看到更多的 GIF 弹性盒模型教程，或者如果这个教程对你有帮助，请点击下面的绿色心形或者留下一个评论吧。</p>
+<p>感谢阅读！</p>
+]]></content:encoded>
+      
+      <comments>http://llp0574.github.io/2017/02/10/an-animated-guide-to-flexbox/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>关于 Angular 里的 $q 和 Promise</title>

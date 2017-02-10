@@ -4,7 +4,7 @@
     <!-- Title -->
     
     <title>
-        archive_a | llp的程序猿之路
+        几张 GIF 动图让你看懂弹性盒模型（Flexbox）如何工作 | llp的程序猿之路
     </title>
 
     <!-- Favicons -->
@@ -40,7 +40,7 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://llp0574.github.io">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="archive_a | llp的程序猿之路">
+    <meta property="og:title" content="几张 GIF 动图让你看懂弹性盒模型（Flexbox）如何工作 | llp的程序猿之路">
     <meta property="og:description" content="llp的程序猿之路走得磕磕绊绊">
 
      <!--[if lte IE 9]>
@@ -207,356 +207,324 @@
                 </button>
 				
 				
-                <!-- Index Module -->
-<div class="material-index mdl-grid">
-	
-    <div class="locate-thumbnail-symbol"></div>
+                <!-- Post TOC -->
 
     
+	<!-- Back Button -->
+<!--
+	<div class="material-back" id="backhome-div" tabindex="0">
+		<a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="#" onclick="window.history.back();return false;" target="_self" role="button" data-upgraded=",MaterialButton,MaterialRipple">
+			<i class="material-icons" role="presentation">arrow_back</i>
+			<span class="mdl-button__ripple-container">
+				<span class="mdl-ripple"></span>
+			</span>
+		</a>
+	</div>			
+-->
+	<!-- Left aligned menu below button -->
+	<button id="post-toc-trigger-btn"
+			class="mdl-button mdl-js-button mdl-button--icon">
+	  <i class="material-icons">format_list_numbered</i>
+	</button>
+
+	<ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+		for="post-toc-trigger-btn">
+			
+			<ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第一个属性：Display-Flex"><span class="post-toc-number">1.</span> <span class="post-toc-text">第一个属性：Display: Flex</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第二个属性：Flex-Direction"><span class="post-toc-number">2.</span> <span class="post-toc-text">第二个属性：Flex Direction</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第三个属性：Justify-Content"><span class="post-toc-number">3.</span> <span class="post-toc-text">第三个属性：Justify Content</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第四个属性-Align-Items"><span class="post-toc-number">4.</span> <span class="post-toc-text">第四个属性: Align Items</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第五个属性-Align-Self"><span class="post-toc-number">5.</span> <span class="post-toc-text">第五个属性: Align Self</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#结论"><span class="post-toc-number">6.</span> <span class="post-toc-text">结论</span></a></li></ol>
 		
-			<!-- Paradox Thumbnail -->
-        	<div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
-    
-    <!-- Post Thumbnail -->
+<!--			<li class="mdl-menu__item">Some Action</li>-->
+	</ul>
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+		
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+	<!-- Paradox Post Header -->
 	
 		<!-- Custom Thumbnail -->
-		<div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/vue.png)">
+		<div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/flexbox.png)">
 	
+        <p class="article-headline-p">
+            几张 GIF 动图让你看懂弹性盒模型（Flexbox）如何工作
+        </p>
+    </div>
+
+	
+
 				
-		<!-- Post Title -->
-		<p class="article-headline-p"><a href="/2016/10/14/data-flow-in-vue-and-vuex/">VUE 和 VUEX 中的数据流</a></p>
-	</div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            
-
-原文地址：
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/10/14/data-flow-in-vue-and-vuex/" target="_self">继续阅读</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="llp's avatar">
-            </div>
-            <div>
-                <strong>llp</strong>
-                <span>10月 14, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/译文/">译文</a>
-            </span>
-            
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span class="ds-thread-count" data-thread-key="2016/10/14/data-flow-in-vue-and-vuex/" data-count-type="comments"></span>
-                </span>
-            
-            
-            <!-- Post Views -->
-            <span class="post_entry-views">
-                
-            </span>
-        </div>
-    </div>
-            
-</div>
-
-		
-		
-    
-		
-			<!-- Paradox Thumbnail -->
-        	<div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
-    
-    <!-- Post Thumbnail -->
-	
-		<!-- Custom Thumbnail -->
-		<div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/heart.png)">
-	
 				
-		<!-- Post Title -->
-		<p class="article-headline-p"><a href="/2016/09/12/the-art-of-designing-with-heart/">用心设计的艺术</a></p>
-	</div>
+					<!-- Paradox Post Info -->
+					<div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
 
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>llp</strong>
+        <span>2月 10, 2017</span>
+    </div>
 
-原文地址：
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/09/12/the-art-of-designing-with-heart/" target="_self">继续阅读</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="llp's avatar">
-            </div>
-            <div>
-                <strong>llp</strong>
-                <span>9月 12, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/译文/">译文</a>
-            </span>
-            
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span class="ds-thread-count" data-thread-key="2016/09/12/the-art-of-designing-with-heart/" data-count-type="comments"></span>
-                </span>
-            
-            
-            <!-- Post Views -->
-            <span class="post_entry-views">
-                
-            </span>
-        </div>
-    </div>
-            
+    <div class="section-spacer"></div>
+
+    <span class="post-count">共计&nbsp;1,566&nbsp;字&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+    <span class="post-read">预计阅读&nbsp;6&nbsp;分钟&nbsp;&nbsp;</span>
+    <!-- Favorite -->
+<!--
+    <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+        <i class="material-icons" role="presentation">favorite</i>
+        <span class="visuallyhidden">favorites</span>
+    </button>
+-->
+
+    <!-- Qrcode -->
+    
+
+
+    <!-- Tags (bookmark) -->
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/Flexbox/">Flexbox</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/css/">css</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/前端/">前端</a>
+    </ul>
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+
+    
+    <!-- Leancloud Views -->
+    <a class="post_share-link" href="#">
+        <li class="mdl-menu__item">
+            <span id="/2017/02/10/an-animated-guide-to-flexbox/" class="leancloud-views_num" data-flag-title="几张 GIF 动图让你看懂弹性盒模型（Flexbox）如何工作">
+     &nbsp;浏览量
+</span>
+        </li>
+    </a>
+    
+
+    
+
+    <!-- Share Twitter -->
+    <a class="post_share-link" href="https://twitter.com/intent/tweet?text=几张 GIF 动图让你看懂弹性盒模型（Flexbox）如何工作&url=http://llp0574.github.io//2017/02/10/an-animated-guide-to-flexbox/index.html&via=llp" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Twitter
+        </li>
+    </a>
+
+    <!-- Share Google+ -->
+    <a class="post_share-link" href="https://plus.google.com/share?url=http://llp0574.github.io//2017/02/10/an-animated-guide-to-flexbox/index.html" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Google+
+        </li>
+    </a>
+
+    <!-- Share Weibo -->
+    <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=几张 GIF 动图让你看懂弹性盒模型（Flexbox）如何工作&url=http://llp0574.github.io//2017/02/10/an-animated-guide-to-flexbox/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <li class="mdl-menu__item">
+            分享到微博
+        </li>
+    </a>
+
+    <!-- Share LinkedIn -->
+    <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=http://llp0574.github.io//2017/02/10/an-animated-guide-to-flexbox/index.html&title=几张 GIF 动图让你看懂弹性盒模型（Flexbox）如何工作" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 LinkedIn
+        </li>
+    </a>
+
+    <!-- Share QQ -->
+    <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=llp的程序猿之路&title=几张 GIF 动图让你看懂弹性盒模型（Flexbox）如何工作&summary=llp的程序猿之路走得磕磕绊绊&pics=http://llp0574.github.io/img/favicon.png&url=http://llp0574.github.io/2017/02/10/an-animated-guide-to-flexbox/index.html" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 QQ
+        </li>
+    </a>
+
+    <!-- Share Telegram -->
+    <a class="post_share-link" href="https://telegram.me/share/url?url=http://llp0574.github.io/2017/02/10/an-animated-guide-to-flexbox/index.html&text=几张 GIF 动图让你看懂弹性盒模型（Flexbox）如何工作" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Telegram
+        </li>
+    </a>
+</ul>
+
 </div>
-
-		
-		
-    
-		
-			<!-- Paradox Thumbnail -->
-        	<div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
-    
-    <!-- Post Thumbnail -->
-	
-		<!-- Custom Thumbnail -->
-		<div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/ios.png)">
-	
 				
-		<!-- Post Title -->
-		<p class="article-headline-p"><a href="/2016/07/28/popovers-on-popovers/">iOS 开发，该如何解决弹窗的设计问题？</a></p>
-	</div>
 
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            
-原文链接: 
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/07/28/popovers-on-popovers/" target="_self">继续阅读</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="llp's avatar">
-            </div>
-            <div>
-                <strong>llp</strong>
-                <span>7月 28, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/译文/">译文</a>
-            </span>
-            
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span class="ds-thread-count" data-thread-key="2016/07/28/popovers-on-popovers/" data-count-type="comments"></span>
-                </span>
-            
-            
-            <!-- Post Views -->
-            <span class="post_entry-views">
-                
-            </span>
-        </div>
-    </div>
-            
+                <!-- Post Content -->
+                <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+	
+		<blockquote>
+<ul>
+<li>原文地址：<a href="https://medium.freecodecamp.com/an-animated-guide-to-flexbox-d280cf6afc35#.u44ga6k7p" target="_blank" rel="external">How Flexbox works — explained with big, colorful, animated gifs</a></li>
+<li>原文作者：<a href="https://medium.freecodecamp.com/@scottdomes" target="_blank" rel="external">Scott Domes</a></li>
+<li>译文出自：<a href="https://github.com/xitu/gold-miner" target="_blank" rel="external">掘金翻译计划</a></li>
+<li>译者：<a href="https://github.com/llp0574" target="_blank" rel="external">linpu.li</a></li>
+<li>校对者：<a href="https://github.com/sqrthree" target="_blank" rel="external">sqrthree</a>，<a href="https://github.com/xuzaixian" target="_blank" rel="external">xuzaixian</a></li>
+</ul>
+</blockquote>
+<p>弹性盒模型许诺可以解决纯 CSS 造成的诸多弊端（比如垂直对齐）。</p>
+<p>好吧，它的确兑现了诺言。但是掌握这种新的思路可不是一件简单的事情。</p>
+<p>所以我们将以动图的形式来看看弹性盒模型是怎么工作的，好在以后的工作中使用它来构建更好的布局。</p>
+<p>弹性盒模型的基本原理是让布局变得直观且富有弹性。</p>
+<p>要实现这个目标，它会让容器自己决定如何均匀分布它的子元素，包括子元素的大小和相互之间的间隔。</p>
+<p>这些从原理上讲都很好理解。但让我们来看看在实践当中它又会是什么样子。</p>
+<p>在本文当中，我们将深入弹性盒模型最常用的 5 个属性。探究一下它们做了什么、如何使用它们、以及会产生什么效果。</p>
+<h3 id="第一个属性：Display-Flex"><a href="#第一个属性：Display-Flex" class="headerlink" title="第一个属性：Display: Flex"></a>第一个属性：Display: Flex</h3><p>下面是我们的示例页面：</p>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*ifusEqwI87nBKXgK9oZ_7A.gif" alt=""></p>
+<p>有四个不同大小和颜色的 div，包含在一个灰色的 div 容器里。现在，每个 div 都有一个默认的属性为 <code>display: block</code>，因此每个 div 块都占满了整行的宽度。</p>
+<p>为了使用弹性盒模型，需要将<strong>容器</strong>变成一个<strong>弹性容器</strong>，更改代码如下，很简单：</p>
+<pre><code>#container {
+  display: flex;
+}
+</code></pre><p><img src="https://cdn-images-1.medium.com/max/2000/1*L2W-ziqU45a1BNWV79ijDQ.gif" alt=""></p>
+<p>可以看到并没有改变很多代码，容器里的 div 就展示为行内形式了。但在这个操作背后，其实已经发生了很大的变化，因为<strong>你给每个块赋予了一个叫做弹性上下文的东西</strong>。</p>
+<p>现在你就可以开始在这个上下文里改变它们的位置，相比传统的 CSS 简单多了。</p>
+<h3 id="第二个属性：Flex-Direction"><a href="#第二个属性：Flex-Direction" class="headerlink" title="第二个属性：Flex Direction"></a>第二个属性：Flex Direction</h3><p>弹性盒模型的容器有两个轴：<strong>主轴</strong>和<strong>交叉轴</strong>，它们默认如下所示：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*_Ruy6jFG7gUpSf76IUcJTQ.png" alt=""></p>
+<p><strong>默认状态下，容器里的每一个元素都会从左至右沿着主轴排列</strong>。这也是为什么一旦 <code>display: flex</code> 生效，所有块都会默认排列在一个水平线上。</p>
+<p>但是 <code>Flex-direction</code> 可以让你旋转主轴。</p>
+<pre><code>#container {
+  display: flex;
+  flex-direction: column;
+}
+</code></pre><p><img src="https://cdn-images-1.medium.com/max/2000/1*4yKnG2-vuPF5XA-BmXADLQ.gif" alt=""></p>
+<p>这里有一个很重要的区别：<code>flex-direction: column</code> 并不是把块从主轴移到交叉轴上排列，<strong>而是让主轴自身从水平变成垂直。</strong></p>
+<p>另外 flex-direction 还有两个选项值：<strong>row-reverse</strong> 和 <strong>column-reverse</strong>。</p>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*PBr_ncouIehALaEOWmSbpQ.gif" alt=""></p>
+<h3 id="第三个属性：Justify-Content"><a href="#第三个属性：Justify-Content" class="headerlink" title="第三个属性：Justify Content"></a>第三个属性：Justify Content</h3><p><strong>justify-content</strong> 控制元素在<strong>主轴</strong>上的对齐方式。</p>
+<p>下面，将稍微深入一下主轴和交叉轴的区别。首先，回到 <code>flex-direction: row</code> 的状态。</p>
+<pre><code>#container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+</code></pre><p><strong>justify-content</strong> 有五个可选值：</p>
+<ol>
+<li>Flex-start</li>
+<li>Flex-end</li>
+<li>Center</li>
+<li>Space-between</li>
+<li>Space-around</li>
+</ol>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*2-6Tw8jqWrMKOfIugKyuDA.gif" alt=""></p>
+<p><code>space-around</code> 和 <code>space-between</code> 是最直观的。<strong><code>space-between</code> 使每个块之间产生相同大小的间隔，但不会在容器和块之间产生。</strong></p>
+<p><code>space-around</code> 则会在每个块的两边产生一个相同大小的间隔，也就是说<strong>最外层块和容器之间的间隔大小刚好是两块之间间隔大小的一半</strong>（每个块产生的间隔不重叠，所以间隔变成两倍）。</p>
+<p>最后一个注意点：记住 <strong><code>justify-content</code> 是沿着主轴工作的</strong>，<strong>而 <code>flex-direction</code> 则是用来改变主轴的</strong>。当看到下一个属性的时候就会发现这点很重要。</p>
+<h3 id="第四个属性-Align-Items"><a href="#第四个属性-Align-Items" class="headerlink" title="第四个属性: Align Items"></a>第四个属性: Align Items</h3><p>如果你掌握了 <code>justify-content</code>，<code>align-items</code> 也会很容易掌握。</p>
+<p>前面讲到 <code>justify-content</code> 是沿着主轴工作的，而 <strong><code>align-items</code> 则作用于交叉轴。</strong></p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*_Ruy6jFG7gUpSf76IUcJTQ.png" alt=""></p>
+<p>首先重置 <code>flex-direction</code> 为 row，这样我们的轴就和上图一样了。</p>
+<p>然后，来深入一下 <code>align-items</code> 这个属性，可选值如下：</p>
+<ol>
+<li>flex-start</li>
+<li>flex-end</li>
+<li>center</li>
+<li>stretch</li>
+<li>baseline</li>
+</ol>
+<p>前三个值和 <code>justify-content</code> 的完全一样，所以这里略过。</p>
+<p>但下面两个值有一点不一样。</p>
+<p><code>stretch</code> 状态下，每一项都会占满整个交叉轴，而 <code>baseline</code> 状态下，将按照段落标签的底部对齐（译者注：图中每个块里的数字均由<code>p</code>标签包含，此处就是按照<code>p</code>标签的底部对齐）。</p>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*htfdNmRIIFu_veRaFOj5qA.gif" alt=""></p>
+<p>（注意 <code>align-items: stretch</code>，必须将每一块的高度设置为 <code>auto</code>，否则高度属性（height）就会将 <code>stretch</code> 的作用给覆盖掉。）</p>
+<p>对于 baseline 来说，要意识到如果去掉段落标签，就将按照每个块的底部对齐（译者注：只要是元素标签内没有文字或者子标签内没有文字，均会按照每个块的底部对齐），像下面这样：</p>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*6dd9KnKMUN49lFsbHlJi6A.png" alt=""></p>
+<p>为了更清楚地阐明主轴和交叉轴的区别，下面我们来把 <code>justify-content</code> 和 <code>align-items</code> 合在一起，看看在 <code>flex-direction</code> 两种值的作用下轴心有什么不一样：</p>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*6mq-Uay7t6NhdF2E41Do0g.gif" alt=""></p>
+<p><strong>取值为 row 时，每个块会按照一个水平的主轴进行排列，为 column 时，它们就会按照一个垂直的主轴向下排列。</strong></p>
+<p>虽然这些块在两种情况下都可以水平或者垂直居中，但这两者是不可以相互转化的！</p>
+<h3 id="第五个属性-Align-Self"><a href="#第五个属性-Align-Self" class="headerlink" title="第五个属性: Align Self"></a>第五个属性: Align Self</h3><p><code>align-self</code> 允许你手动设置一个特定元素的对齐方式。</p>
+<p>它会针对一个块覆盖掉 <code>align-items</code> 属性。容器内元素的所有属性都默认为 <code>auto</code>，所以每个块默认会使用容器的 <code>align-items</code> 属性。</p>
+<pre><code>#container {
+  align-items: flex-start;
+}
+
+.square#one {
+  align-self: center;
+}
+// 只有这个块会居中
+</code></pre><p>下面将给两个块设置 <code>align-self</code> 属性，其余的使用 <code>align-items: center</code> 和 <code>flex-direction: row</code>，来看看会是什么效果：</p>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*HIADl1oL6pxXb2dMh_pXSQ.gif" alt=""></p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>尽管我们只介绍了弹性盒模型的一点皮毛，但对于操作基本的对齐，或者垂直排列你的核心内容来说，这些属性应该足够使用了。</p>
+<p>如果你想看到更多的 GIF 弹性盒模型教程，或者如果这个教程对你有帮助，请点击下面的绿色心形或者留下一个评论吧。</p>
+<p>感谢阅读！</p>
+
+	
+	
+	
+	
 </div>
-
-		
-		
-    
-		
-			<!-- Paradox Thumbnail -->
-        	<div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
-    
-    <!-- Post Thumbnail -->
-	
-		<!-- Custom Thumbnail -->
-		<div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/angularjstypescript.png)">
-	
 				
-		<!-- Post Title -->
-		<p class="article-headline-p"><a href="/2016/07/27/use-typescript-to-write-angular-controller/">如何使用 TypeScript 编写 AngularJS 的 Controller？</a></p>
-	</div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            
-原文链接 : 
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/07/27/use-typescript-to-write-angular-controller/" target="_self">继续阅读</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="llp's avatar">
-            </div>
-            <div>
-                <strong>llp</strong>
-                <span>7月 27, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/译文/">译文</a>
-            </span>
-            
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span class="ds-thread-count" data-thread-key="2016/07/27/use-typescript-to-write-angular-controller/" data-count-type="comments"></span>
-                </span>
-            
-            
-            <!-- Post Views -->
-            <span class="post_entry-views">
-                
-            </span>
-        </div>
-    </div>
-            
-</div>
-
-		
-		
-    
-		
-			<!-- Paradox Thumbnail -->
-        	<div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
-    
-    <!-- Post Thumbnail -->
-	
-		<!-- Custom Thumbnail -->
-		<div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/angularjstypescript.png)">
-	
 				
-		<!-- Post Title -->
-		<p class="article-headline-p"><a href="/2016/07/26/use-typescript-to-write-angular-directive/">如何使用 TypeScript 编写自定义 AngularJS 指令？</a></p>
-	</div>
 
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            
-原文链接 : 
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/07/26/use-typescript-to-write-angular-directive/" target="_self">继续阅读</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="llp's avatar">
-            </div>
-            <div>
-                <strong>llp</strong>
-                <span>7月 26, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/译文/">译文</a>
-            </span>
-            
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span class="ds-thread-count" data-thread-key="2016/07/26/use-typescript-to-write-angular-directive/" data-count-type="comments"></span>
-                </span>
-            
-            
-            <!-- Post Views -->
-            <span class="post_entry-views">
+                <!-- Post Comments -->
                 
-            </span>
-        </div>
-    </div>
-            
-</div>
-
-		
-		
-    
-		<!-- Index nav -->
-        <nav class="material-nav mdl-cell mdl-cell--12-col">
-            <a class="extend prev" rel="prev" href="/archives/"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"><i class="material-icons" role="presentation">arrow_back</i></button></a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><a class="extend next" rel="next" href="/archives/page/3/"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"><i class="material-icons" role="presentation">arrow_forward</i></button></a>
-        </nav>
-    
-
-	
-		<script>
-    
-    var randomNum;
-    
-    var locatePost = $(".locate-thumbnail-symbol").next();
-    for(var i=0; i < 5; i++){
-        
-        randomNum = Math.floor(Math.random() * 5 + 1);
-        
-        locatePost.children(".post_thumbnail-random").attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children(".post_thumbnail-random").css('background-image', 'url(' + '/img/random/' + randomNum + '.png' + ')')
-        
-        locatePost = locatePost.next();
+                    
+    <!-- 使用多说评论 -->
+    <link rel="stylesheet" href="/css/duoshuo.min.css">
+<style>
+    #ds-thread #ds-reset .ds-post-button{
+        background-color: #0097A7 !important;
     }
-    
-</script>
-
-	
-
+    #ds-wrapper #ds-reset .ds-icons-32{
+        background-color: #0097A7 !important;
+    }
+    #ds-reset .ds-highlight {
+        color: #0097A7 !important;
+    }
+</style>
+<div id="comments">
+    <!-- 多说评论框 start -->
+        <div class="ds-thread" 
+            data-thread-key="2017/02/10/an-animated-guide-to-flexbox/" 
+            data-url="http://llp0574.github.io/2017/02/10/an-animated-guide-to-flexbox/"
+            data-title="几张 GIF 动图让你看懂弹性盒模型（Flexbox）如何工作"></div>
+    <!-- 多说评论框 end -->
 </div>
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2016/12/07/All-about-and-Promises-in-Angular/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+        </div>
+    </div>
 
 				
 				
