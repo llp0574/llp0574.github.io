@@ -4,7 +4,7 @@
     <!-- Title -->
     
     <title>
-        标签云 | llp的程序猿之路
+        用RVM控制切换Ruby/Rails版本 | llp的程序猿之路
     </title>
 
     <!-- Favicons -->
@@ -40,7 +40,7 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://llp0574.github.io">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="标签云 | llp的程序猿之路">
+    <meta property="og:title" content="用RVM控制切换Ruby/Rails版本 | llp的程序猿之路">
     <meta property="og:description" content="llp的程序猿之路走得磕磕绊绊">
 
      <!--[if lte IE 9]>
@@ -209,60 +209,241 @@
 				
                 <!-- Post TOC -->
 
+    
+	<!-- Back Button -->
+<!--
+	<div class="material-back" id="backhome-div" tabindex="0">
+		<a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="#" onclick="window.history.back();return false;" target="_self" role="button" data-upgraded=",MaterialButton,MaterialRipple">
+			<i class="material-icons" role="presentation">arrow_back</i>
+			<span class="mdl-button__ripple-container">
+				<span class="mdl-ripple"></span>
+			</span>
+		</a>
+	</div>			
+-->
+	<!-- Left aligned menu below button -->
+	<button id="post-toc-trigger-btn"
+			class="mdl-button mdl-js-button mdl-button--icon">
+	  <i class="material-icons">format_list_numbered</i>
+	</button>
+
+	<ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+		for="post-toc-trigger-btn">
+			
+			<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装其他版本Ruby"><span class="post-toc-number">1.</span> <span class="post-toc-text">安装其他版本Ruby</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#创建一个gemset"><span class="post-toc-number">2.</span> <span class="post-toc-text">创建一个gemset</span></a></li></ol>
+		
+<!--			<li class="mdl-menu__item">Some Action</li>-->
+	</ul>
+
+
 
 <!-- Layouts -->
 
-    <!-- Tags Cloud -->
-	<style>
-	#bottom{
-		position: relative;
-	}
-	
-	@media screen and (max-width: 480px){
-		.material-tagscloud{
-			margin: 6em 2em 0;
-		}
-	}
-	
-	.material-tagscloud a{
-        text-decoration:none;
-        padding: 1px 9px;
-        margin: 9px 1px;
-        line-height: 40px;
-        white-space: nowrap;
-        transition: .6s;
-        opacity: .85;
-	}
-	.material-tagscloud a:hover{
-		transition: .6s;
-        opacity: 1;
-    	background: #FAFAFA;
-        box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
-	}
-</style>
+    <!-- Post Module -->
+    <div class="material-post_container">
+		
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
 
-<div class=" material-tagscloud">
-	<div class="material-post mdl-grid">
-		<a href="/tags/AngularJS/" style="font-size: 25.5px; color: #4b4b4b">AngularJS</a> <a href="/tags/Flexbox/" style="font-size: 16px; color: #757575">Flexbox</a> <a href="/tags/Git/" style="font-size: 16px; color: #757575">Git</a> <a href="/tags/JavaScript/" style="font-size: 30.25px; color: #363636">JavaScript</a> <a href="/tags/Node/" style="font-size: 16px; color: #757575">Node</a> <a href="/tags/RVM/" style="font-size: 16px; color: #757575">RVM</a> <a href="/tags/React/" style="font-size: 16px; color: #757575">React</a> <a href="/tags/Ruby/" style="font-size: 16px; color: #757575">Ruby</a> <a href="/tags/Ruby-on-Rails/" style="font-size: 16px; color: #757575">Ruby on Rails</a> <a href="/tags/TypeScript/" style="font-size: 20.75px; color: #606060">TypeScript</a> <a href="/tags/Vue-js/" style="font-size: 16px; color: #757575">Vue.js</a> <a href="/tags/Vuex/" style="font-size: 16px; color: #757575">Vuex</a> <a href="/tags/Webpack/" style="font-size: 16px; color: #757575">Webpack</a> <a href="/tags/Webpack-2/" style="font-size: 16px; color: #757575">Webpack 2</a> <a href="/tags/css/" style="font-size: 20.75px; color: #606060">css</a> <a href="/tags/iOS/" style="font-size: 20.75px; color: #606060">iOS</a> <a href="/tags/nvm/" style="font-size: 16px; color: #757575">nvm</a> <a href="/tags/前端/" style="font-size: 35px; color: #212121">前端</a> <a href="/tags/设计/" style="font-size: 16px; color: #757575">设计</a>
-	</div>
+                <!-- Post Header(Thumbnail & Title) -->
+                
+	<!-- Paradox Post Header -->
+	
+		<!-- Custom Thumbnail -->
+		<div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/angularjs.jpg)">
+	
+        <p class="article-headline-p">
+            用RVM控制切换Ruby/Rails版本
+        </p>
+    </div>
+
+	
+
+				
+				
+					<!-- Paradox Post Info -->
+					<div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>llp</strong>
+        <span>6月 09, 2017</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <span class="post-count">共计&nbsp;267&nbsp;字&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+    <span class="post-read">预计阅读&nbsp;1&nbsp;分钟&nbsp;&nbsp;</span>
+    <!-- Favorite -->
+<!--
+    <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+        <i class="material-icons" role="presentation">favorite</i>
+        <span class="visuallyhidden">favorites</span>
+    </button>
+-->
+
+    <!-- Qrcode -->
+    
+
+
+    <!-- Tags (bookmark) -->
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/RVM/">RVM</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Ruby/">Ruby</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Ruby-on-Rails/">Ruby on Rails</a>
+    </ul>
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+
+    
+    <!-- Leancloud Views -->
+    <a class="post_share-link" href="#">
+        <li class="mdl-menu__item">
+            <span id="/2017/06/09/rvm-control-version-ruby-and-rails-rails-notes-version/" class="leancloud-views_num" data-flag-title="用RVM控制切换Ruby/Rails版本">
+     &nbsp;浏览量
+</span>
+        </li>
+    </a>
+    
+
+    
+
+    <!-- Share Twitter -->
+    <a class="post_share-link" href="https://twitter.com/intent/tweet?text=用RVM控制切换Ruby/Rails版本&url=http://llp0574.github.io//2017/06/09/rvm-control-version-ruby-and-rails-rails-notes-version/index.html&via=llp" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Twitter
+        </li>
+    </a>
+
+    <!-- Share Google+ -->
+    <a class="post_share-link" href="https://plus.google.com/share?url=http://llp0574.github.io//2017/06/09/rvm-control-version-ruby-and-rails-rails-notes-version/index.html" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Google+
+        </li>
+    </a>
+
+    <!-- Share Weibo -->
+    <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=用RVM控制切换Ruby/Rails版本&url=http://llp0574.github.io//2017/06/09/rvm-control-version-ruby-and-rails-rails-notes-version/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <li class="mdl-menu__item">
+            分享到微博
+        </li>
+    </a>
+
+    <!-- Share LinkedIn -->
+    <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=http://llp0574.github.io//2017/06/09/rvm-control-version-ruby-and-rails-rails-notes-version/index.html&title=用RVM控制切换Ruby/Rails版本" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 LinkedIn
+        </li>
+    </a>
+
+    <!-- Share QQ -->
+    <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=llp的程序猿之路&title=用RVM控制切换Ruby/Rails版本&summary=llp的程序猿之路走得磕磕绊绊&pics=http://llp0574.github.io/img/favicon.png&url=http://llp0574.github.io/2017/06/09/rvm-control-version-ruby-and-rails-rails-notes-version/index.html" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 QQ
+        </li>
+    </a>
+
+    <!-- Share Telegram -->
+    <a class="post_share-link" href="https://telegram.me/share/url?url=http://llp0574.github.io/2017/06/09/rvm-control-version-ruby-and-rails-rails-notes-version/index.html&text=用RVM控制切换Ruby/Rails版本" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Telegram
+        </li>
+    </a>
+</ul>
+
+</div>
+				
+
+                <!-- Post Content -->
+                <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+	
+		<p>在学习Ruby on Rails的过程中，不同教程使用的Ruby和Rails版本不一样，为了保持和教程中使用的版本一致，我们可以用RVM（Ruby Version Manager）来控制当前的Ruby/Rails版本，方便切换。</p>
+<p>RVM的安装在这里不是重点，不懂的话可以参考：<a href="https://ruby-china.org/wiki/install_ruby_guide" target="_blank" rel="external">如何快速正确的安装 Ruby, Rails 运行环境</a>。</p>
+<h2 id="安装其他版本Ruby"><a href="#安装其他版本Ruby" class="headerlink" title="安装其他版本Ruby"></a>安装其他版本Ruby</h2><p>安装当前最新版本2.4.1</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ rvm install 2.4.1</div></pre></td></tr></table></figure>
+<p>查看目前安装的Ruby版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ rvm list</div></pre></td></tr></table></figure>
+<p>切换到指定版本（前提是已安装）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ rvm 2.0.0</div></pre></td></tr></table></figure>
+<p>指定default版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ rvm --default use 2.4.1</div></pre></td></tr></table></figure>
+<h2 id="创建一个gemset"><a href="#创建一个gemset" class="headerlink" title="创建一个gemset"></a>创建一个gemset</h2><p>gemset是绑定在ruby版本底下的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$ rvm 2.4.1</div><div class="line">$ gem install rails -v 5.1.1</div><div class="line"></div><div class="line">$ rvm gemset create rails511 rails501</div><div class="line">Gemset <span class="string">'rails511'</span> created.</div><div class="line">Gemset <span class="string">'rails501'</span> created.</div><div class="line"></div><div class="line">$ rvm 2.4.1@rails511</div><div class="line">$ gem install rails -v 5.1.1</div><div class="line"></div><div class="line">$ rvm 2.4.1@rails501</div><div class="line">$ gem install rails -v 5.0.1</div></pre></td></tr></table></figure>
+<p>之后就可以在不同版本之间切换Rails了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ rvm 2.4.1@rails511 ; rails --version</div><div class="line"></div><div class="line">Rails 5.1.1</div><div class="line"></div><div class="line">$ rvm 2.4.1@rails501 ; rails --version</div><div class="line"></div><div class="line">Rails 5.0.1</div><div class="line"></div><div class="line">rvm use 2.4.1@rails501 --default</div></pre></td></tr></table></figure>
+
+	
+	
+	
+	
+</div>
+				
+				
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用多说评论 -->
+    <link rel="stylesheet" href="/css/duoshuo.min.css">
+<style>
+    #ds-thread #ds-reset .ds-post-button{
+        background-color: #0097A7 !important;
+    }
+    #ds-wrapper #ds-reset .ds-icons-32{
+        background-color: #0097A7 !important;
+    }
+    #ds-reset .ds-highlight {
+        color: #0097A7 !important;
+    }
+</style>
+<div id="comments">
+    <!-- 多说评论框 start -->
+        <div class="ds-thread" 
+            data-thread-key="2017/06/09/rvm-control-version-ruby-and-rails-rails-notes-version/" 
+            data-url="http://llp0574.github.io/2017/06/09/rvm-control-version-ruby-and-rails-rails-notes-version/"
+            data-title="用RVM控制切换Ruby/Rails版本"></div>
+    <!-- 多说评论框 end -->
 </div>
 
 
-<script>
-	var adjustFooter = function(){
-		if( ($("#bottom").offset().top + $("#bottom").outerHeight() ) < $(window).height() ){
-			var footerBottom = $(window).height() - $("#bottom").outerHeight() - $("#bottom").offset().top;
-//			console.log(footerBottom);
-			$("#bottom").css("bottom", "-" + footerBottom + "px");
-		}
-	};
-	
-	$(document).ready(function(){
-		adjustFooter();
-	});
-</script>
 
+                
+            </div>
 
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/02/10/an-animated-guide-to-flexbox/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+        </div>
+    </div>
 
 				
 				
@@ -431,6 +612,13 @@ It will not impact the appearance and can give developers a lot of support :)
 
 				
 				
+				
+					<!-- Footer Top Button -->
+					<div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
 				
 				
 				<!--Footer-->

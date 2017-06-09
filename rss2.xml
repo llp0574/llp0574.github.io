@@ -8,8 +8,39 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>llp的程序猿之路走得磕磕绊绊</description>
-    <pubDate>Fri, 10 Feb 2017 06:34:11 GMT</pubDate>
+    <pubDate>Fri, 09 Jun 2017 07:21:19 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>用RVM控制切换Ruby/Rails版本</title>
+      <link>http://llp0574.github.io/2017/06/09/rvm-control-version-ruby-and-rails-rails-notes-version/</link>
+      <guid>http://llp0574.github.io/2017/06/09/rvm-control-version-ruby-and-rails-rails-notes-version/</guid>
+      <pubDate>Fri, 09 Jun 2017 14:57:29 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;在学习Ruby on Rails的过程中，不同教程使用的Ruby和Rails版本不一样，为了保持和教程中使用的版本一致，我们可以用RVM（Ruby Version Manager）来控制当前的Ruby/Rails版本，方便切换。&lt;/p&gt;
+&lt;p&gt;RVM的安装在这里不是重点，不
+      
+      </description>
+      
+      <content:encoded><![CDATA[<p>在学习Ruby on Rails的过程中，不同教程使用的Ruby和Rails版本不一样，为了保持和教程中使用的版本一致，我们可以用RVM（Ruby Version Manager）来控制当前的Ruby/Rails版本，方便切换。</p>
+<p>RVM的安装在这里不是重点，不懂的话可以参考：<a href="https://ruby-china.org/wiki/install_ruby_guide" target="_blank" rel="external">如何快速正确的安装 Ruby, Rails 运行环境</a>。</p>
+<h2 id="安装其他版本Ruby"><a href="#安装其他版本Ruby" class="headerlink" title="安装其他版本Ruby"></a>安装其他版本Ruby</h2><p>安装当前最新版本2.4.1</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ rvm install 2.4.1</div></pre></td></tr></table></figure>
+<p>查看目前安装的Ruby版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ rvm list</div></pre></td></tr></table></figure>
+<p>切换到指定版本（前提是已安装）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ rvm 2.0.0</div></pre></td></tr></table></figure>
+<p>指定default版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ rvm --default use 2.4.1</div></pre></td></tr></table></figure>
+<h2 id="创建一个gemset"><a href="#创建一个gemset" class="headerlink" title="创建一个gemset"></a>创建一个gemset</h2><p>gemset是绑定在ruby版本底下的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$ rvm 2.4.1</div><div class="line">$ gem install rails -v 5.1.1</div><div class="line"></div><div class="line">$ rvm gemset create rails511 rails501</div><div class="line">Gemset <span class="string">'rails511'</span> created.</div><div class="line">Gemset <span class="string">'rails501'</span> created.</div><div class="line"></div><div class="line">$ rvm 2.4.1@rails511</div><div class="line">$ gem install rails -v 5.1.1</div><div class="line"></div><div class="line">$ rvm 2.4.1@rails501</div><div class="line">$ gem install rails -v 5.0.1</div></pre></td></tr></table></figure>
+<p>之后就可以在不同版本之间切换Rails了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ rvm 2.4.1@rails511 ; rails --version</div><div class="line"></div><div class="line">Rails 5.1.1</div><div class="line"></div><div class="line">$ rvm 2.4.1@rails501 ; rails --version</div><div class="line"></div><div class="line">Rails 5.0.1</div><div class="line"></div><div class="line">rvm use 2.4.1@rails501 --default</div></pre></td></tr></table></figure>
+]]></content:encoded>
+      
+      <comments>http://llp0574.github.io/2017/06/09/rvm-control-version-ruby-and-rails-rails-notes-version/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>几张 GIF 动图让你看懂弹性盒模型（Flexbox）如何工作</title>
