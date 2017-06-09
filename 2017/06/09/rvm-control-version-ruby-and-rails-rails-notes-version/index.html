@@ -250,7 +250,7 @@
 	<!-- Paradox Post Header -->
 	
 		<!-- Custom Thumbnail -->
-		<div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/angularjs.jpg)">
+		<div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/rubyonrails.png)">
 	
         <p class="article-headline-p">
             用RVM控制切换Ruby/Rails版本
@@ -276,7 +276,7 @@
 
     <div class="section-spacer"></div>
 
-    <span class="post-count">共计&nbsp;267&nbsp;字&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+    <span class="post-count">共计&nbsp;268&nbsp;字&nbsp;&nbsp;|&nbsp;&nbsp;</span>
     <span class="post-read">预计阅读&nbsp;1&nbsp;分钟&nbsp;&nbsp;</span>
     <!-- Favorite -->
 <!--
@@ -382,7 +382,7 @@
 <h2 id="创建一个gemset"><a href="#创建一个gemset" class="headerlink" title="创建一个gemset"></a>创建一个gemset</h2><p>gemset是绑定在ruby版本底下的：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$ rvm 2.4.1</div><div class="line">$ gem install rails -v 5.1.1</div><div class="line"></div><div class="line">$ rvm gemset create rails511 rails501</div><div class="line">Gemset <span class="string">'rails511'</span> created.</div><div class="line">Gemset <span class="string">'rails501'</span> created.</div><div class="line"></div><div class="line">$ rvm 2.4.1@rails511</div><div class="line">$ gem install rails -v 5.1.1</div><div class="line"></div><div class="line">$ rvm 2.4.1@rails501</div><div class="line">$ gem install rails -v 5.0.1</div></pre></td></tr></table></figure>
 <p>之后就可以在不同版本之间切换Rails了：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ rvm 2.4.1@rails511 ; rails --version</div><div class="line"></div><div class="line">Rails 5.1.1</div><div class="line"></div><div class="line">$ rvm 2.4.1@rails501 ; rails --version</div><div class="line"></div><div class="line">Rails 5.0.1</div><div class="line"></div><div class="line">rvm use 2.4.1@rails501 --default</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ rvm 2.4.1@rails511 ; rails --version</div><div class="line"></div><div class="line">Rails 5.1.1</div><div class="line"></div><div class="line">$ rvm 2.4.1@rails501 ; rails --version</div><div class="line"></div><div class="line">Rails 5.0.1</div><div class="line"></div><div class="line">$ rvm use 2.4.1@rails501 --default</div></pre></td></tr></table></figure>
 
 	
 	
