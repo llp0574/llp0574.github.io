@@ -4,7 +4,7 @@
     <!-- Title -->
     
     <title>
-        Git使用规范 | llp的程序猿之路
+        JavaScript 里 this 的简单规则 | llp的程序猿之路
     </title>
 
     <!-- Favicons -->
@@ -40,7 +40,7 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://llp0574.github.io">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Git使用规范 | llp的程序猿之路">
+    <meta property="og:title" content="JavaScript 里 this 的简单规则 | llp的程序猿之路">
     <meta property="og:description" content="llp的程序猿之路走得磕磕绊绊">
 
      <!--[if lte IE 9]>
@@ -230,7 +230,7 @@
 	<ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
 		for="post-toc-trigger-btn">
 			
-			<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#开发方式"><span class="post-toc-number">1.</span> <span class="post-toc-text">开发方式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#初始配置"><span class="post-toc-number">2.</span> <span class="post-toc-text">初始配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#分支使用"><span class="post-toc-number">3.</span> <span class="post-toc-text">分支使用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#如何将代码合并到公共代码库"><span class="post-toc-number">4.</span> <span class="post-toc-text">如何将代码合并到公共代码库</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#需要的配置"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">需要的配置:</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#push-代码"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">push 代码:</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#合并提交历史和修改commit-msg"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">合并提交历史和修改commit msg:</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#多人协作问题（为后期做准备）"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">多人协作问题（为后期做准备）</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">5.</span> <span class="post-toc-text">总结</span></a></li></ol>
+			<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#规则"><span class="post-toc-number">1.</span> <span class="post-toc-text">规则</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#应用规则"><span class="post-toc-number">2.</span> <span class="post-toc-text">应用规则</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#确定应用了哪条规则"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">确定应用了哪条规则</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#当适用多个规则的时候"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">当适用多个规则的时候</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#库"><span class="post-toc-number">3.</span> <span class="post-toc-text">库</span></a></li></ol>
 		
 <!--			<li class="mdl-menu__item">Some Action</li>-->
 	</ul>
@@ -249,11 +249,22 @@
                 
 	<!-- Paradox Post Header -->
 	
-		<!-- Custom Thumbnail -->
-		<div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/git.png)">
+		
+			<!-- Random Thumbnail -->
+			<div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+				<script>
+    
+    var randomNum;
+    randomNum = Math.floor(Math.random() * 5 + 1);
+    
+    $(".post_thumbnail-random").css('background-image', 'url(' + '/img/random/' + randomNum + '.png' + ')');
+    
+</script>
+
+		
 	
         <p class="article-headline-p">
-            Git使用规范
+            JavaScript 里 this 的简单规则
         </p>
     </div>
 
@@ -271,13 +282,13 @@
     <!-- Author Name & Date -->
     <div>
         <strong>llp</strong>
-        <span>11月 24, 2016</span>
+        <span>9月 06, 2017</span>
     </div>
 
     <div class="section-spacer"></div>
 
-    <span class="post-count">共计&nbsp;740&nbsp;字&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-    <span class="post-read">预计阅读&nbsp;3&nbsp;分钟&nbsp;&nbsp;</span>
+    <span class="post-count">共计&nbsp;1,009&nbsp;字&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+    <span class="post-read">预计阅读&nbsp;4&nbsp;分钟&nbsp;&nbsp;</span>
     <!-- Favorite -->
 <!--
     <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
@@ -297,7 +308,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/Git/">Git</a>
+        <a class="post_tag-link" href="/tags/JavaScript/">JavaScript</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/前端/">前端</a>
     </ul>
 
     <!-- Share -->
@@ -311,7 +322,7 @@
     <!-- Leancloud Views -->
     <a class="post_share-link" href="#">
         <li class="mdl-menu__item">
-            <span id="/2016/11/25/git-use/" class="leancloud-views_num" data-flag-title="Git使用规范">
+            <span id="/2017/09/07/the-simple-rules-to-this-in-javascript/" class="leancloud-views_num" data-flag-title="JavaScript 里 this 的简单规则">
      &nbsp;浏览量
 </span>
         </li>
@@ -321,42 +332,42 @@
     
 
     <!-- Share Twitter -->
-    <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Git使用规范&url=http://llp0574.github.io//2016/11/25/git-use/index.html&via=llp" target="_blank">
+    <a class="post_share-link" href="https://twitter.com/intent/tweet?text=JavaScript 里 this 的简单规则&url=http://llp0574.github.io//2017/09/07/the-simple-rules-to-this-in-javascript/index.html&via=llp" target="_blank">
         <li class="mdl-menu__item">
             分享到 Twitter
         </li>
     </a>
 
     <!-- Share Google+ -->
-    <a class="post_share-link" href="https://plus.google.com/share?url=http://llp0574.github.io//2016/11/25/git-use/index.html" target="_blank">
+    <a class="post_share-link" href="https://plus.google.com/share?url=http://llp0574.github.io//2017/09/07/the-simple-rules-to-this-in-javascript/index.html" target="_blank">
         <li class="mdl-menu__item">
             分享到 Google+
         </li>
     </a>
 
     <!-- Share Weibo -->
-    <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Git使用规范&url=http://llp0574.github.io//2016/11/25/git-use/index.html&pic=&searchPic=false&style=simple" target="_blank">
+    <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=JavaScript 里 this 的简单规则&url=http://llp0574.github.io//2017/09/07/the-simple-rules-to-this-in-javascript/index.html&pic=&searchPic=false&style=simple" target="_blank">
         <li class="mdl-menu__item">
             分享到微博
         </li>
     </a>
 
     <!-- Share LinkedIn -->
-    <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=http://llp0574.github.io//2016/11/25/git-use/index.html&title=Git使用规范" target="_blank">
+    <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=http://llp0574.github.io//2017/09/07/the-simple-rules-to-this-in-javascript/index.html&title=JavaScript 里 this 的简单规则" target="_blank">
         <li class="mdl-menu__item">
             分享到 LinkedIn
         </li>
     </a>
 
     <!-- Share QQ -->
-    <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=llp的程序猿之路&title=Git使用规范&summary=llp的程序猿之路走得磕磕绊绊&pics=http://llp0574.github.io/img/favicon.png&url=http://llp0574.github.io/2016/11/25/git-use/index.html" target="_blank">
+    <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=llp的程序猿之路&title=JavaScript 里 this 的简单规则&summary=llp的程序猿之路走得磕磕绊绊&pics=http://llp0574.github.io/img/favicon.png&url=http://llp0574.github.io/2017/09/07/the-simple-rules-to-this-in-javascript/index.html" target="_blank">
         <li class="mdl-menu__item">
             分享到 QQ
         </li>
     </a>
 
     <!-- Share Telegram -->
-    <a class="post_share-link" href="https://telegram.me/share/url?url=http://llp0574.github.io/2016/11/25/git-use/index.html&text=Git使用规范" target="_blank">
+    <a class="post_share-link" href="https://telegram.me/share/url?url=http://llp0574.github.io/2017/09/07/the-simple-rules-to-this-in-javascript/index.html&text=JavaScript 里 this 的简单规则" target="_blank">
         <li class="mdl-menu__item">
             分享到 Telegram
         </li>
@@ -369,32 +380,32 @@
                 <!-- Post Content -->
                 <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
 	
-		<p>自定义的一套Git使用规范，感谢超哥，沿用至今。</p>
-<h2 id="开发方式"><a href="#开发方式" class="headerlink" title="开发方式"></a>开发方式</h2><p>使用fork + pull request的开发流程。</p>
-<h2 id="初始配置"><a href="#初始配置" class="headerlink" title="初始配置"></a>初始配置</h2><p>首先将自己的公钥加入到github中</p>
-<p>fork 主仓库代码后clone 下来</p>
-<p>添加公共仓库到remote里, 名字命名为upstream</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"># clone fork 仓库代码</div><div class="line">git clone your_fork_ssh_src</div><div class="line"></div><div class="line"># 添加远程仓库到remote 里</div><div class="line">git remote add upstream public_ssh_src</div><div class="line"></div><div class="line"># 查看remote</div><div class="line">git remote -v</div><div class="line"></div><div class="line">origin your_fork_ssh_src (fetch)</div><div class="line">origin your_fork_ssh_src (push)</div><div class="line"></div><div class="line">upstream public_ssh_src (fetch)</div><div class="line">upstream public_ssh_src (push)</div></pre></td></tr></table></figure>
-<h2 id="分支使用"><a href="#分支使用" class="headerlink" title="分支使用"></a>分支使用</h2><p>git 鼓励多用分支，所以我们每天开发的新功能建议使用分支来区分，不要所有功能都放在一个分支上开发，分支命名规则如下：</p>
-<ol>
-<li>新功能命名: feature-xxx</li>
-<li>bugfix命名: bugfix-xxx</li>
-</ol>
-<p>这样能解决一个问题，比如你开发新功能到一半，然后突然让你去修复一个紧急bug，如果你开发新功能的时候使用了feature分支，你只需要把的修改提交或者放到stash里就行，然后从master上切分支修复bug就行了，如果你没有切分支，那就很尴尬了。</p>
-<p>master分支只用做更新远程master，每次开始工作前的第一条命令应该是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># 切换到master分支，并且把最新的代码同步下来</div><div class="line">git checkout master</div><div class="line">git pull --rebase upstream master</div></pre></td></tr></table></figure>
-<p>计划今天要做的事和需要发布的内容，建好相应的分支：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># 新建feature分支</div><div class="line">git checkout -b feature-xxx</div><div class="line"></div><div class="line"># 新建bugfix 分支</div><div class="line">git checkout -b hotfix-xxx</div></pre></td></tr></table></figure>
-<p>coding…</p>
-<h2 id="如何将代码合并到公共代码库"><a href="#如何将代码合并到公共代码库" class="headerlink" title="如何将代码合并到公共代码库"></a>如何将代码合并到公共代码库</h2><p>功能开发完成后，你只需要push到github,然后在github上提pull request到公共仓库的master就行。</p>
-<h3 id="需要的配置"><a href="#需要的配置" class="headerlink" title="需要的配置:"></a>需要的配置:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">git config -e</div><div class="line"></div><div class="line"># 然后添加如下代码到文件末尾</div><div class="line"># push 的时候之后将当前的分支push到远程，不会push所有分支</div><div class="line">[push]</div><div class="line">    default = current</div></pre></td></tr></table></figure>
-<h3 id="push-代码"><a href="#push-代码" class="headerlink" title="push 代码:"></a>push 代码:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git push</div><div class="line"></div><div class="line"># 注意你本地可能会无法push，这时候你需要明白你本地代码是否</div><div class="line"># 是最新的，确定的话只需要使用 git push -f将代码提交到远端</div></pre></td></tr></table></figure>
-<h3 id="合并提交历史和修改commit-msg"><a href="#合并提交历史和修改commit-msg" class="headerlink" title="合并提交历史和修改commit msg:"></a>合并提交历史和修改commit msg:</h3><p>功能开发完成后，你的提交历史也许会很乱，这个时候你需要使用rebase命令整理提交历史和commit msg：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git rebase -i commit_id</div></pre></td></tr></table></figure>
-<p>注意: 使用rebase 命令会改写历史，所以rebase操作一定是在本地操作，如果你的代码已经push到远程并且和别人协作了就一定不能进行rebase操作了。（目前我们不会出现这个问题）</p>
-<h3 id="多人协作问题（为后期做准备）"><a href="#多人协作问题（为后期做准备）" class="headerlink" title="多人协作问题（为后期做准备）"></a>多人协作问题（为后期做准备）</h3><p>多人协作需要将其中一个人的feature分支作为主要分支来进行开发。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># 添加协作人的remote</div><div class="line">git remote add company company_ssh_src</div><div class="line"></div><div class="line"># fetch分支下来</div><div class="line">git fetch company feature-xxx:feature-xxx</div><div class="line"></div><div class="line"># commit 以后先pull rebase</div><div class="line">git pull --rebase company feature-xxx</div><div class="line"></div><div class="line"># push</div><div class="line">git push company feature-xxx:feature-xxx</div></pre></td></tr></table></figure>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>需要熟悉的命令有remote, pull, push, rebase, fetch, checkout, stash</p>
+		<p>几条规则确定函数里的 <code>this</code> 是什么。</p>
+<p>想确定 <code>this</code> 是什么其实非常简单。总体的规则是，通过检查它的调用位置，在函数被调用的的时候确定 <code>this</code>。它遵循下面这些规则，接下来以优先级顺序说明。</p>
+<h2 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h2><p>1、如果在调用函数时使用 <code>new</code> 关键字，那么函数里的 <code>this</code> 就是一个全新的对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">ConstructorExample</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">    <span class="keyword">this</span>.value = <span class="number">10</span>;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">new</span> ConstructorExample();</div><div class="line"><span class="comment">// -&gt; &#123;&#125;</span></div><div class="line"><span class="comment">// -&gt; &#123; value: 10 &#125;</span></div></pre></td></tr></table></figure>
+<p>2、如果使用 <code>apply</code>、<code>call</code> 或者 <code>bind</code> 调用函数，那么函数里的 <code>this</code> 就是作为参数传进去的对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">    <span class="attr">value</span>: <span class="number">5</span></div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> boundFn = fn.bind(obj);</div><div class="line">boundFn();     <span class="comment">// -&gt; &#123; value: 5 &#125;</span></div><div class="line">fn.call(obj);  <span class="comment">// -&gt; &#123; value: 5 &#125;</span></div><div class="line">fn.apply(obj); <span class="comment">// -&gt; &#123; value: 5 &#125;</span></div></pre></td></tr></table></figure>
+<p>3、如果函数作为一个方法调用，就是说如果使用点符号调用函数，那么 <code>this</code> 就是拥有这个函数作为属性的对象。换句话说，当一个点在函数调用的左侧时，<code>this</code> 就是这个点左侧的那个对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">    <span class="attr">value</span>: <span class="number">5</span>,</div><div class="line">    <span class="attr">printThis</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">obj.printThis(); <span class="comment">// -&gt; &#123; value: 5, printThis: ƒ &#125;</span></div></pre></td></tr></table></figure>
+<p>4、如果函数作为一个纯粹的函数调用，也就是说，它在没有上述任何条件的情况下被调用，那么 <code>this</code> 就是全局对象。在浏览器里，就是 <code>window</code> 对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">&#125;</div><div class="line"><span class="comment">// 如果在浏览器里调用：</span></div><div class="line">fn(); <span class="comment">// -&gt; Window &#123;stop: ƒ, open: ƒ, alert: ƒ, ...&#125;</span></div></pre></td></tr></table></figure>
+<p><strong>注意这个规则其实和第三个规则是一样的，区别在于没有声明为方法的函数会自动成为全局对象 <code>window</code> 的属性。因此，这其实是一个隐式的方法调用。当我们调用 <code>fn()</code>，其实就会被浏览器理解为 <code>window.fn()</code>，所以 <code>this</code> 就是 <code>window</code>。</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(fn === <span class="built_in">window</span>.fn); <span class="comment">// -&gt; true</span></div></pre></td></tr></table></figure>
+<p>5、如果上述规则有多个适用，那么优先级更高的就会设置 <code>this</code> 值。</p>
+<p>6、如果是 ES2015 里的箭头函数，那么它将忽略上述所有规则，并在<strong>创建的时候</strong>接收包含它的作用域作为 <code>this</code> 的值。想确定 <code>this</code> 具体是什么的话，只需从创建箭头函数那里往上一行，看看那儿的 <code>this</code> 是什么，箭头函数里的 <code>this</code> 值和它一样。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> obj = &#123;</div><div class="line">    <span class="attr">value</span>: <span class="string">'abc'</span>,</div><div class="line">    <span class="attr">createArrowFn</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">const</span> arrowFn = obj.createArrowFn();</div><div class="line">arrowFn(); <span class="comment">// -&gt; &#123; value: 'abc', createArrowFn: ƒ &#125;</span></div></pre></td></tr></table></figure>
+<p>看回第三个规则，当我们调用 <code>obj.createArrowFn()</code> 的时候，<code>createArrowFn</code> 里的 <code>this</code> 是 <code>obj</code>，因为这是方法调用。因此，<code>obj</code> 会在 <code>arrowFn</code> 里绑定到 <code>this</code> 上。如果我们在全局作用域创建一个箭头函数，那么 <code>this</code> 值就会是 <code>window</code>。</p>
+<h2 id="应用规则"><a href="#应用规则" class="headerlink" title="应用规则"></a>应用规则</h2><p>让我们来看一个代码示例，并应用这些规则。尝试一下看能否弄清楚不同的函数调用下，<code>this</code> 是什么。</p>
+<h3 id="确定应用了哪条规则"><a href="#确定应用了哪条规则" class="headerlink" title="确定应用了哪条规则"></a>确定应用了哪条规则</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">    <span class="attr">value</span>: <span class="string">'hi'</span>,</div><div class="line">    <span class="attr">printThis</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> print = obj.printThis;</div><div class="line">obj.printThis(); <span class="comment">// -&gt; &#123;value: "hi", printThis: ƒ&#125;</span></div><div class="line">print(); <span class="comment">// -&gt; Window &#123;stop: ƒ, open: ƒ, alert: ƒ, ...&#125;</span></div></pre></td></tr></table></figure>
+<p><code>obj.printThis()</code> 属于第三条规则，方法调用。另一方面，<code>print()</code> 属于第四条规则，纯粹的函数调用。对于 <code>print()</code> 来说，我们在调用的时候没有使用 <code>new</code>、<code>bind/call/apply</code> 或者点符号，所以它对应了规则四，<code>this</code> 就是全局对象 <code>window</code>。</p>
+<h3 id="当适用多个规则的时候"><a href="#当适用多个规则的时候" class="headerlink" title="当适用多个规则的时候"></a>当适用多个规则的时候</h3><p>当适用多个规则的时候，使用列表里更高优先级的规则。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj1 = &#123;</div><div class="line">    <span class="attr">value</span>: <span class="string">'hi'</span>,</div><div class="line">    <span class="attr">print</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">    &#125;,</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> obj2 = &#123; <span class="attr">value</span>: <span class="number">17</span> &#125;;</div></pre></td></tr></table></figure>
+<p>如果规则二和规则三同时适用，那么规则二占优。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">obj1.print.call(obj2); <span class="comment">// -&gt; &#123; value: 17 &#125;</span></div></pre></td></tr></table></figure>
+<p>如果规则一和规则三同时适用，那么规则一占优。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> obj1.print(); <span class="comment">// -&gt; &#123;&#125;</span></div></pre></td></tr></table></figure>
+<h2 id="库"><a href="#库" class="headerlink" title="库"></a>库</h2><p>有些库有时候会故意将 <code>this</code> 值绑定到某些函数里。而通常会在函数里将最有用的值绑定到 <code>this</code> 上使用。举个例子，jQuery 把 <code>this</code> 绑定到 DOM 元素上，在回调中触发一个事件。如果某个库出现一个不太符合上述规则的 <code>this</code> 值，那么请仔细阅读这个库的文档，它很有可能使用 <code>bind</code> 绑定了。</p>
 
 	
 	
@@ -414,7 +425,7 @@
 		<div id="disqus_thread"></div>
 <script>
 	var disqus_config = function () {
-		this.page.url = "http://llp0574.github.io/2016/11/25/git-use/index.html";  // Replace PAGE_URL with your page's canonical URL variable
+		this.page.url = "http://llp0574.github.io/2017/09/07/the-simple-rules-to-this-in-javascript/index.html";  // Replace PAGE_URL with your page's canonical URL variable
 		this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 	};
 
@@ -441,21 +452,13 @@
     
     <!-- Prev Nav -->
     
-        <a href="/2016/11/29/getting-started-with-webpack2/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
     
-        <a href="/2016/11/17/css-architecture/" id="post_nav-older" class="next-content">
+        <a href="/2017/06/09/rvm-control-version-ruby-and-rails-rails-notes-version/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
