@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <!-- Title -->
+    
+    <title>
+        性能指标都是些什么鬼? | llp的程序猿之路
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" sizes="192x192" href="/img/favicon.png">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Meta & INfo -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="llp">
+    <meta name="description" content="llp的程序猿之路走得磕磕绊绊">
+    <meta name="keywords" content="null">
+
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="llp的程序猿之路">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://llp0574.github.io">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="性能指标都是些什么鬼? | llp的程序猿之路">
+    <meta property="og:description" content="llp的程序猿之路走得磕磕绊绊">
+
+     <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS -->
+    <link rel="stylesheet" href="/css/material.min.css">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+	body, html{
+		font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+	}
+	
+    a{
+        color: #00838F
+    }
+    
+    .mdl-card__media,
+    #search-label,
+    #search-form-label:after,
+    #scheme-Paradox .hot_tags-count,
+    #scheme-Paradox .sidebar_archives-count,
+    #scheme-Paradox .sidebar-colored .sidebar-header,
+    #scheme-Paradox .sidebar-colored .sidebar-badge{
+        background-color: #0097A7 !important
+    }
+    
+	/* Sidebar User Drop Down Menu Text Color */
+	#scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus{
+        color: #0097A7 !important
+    }
+    
+    #post_entry-right-info,
+    .sidebar-colored .sidebar-nav li:hover > a,
+    .sidebar-colored .sidebar-nav li:hover > a i,
+    .sidebar-colored .sidebar-nav li > a:hover,
+    .sidebar-colored .sidebar-nav li > a:hover i,
+    .sidebar-colored .sidebar-nav li > a:focus i,
+    .sidebar-colored .sidebar-nav > .open > a,
+    .sidebar-colored .sidebar-nav > .open > a:hover,
+    .sidebar-colored .sidebar-nav > .open > a:focus,
+    #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a{
+        color: #0097A7 !important
+    }
+    
+    .toTop{
+        background: #757575 !important
+    }
+		
+	.material-layout .material-post>.material-nav,
+	.material-layout .material-index>.material-nav,
+	.material-nav a{
+		color: #757575;
+	}
+		
+	#scheme-Paradox .MD-burger-layer {
+		background-color: #757575;
+	}
+
+	#scheme-Paradox #post-toc-trigger-btn{
+		color: #757575;
+	}
+	
+	.post-toc a:hover{
+		color: #00838F;
+		text-decoration: underline;
+	}
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+        body{
+            background-color: #F5F5F5
+        }
+		
+		/* blog_info bottom background */
+        #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+            background-color: #fff;
+        }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+        .fade {
+            transition: all 800ms linear;
+            -webkit-transform: translate3d(0,0,0);
+            -moz-transform: translate3d(0,0,0);
+            -ms-transform: translate3d(0,0,0);
+            -o-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+            opacity: 1;
+        }
+
+        .fade.out{
+            opacity: 0;
+        }
+    </style>
+
+	<script src="/js/jquery.min.js"></script>
+
+	<link rel="stylesheet" href="/css/highlight/solarized-white.css">
+
+
+	<!-- UC Browser Compatible-->
+	<script>
+		var agent = navigator.userAgent.toLowerCase();
+		if(agent.indexOf('ucbrowser')>0) {
+			document.write('<link rel="stylesheet" href="/css/uc.css">');
+		   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+		}
+	</script>
+
+    <!-- Custom Head -->
+    
+
+    
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?73bb3e6eceb47c2e2f8f79e3bf611006";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+</head>
+	
+	
+
+    <body id="scheme-Paradox">
+
+		
+        <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+				
+			
+			
+            <!-- Main Container -->
+            <main class="material-layout__content" id="main">
+				
+                <!-- Top Anchor -->
+                <div id="top"></div>
+				
+				
+                <!-- Hamburger Button -->
+                <button class="MD-burger-icon sidebar-toggle">
+                    <span class="MD-burger-layer"></span>
+                </button>
+				
+				
+                <!-- Post TOC -->
+
+    
+	<!-- Back Button -->
+<!--
+	<div class="material-back" id="backhome-div" tabindex="0">
+		<a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="#" onclick="window.history.back();return false;" target="_self" role="button" data-upgraded=",MaterialButton,MaterialRipple">
+			<i class="material-icons" role="presentation">arrow_back</i>
+			<span class="mdl-button__ripple-container">
+				<span class="mdl-ripple"></span>
+			</span>
+		</a>
+	</div>			
+-->
+	<!-- Left aligned menu below button -->
+	<button id="post-toc-trigger-btn"
+			class="mdl-button mdl-js-button mdl-button--icon">
+	  <i class="material-icons">format_list_numbered</i>
+	</button>
+
+	<ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+		for="post-toc-trigger-btn">
+			
+			<ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#性能指标都是些什么鬼"><span class="post-toc-number">1.</span> <span class="post-toc-text">性能指标都是些什么鬼?</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#渐进式网页指标（Progressive-Web-Metrics）"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">渐进式网页指标（Progressive Web Metrics）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#首次绘制（First-Paint，FP）"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">首次绘制（First Paint，FP）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#首次内容绘制（First-Contentful-Paint，FCP）"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">首次内容绘制（First Contentful Paint，FCP）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#首次有意义绘制（First-Meaningful-Paint，FMP）"><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">首次有意义绘制（First Meaningful Paint，FMP）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#视觉上准备好"><span class="post-toc-number">1.1.4.</span> <span class="post-toc-text">视觉上准备好</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#预计输入延迟"><span class="post-toc-number">1.1.5.</span> <span class="post-toc-text">预计输入延迟</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#首次交互"><span class="post-toc-number">1.1.6.</span> <span class="post-toc-text">首次交互</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#视觉上完成-速度指数"><span class="post-toc-number">1.1.7.</span> <span class="post-toc-text">视觉上完成 / 速度指数</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">总结</span></a></li></ol></li></ol>
+		
+<!--			<li class="mdl-menu__item">Some Action</li>-->
+	</ul>
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+		
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+	<!-- Paradox Post Header -->
+	
+		<!-- Custom Thumbnail -->
+		<div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/performance.png)">
+	
+        <p class="article-headline-p">
+            性能指标都是些什么鬼?
+        </p>
+    </div>
+
+	
+
+				
+				
+					<!-- Paradox Post Info -->
+					<div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>llp</strong>
+        <span>10月 19, 2017</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <span class="post-count">共计&nbsp;3,576&nbsp;字&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+    <span class="post-read">预计阅读&nbsp;13&nbsp;分钟&nbsp;&nbsp;</span>
+    <!-- Favorite -->
+<!--
+    <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+        <i class="material-icons" role="presentation">favorite</i>
+        <span class="visuallyhidden">favorites</span>
+    </button>
+-->
+
+    <!-- Qrcode -->
+    
+
+
+    <!-- Tags (bookmark) -->
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/PWM-s/">PWM's</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Web-Performance/">Web Performance</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/前端/">前端</a>
+    </ul>
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+
+    
+    <!-- Leancloud Views -->
+    <a class="post_share-link" href="#">
+        <li class="mdl-menu__item">
+            <span id="/2017/10/19/performance-metrics-whats-this-all-about/" class="leancloud-views_num" data-flag-title="性能指标都是些什么鬼?">
+     &nbsp;浏览量
+</span>
+        </li>
+    </a>
+    
+
+    
+
+    <!-- Share Twitter -->
+    <a class="post_share-link" href="https://twitter.com/intent/tweet?text=性能指标都是些什么鬼?&url=http://llp0574.github.io//2017/10/19/performance-metrics-whats-this-all-about/index.html&via=llp" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Twitter
+        </li>
+    </a>
+
+    <!-- Share Google+ -->
+    <a class="post_share-link" href="https://plus.google.com/share?url=http://llp0574.github.io//2017/10/19/performance-metrics-whats-this-all-about/index.html" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Google+
+        </li>
+    </a>
+
+    <!-- Share Weibo -->
+    <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=性能指标都是些什么鬼?&url=http://llp0574.github.io//2017/10/19/performance-metrics-whats-this-all-about/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <li class="mdl-menu__item">
+            分享到微博
+        </li>
+    </a>
+
+    <!-- Share LinkedIn -->
+    <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=http://llp0574.github.io//2017/10/19/performance-metrics-whats-this-all-about/index.html&title=性能指标都是些什么鬼?" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 LinkedIn
+        </li>
+    </a>
+
+    <!-- Share QQ -->
+    <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=llp的程序猿之路&title=性能指标都是些什么鬼?&summary=llp的程序猿之路走得磕磕绊绊&pics=http://llp0574.github.io/img/favicon.png&url=http://llp0574.github.io/2017/10/19/performance-metrics-whats-this-all-about/index.html" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 QQ
+        </li>
+    </a>
+
+    <!-- Share Telegram -->
+    <a class="post_share-link" href="https://telegram.me/share/url?url=http://llp0574.github.io/2017/10/19/performance-metrics-whats-this-all-about/index.html&text=性能指标都是些什么鬼?" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Telegram
+        </li>
+    </a>
+</ul>
+
+</div>
+				
+
+                <!-- Post Content -->
+                <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+	
+		<blockquote>
+<p>原文地址：<a href="https://codeburst.io/performance-metrics-whats-this-all-about-1128461ad6b" target="_blank" rel="external">Performance metrics. What’s this all about?</a><br>原文作者：<a href="https://codeburst.io/@denar90?source=post_header_lockup" target="_blank" rel="external">Artem Denysov</a><br>译文出自：<a href="https://github.com/xitu/gold-miner" target="_blank" rel="external">掘金翻译计划</a><br>本文永久链接：<a href="https://github.com/xitu/gold-miner/blob/master/TODO/performance-metrics-whats-this-all-about.md" target="_blank" rel="external">https://github.com/xitu/gold-miner/blob/master/TODO/performance-metrics-whats-this-all-about.md</a><br>译者：<a href="https://github.com/llp0574" target="_blank" rel="external">llp0574</a><br>校对者：<a href="https://github.com/ppp-man" target="_blank" rel="external">ppp-man</a>，<a href="https://github.com/lampui" target="_blank" rel="external">lampui</a></p>
+</blockquote>
+<h1 id="性能指标都是些什么鬼"><a href="#性能指标都是些什么鬼" class="headerlink" title="性能指标都是些什么鬼?"></a>性能指标都是些什么鬼?</h1><p>测量页面的加载性能是一项艰难的任务。因此 <a href="https://medium.com/@googledevs" target="_blank" rel="external">Google Developers</a> 正和社区一起致力于渐进式网页指标（Progressive Web Metrics，简称 PWM’s）。</p>
+<p>PWM’s 都是些什么，我们为什么需要它们？</p>
+<p>先来讲一点关于浏览器指标的历史。</p>
+<p>此前我们有两个主要的点（事件）来测量性能：</p>
+<p><code>DOMContentLoaded</code> — 页面加载时触发，但脚本文件刚刚开始执行。</p>
+<p><code>load</code> 事件在页面完全加载后触发，此时用户已经可以使用页面或应用。</p>
+<p>举个例子，如果我们看一下 <a href="https://chromedevtools.github.io/timeline-viewer/?loadTimelineFromURL=drive://0ByCYpYcHF12_YjBGUTlJR2gzcHc" target="_blank" rel="external">reddit.com 的跟踪时间轴</a>（Chrome 的开发者工具可以帮助我们用蓝色和红色的垂直线来标记那些点），就可以明白为什么这些指标不是那么有用了。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1000/1*hFyHeo1-iI62aMQT8P8ORw.png" alt="timeline trace of reddit.com"></p>
+<blockquote>
+<p>时至今日，我们也可以看到 <code>window.onload</code> 并没有像以前那样真实反映出用户的感知。</p>
+<p>参考：<a href="https://medium.com/@souders" target="_blank" rel="external">Steve Souders</a>，<a href="https://www.stevesouders.com/blog/2013/05/13/moving-beyond-window-onload/" target="_blank" rel="external">Moving beyond window.onload()</a> （2013）</p>
+</blockquote>
+<p>确实，<code>DOMContentLoaded</code> 的问题在于解析和执行 JavaScript 的时间，如果脚本文件太大，那么这个时间就会非常长。比如移动设备，在 3G 网络的限制下测量跟踪时间轴，就会发现要花费差不多十秒才能到达 <code>load</code> 点。</p>
+<p>另一方面，<code>load</code> 事件太晚触发，就无法分析出页面的性能瓶颈。</p>
+<p>所以我们能否依赖这些指标？它们到底给我们提供了什么信息？</p>
+<p>而且最主要的问题是，从页面开始加载直至加载完成，<strong>用户如何感知这个过程</strong>？</p>
+<p>为什么加载感知会如此重要？可以参考 <a href="https://medium.com/@ChromiumDev" target="_blank" rel="external">Chrome Developers</a> 上的一篇文章：<a href="https://developers.google.com/web/updates/2017/06/user-centric-performance-metrics" target="_blank" rel="external">Leveraging the Performance Metrics that Most Affect User Experience</a>，再次强调了加载问题。</p>
+<p>看一下下方柱状图，X 轴展示了加载时间，Y 轴展示了体验到加载时长在特定时间区间里的用户的相对数量，你就可以明白不是所有用户的体验加载时间都会小于两秒。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1000/1*gw7eB5MF4SDAk1TGHSUlkg.png" alt=""></p>
+<p>因此在我们的试验里，17 秒左右的 <code>load</code> 时间在获取用户感知加载这方面是没有什么价值的。用户在这 17 秒里到底看到了什么？白屏？加载了一半的页面？页面假死（用户无法点击输入框或滚动）？如果这些问题有答案的话：</p>
+<ol>
+<li>可以改善用户体验</li>
+<li>给应用带来更多的用户</li>
+<li>增加产品所有者的利益（用户、消费者、钱）</li>
+</ol>
+<hr>
+<p>所以，大家都在尝试解读用户的想法并预测用户在这 17 秒的加载时间里会想些什么。</p>
+<ol>
+<li>“<strong>它正在运行吗？</strong>”</li>
+</ol>
+<p>我的网页浏览开始了吗（服务器有回应，等等）？<br>Has my navigation started successfully (the server has responded, etc.)?</p>
+<ol>
+<li>“<strong>它有用吗？</strong>”</li>
+</ol>
+<p>页面上是否有足够关键的内容使我能够理解？</p>
+<ol>
+<li>“<strong>它可以使用了吗？</strong>”</li>
+</ol>
+<p>我能不能和页面互动了呢？还是它依旧处于加载状态？</p>
+<ol>
+<li>“<strong>用户体验良好吗？</strong>”</li>
+</ol>
+<p>是否没有滚动卡顿、动画卡顿、无样式内容闪烁和缓慢的 Web 字体文件加载等问题出现，让我感到惊喜？</p>
+<hr>
+<p>如果 <code>DOMContentLoaded</code> 或者 <code>load</code> 指标不能回答这些问题，那么什么指标可以回答？</p>
+<h2 id="渐进式网页指标（Progressive-Web-Metrics）"><a href="#渐进式网页指标（Progressive-Web-Metrics）" class="headerlink" title="渐进式网页指标（Progressive Web Metrics）"></a>渐进式网页指标（Progressive Web Metrics）</h2><p>PWM’s 的指标列表目的在于帮助检测性能瓶颈。除开 <code>load</code> 和 <code>DOMContentLoaded</code>，PWM’s 给开发者提供了更多更详细的关于页面加载的信息。</p>
+<p>下面让我们用 reddit.com 的跟踪时间轴来探究一下 PWM’s，并尝试弄明白每个指标的意思。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1000/1*-zjNpHphoKaaZJgG7omu2w.png" alt="Timeline trace of reddit.com measured using ChromeDevTools"></p>
+<hr>
+<h3 id="首次绘制（First-Paint，FP）"><a href="#首次绘制（First-Paint，FP）" class="headerlink" title="首次绘制（First Paint，FP）"></a>首次绘制（First Paint，FP）</h3><p>我曾经说我们只有两个指标，这其实不太准确。（Chrome）开发者工具还给我们提供了一个指标 - FP。这个指标表示页面绘制的时间点，换句话说它表示当用户第一次看到白屏的时间点（下面是 msn.com 的 FP 截屏）。可以在<a href="https://github.com/w3c/paint-timing" target="_blank" rel="external">规范说明</a>里阅读更多相关内容。</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*IuI-OeOiJByd_kbOnQ4T6A.png" alt=""></p>
+<p>想弄明白它是如何工作的话，作为例子，我们可以看一下 Chromium 图层的底层原理。</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*w0ejDtPxaRfJsyGRgoE02A.png" alt="Simplified Chromium Graphics Layer"></p>
+<p>FP 事件在图层进行绘制的时候触发，而不是文本、图片或 Canvas 出现的时候，但它也在列表里给出了一些开发者尝试使用的信息。</p>
+<p>但它并不是标准指标，所以测量就变得非常棘手。因此用到了一些不同的 “取巧” 技术，比如：</p>
+<ul>
+<li>附加 <code>requestAnimationFrame</code> 使用</li>
+<li>捕捉 CSS 资源加载</li>
+<li>甚至使用 <code>DOMContentLoaded</code> 和 <code>load</code> 事件（它们的问题之前已经讲过）</li>
+</ul>
+<p>但是，尽管做出了这些努力，它仍然不具有太大的价值，因为文本、图片和 Canvas 可能在 FP 事件触发没多久就会进行绘制，而这些则会被诸如页面权重、CSS 或 JavaScript 资源大小等性能瓶颈所影响。</p>
+<blockquote>
+<p>这个指标不属于 PWM 的一部分，但它对于理解下面将要讲到的指标很有帮助。</p>
+</blockquote>
+<p>所以需要其他一些指标来表示真实的内容绘制。</p>
+<h3 id="首次内容绘制（First-Contentful-Paint，FCP）"><a href="#首次内容绘制（First-Contentful-Paint，FCP）" class="headerlink" title="首次内容绘制（First Contentful Paint，FCP）"></a><strong>首次内容绘制（First Contentful Paint，FCP）</strong></h3><p>这是当用户看见一些“内容”元素被绘制在页面上的时间点。和白屏是不一样的，它可以是文本的首次出现，或者 SVG 的首次出现，或者 Canvas 的首次出现等等。</p>
+<p>因此，用户可能会产生疑问，<strong>它正在运行吗？</strong> 页面是否在他（她）键入 URL 并按 enter 键后开始加载了呢？</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*UduDmCWTDefC6CHubA-lTQ.png" alt="First Paint vs First Contentful Paint of msn.com"></p>
+<p>继续看一下 Chromium，FCP 事件在文本（正在等待字体文件加载的文本不计算在内）、图片、Canvas 等元素绘制期间就已经被触发了。因此，FP 和 FCP 的时间差异可能从几毫秒到几秒不等。这个差别甚至可以从上面的图片中看出来。这就是为什么用一个指标来表示真实的首次内容绘制是有价值的。</p>
+<blockquote>
+<p>你可以从<a href="https://docs.google.com/document/d/1kKGZO3qlBBVOSZTf-T8BOMETzk3bY15SC-jsMJWv4IE/edit#" target="_blank" rel="external">这里</a>阅读所有的规范说明。</p>
+</blockquote>
+<p><strong>FCP 指标如何对开发者产生价值？</strong></p>
+<p>如果<strong>首次内容绘制</strong>耗时太长，那么：</p>
+<ul>
+<li>你的网络连接可能有性能问题</li>
+<li>资源太过庞大（如 index.html），传输它们消耗太多时间</li>
+</ul>
+<p>阅读 <a href="https://medium.com/@igrigorik" target="_blank" rel="external">Ilya Grigorik</a> 写的 <a href="https://hpbn.co/" target="_blank" rel="external">High Performance Browser Networking</a> 了解更多关于网络性能的问题，消除这些因素的影响。</p>
+<hr>
+<h3 id="首次有意义绘制（First-Meaningful-Paint，FMP）"><a href="#首次有意义绘制（First-Meaningful-Paint，FMP）" class="headerlink" title="首次有意义绘制（First Meaningful Paint，FMP）"></a>首次有意义绘制（First Meaningful Paint，FMP）</h3><p>这是指页面主要内容出现在屏幕上的时间点，因此，<strong>它有用吗？</strong></p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*835Kq5Mzw87L8XRoXXyKIw.png" alt="First Paint vs First Contentful Paint vs First Meaningful Paint of msn.com"></p>
+<p>主要内容是什么？</p>
+<p>当</p>
+<ul>
+<li>博客的标题和文本</li>
+<li>搜索引擎的搜索文本</li>
+<li>对于电子商务产品来说重要的图片</li>
+</ul>
+<p>展示的时候。</p>
+<p>但如果展示的是</p>
+<ul>
+<li>下拉菜单或类似的东西</li>
+<li>无样式内容闪烁（FOUC）</li>
+<li>导航条或页面标题</li>
+</ul>
+<p>则<strong>不计算</strong>在主要内容之内。</p>
+<blockquote>
+<p>FMP = 最大布局变化时的绘制</p>
+</blockquote>
+<p>基于 Chromium 的实现，这个绘制是使用 <a href="https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/core/layout/LayoutAnalyzer.h&amp;sq=package:chromium&amp;type=cs" target="_blank" rel="external">LayoutAnalyzer</a> 进行计算的，它会收集所有的布局变化，当布局发生最大变化时得出时间。而这个时间就是 FMP。</p>
+<blockquote>
+<p>你可以从<a href="https://docs.google.com/document/d/1BR94tJdZLsin5poeet0XoTW60M0SjvOJQttKT-JK8HI/edit#" target="_blank" rel="external">这里</a>阅读所有的规范说明。</p>
+</blockquote>
+<p><strong>FMP 指标如何对开发者产生帮助？</strong></p>
+<p>如果主要内容很久都没有展示出来，那么：</p>
+<ul>
+<li>太多资源（图片、样式、字体、JavaScript）有较高的加载优先级，因此，它们阻塞了 FMP</li>
+</ul>
+<p>我不想重复太多已有的用来提升这些瓶颈的实践方法，给大家留出一些链接：</p>
+<ul>
+<li><a href="https://medium.com/@addyosmani" target="_blank" rel="external">Addy Osmani</a> 的 <a href="https://medium.com/reloading/preload-prefetch-and-priorities-in-chrome-776165961bbf" target="_blank" rel="external">Preload, Prefetch And Priorities in Chrome</a></li>
+<li><a href="https://medium.com/@benschwarz" target="_blank" rel="external">Ben Schwarz</a> 的 <a href="https://css-tricks.com/the-critical-request/" target="_blank" rel="external">Critical Request</a></li>
+<li><a href="https://medium.com/@fox" target="_blank" rel="external">Karolina Szczur</a> 的 <a href="https://medium.com/@fox/talk-the-state-of-the-web-3e12f8e413b3" target="_blank" rel="external">The State of the Web</a></li>
+<li><a href="https://medium.com/@paul_irish" target="_blank" rel="external">Paul Irish</a> 和 <a href="https://medium.com/@samccone" target="_blank" rel="external">Sam Saccone</a> 的 <a href="https://youtu.be/6m_E-mC0y3Y" target="_blank" rel="external">Practical Performance (Polymer Summit 2016)</a> </li>
+</ul>
+<p>从这些文章里可以找到所有需要的信息。</p>
+<hr>
+<h3 id="视觉上准备好"><a href="#视觉上准备好" class="headerlink" title="视觉上准备好"></a>视觉上准备好</h3><p>当页面看上去“接近”加载完成，但浏览器还没有执行完所有脚本文件的状态。</p>
+<hr>
+<h3 id="预计输入延迟"><a href="#预计输入延迟" class="headerlink" title="预计输入延迟"></a>预计输入延迟</h3><p>这个指标意在估计应用对于用户输入的响应有多流畅。</p>
+<p>但在深入研究前，我想通过解释一些术语以便大家在理解上同步。</p>
+<p><strong>长任务</strong></p>
+<p>浏览器底层将所有用户输入打包在一个任务里（UI 任务），并在主线程中将它们放到一个队列里。除此之外，浏览器还必须在页面上解析、编译和执行 JavaScript 代码（应用任务）。如果每个应用任务要耗费很长时间的话，那么用户输入任务就可能在其他任务结束前受到阻塞。因此它就会延迟与页面的交互，页面行为就会变得卡顿有延迟。</p>
+<p>简单来说，长任务就是指耗时大于 50 毫秒的解析、编译和执行 JavaScript 代码块。</p>
+<blockquote>
+<p>你可以从<a href="https://w3c.github.io/longtasks/" target="_blank" rel="external">这里</a>阅读所有的规范说明。</p>
+</blockquote>
+<p>长任务 API 已经在 Chrome 里<a href="https://www.chromestatus.com/feature/5738471184400384" target="_blank" rel="external">实现</a>，并用作测量主线程的繁忙程度。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1000/1*JUlxNXlme70nrChpYw6idQ.png" alt=""></p>
+<p>回到预计输入延迟，用户会假设页面响应很快，但如果主线程正忙于处理各个长任务，那么就会让用户不满意。对于应用来说，用户体验至关重要，可以从 <a href="https://developers.google.com/web/fundamentals/performance/rail" target="_blank" rel="external">Measure Performance with the RAIL Model</a> 这篇文章里阅读关于这种类型的性能瓶颈如何进行性能提升。</p>
+<hr>
+<h3 id="首次交互"><a href="#首次交互" class="headerlink" title="首次交互"></a>首次交互</h3><p>交互 - <strong>它可以使用了吗？</strong> 是的，这是当用户看见视觉上准备好的页面时提出的问题，他们希望能与页面产生交互。</p>
+<p>首次交互发生需满足以下条件：</p>
+<ul>
+<li><em>FMP</em></li>
+<li>&amp;&amp;</li>
+<li><a href="https://developer.mozilla.org/ru/docs/Web/Events/DOMContentLoaded" target="_blank" rel="external">DOMContentLoaded</a> 事件被触发</li>
+<li>&amp;&amp;</li>
+<li>页面视觉完成度在 85%</li>
+</ul>
+<p>首次交互 - 这个指标可以拆分成两个指标，首次交互的时间（Time to First Interactive，TTFI）和首次持续交互的时间（Time to First Consistently Interactive，TTCI）。</p>
+<p>拆分的原因在于：</p>
+<ul>
+<li>当 UI 响应良好时，定义最小程度的交互，但如果响应不好也可以接受</li>
+<li>当网站有着完整且令人愉悦的交互，并严格遵循 <a href="https://developers.google.com/web/fundamentals/performance/rail" target="_blank" rel="external">RAIL</a> 的指导原则时</li>
+</ul>
+<p><strong>TTCI</strong></p>
+<p><img src="https://cdn-images-1.medium.com/max/800/0*6qzJAADPmBaNSwFw." alt=""></p>
+<p>使用逆序分析，从追踪线的尾端开始看，发现页面加载活动保持了 5 秒的安静并且再无更多的长任务执行，得到了一段叫做<strong>安静窗口</strong>的时期。安静窗口之后及第一个长任务（从安静期结束后开始算）之前的时间就是<strong>TTCI</strong>。</p>
+<p><strong>TTFI</strong></p>
+<p><img src="https://cdn-images-1.medium.com/max/800/0*xWGGBiXh0pLiPeuk." alt=""></p>
+<p>这个指标的定义和 TTCI 有一点不同。我们从头至尾来分析跟踪时间轴。在 FMP 发生后应该有 3 秒的安静窗口。这个时间已经足够说明页面对于用户来说是可交互的。但可能会有<strong>长任务</strong>在这个安静窗口期间或之后开始执行，它们可以被忽略。</p>
+<blockquote>
+<p><strong>长任务</strong> - 距离 FMP 很远执行的任务，并由 250ms 的执行时间期间（信道大小）和在信道大小前后的 1 秒安静期分隔开来。这个示例任务有可能是第三方广告或者分析脚本。</p>
+<p>有时长于 250 毫秒的“长任务”会对页面有严重的影响。</p>
+<p>比如检测<strong>adblock</strong></p>
+<p>你可以从<a href="https://docs.google.com/document/d/1GGiI9-7KeY3TPqS3YT271upUVimo-XiL5mwWorDUD4c/edit#" target="_blank" rel="external">这里</a>阅读所有的规范说明。</p>
+</blockquote>
+<p><strong>TTFI 和 TTCI 指标如何对开发者产生帮助？</strong></p>
+<p>当线程长时间处于<strong>视觉上准备好</strong>和<strong>首次交互</strong>中间忙碌状态时</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*_uAiHAv4-bpoMFYqgbBKcQ.png" alt=""></p>
+<p>这是其中一个最复杂的瓶颈，并且没有标准方法来修复这类型的问题。它是独立的，而且取决于应用的特定情况。<a href="https://developer.chrome.com/devtools" target="_blank" rel="external">Chrome 开发者工具</a>有一系列<a href="https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/" target="_blank" rel="external">文章</a>帮助我们检测运行时的性能问题。</p>
+<hr>
+<h3 id="视觉上完成-速度指数"><a href="#视觉上完成-速度指数" class="headerlink" title="视觉上完成 / 速度指数"></a>视觉上完成 / 速度指数</h3><p><strong>视觉上完成</strong>是通过页面截图来计算的，并使用<a href="https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index" target="_blank" rel="external">速度指数算法</a>来对那些截图进行像素分析。有时候测量是否<strong>视觉上完成</strong>也是一件棘手的事情。</p>
+<blockquote>
+<p>如果页面里有会发生变化的图片如轮播图，那么获取正确的视觉上完成结果就可能有点挑战了。</p>
+</blockquote>
+<p><strong>速度指数</strong>本身表示<strong>视觉上完成</strong>结果的中值。<strong>速度指数</strong>的值越小，性能就越好。</p>
+<p>视觉上 100% 完成是一个最终点，决定了用户对页面是否感到满意。这个时间也是用来回答问题 - <strong>用户体验良好吗？</strong></p>
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>上述并不是所有的 PWM，但是最重要的一部分。上面的指标都增加了一些资料链接，帮助我们更好地提升它们，另外，我还想留出一些关于测量这些类型指标的工具链接：</p>
+<ul>
+<li><a href="https://www.webpagetest.org/about" target="_blank" rel="external">Web Pagetest</a></li>
+<li><a href="https://github.com/GoogleChrome/lighthouse/" target="_blank" rel="external">Lighthouse</a></li>
+<li><a href="https://github.com/paulirish/pwmetrics" target="_blank" rel="external">pwmetrics</a></li>
+<li><a href="https://calibreapp.com/" target="_blank" rel="external">Calibre</a></li>
+<li><a href="https://chromedevtools.github.io/timeline-viewer/" target="_blank" rel="external">DevTools Timeline Viewer</a></li>
+</ul>
+<p>P.S. 要获得所有这些指标的结果的话，我推荐使用 Lighthouse 或 pwmetrics。Calibre 和 WPT 都可以运行 Lighthouse，并可以通过扩展提供所有这些指标。</p>
+<p>如果你想手动测量性能，有一个原生 API，叫 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver" target="_blank" rel="external">PerformanceObserver</a>，它可以帮助你实现你的测量目标。</p>
+<p>从<a href="https://w3c.github.io/performance-timeline/" target="_blank" rel="external">规范说明</a>里截取的示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">const observer = new PerformanceObserver(list =&gt; &#123;</div><div class="line">  list</div><div class="line">    .getEntries()</div><div class="line">    // Get the values we are interested in</div><div class="line">    .map((&#123; name, entryType, startTime, duration &#125;) =&gt; &#123;</div><div class="line">      const obj = &#123;</div><div class="line">        &quot;Duration&quot;: duration,</div><div class="line">        &quot;Entry Type&quot;: entryType,</div><div class="line">        &quot;Name&quot;: name,</div><div class="line">        &quot;Start Time&quot;: startTime,</div><div class="line">      &#125;;</div><div class="line">      return JSON.stringify(obj, null, 2);</div><div class="line">    &#125;)</div><div class="line">    // Display them to the console</div><div class="line">    .forEach(console.log);</div><div class="line">  // maybe disconnect after processing the events.</div><div class="line">  observer.disconnect();</div><div class="line">&#125;);</div><div class="line">// retrieve buffered events and subscribe to new events</div><div class="line">// for Resource-Timing and User-Timing</div><div class="line">observer.observe(&#123;</div><div class="line">  entryTypes: [&quot;resource&quot;, &quot;mark&quot;, &quot;measure&quot;],</div><div class="line">  buffered: true</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>感谢所有工作人员，他们在规范说明、文章和工具上做了很出色的工作！</p>
+<hr>
+<blockquote>
+<p><a href="https://github.com/xitu/gold-miner" target="_blank" rel="external">掘金翻译计划</a> 是一个翻译优质互联网技术文章的社区，文章来源为 <a href="https://juejin.im" target="_blank" rel="external">掘金</a> 上的英文分享文章。内容覆盖 <a href="https://github.com/xitu/gold-miner#android" target="_blank" rel="external">Android</a>、<a href="https://github.com/xitu/gold-miner#ios" target="_blank" rel="external">iOS</a>、<a href="https://github.com/xitu/gold-miner#react" target="_blank" rel="external">React</a>、<a href="https://github.com/xitu/gold-miner#前端" target="_blank" rel="external">前端</a>、<a href="https://github.com/xitu/gold-miner#后端" target="_blank" rel="external">后端</a>、<a href="https://github.com/xitu/gold-miner#产品" target="_blank" rel="external">产品</a>、<a href="https://github.com/xitu/gold-miner#设计" target="_blank" rel="external">设计</a> 等领域，想要查看更多优质译文请持续关注 <a href="https://github.com/xitu/gold-miner" target="_blank" rel="external">掘金翻译计划</a>、<a href="http://weibo.com/juejinfanyi" target="_blank" rel="external">官方微博</a>、<a href="https://zhuanlan.zhihu.com/juejinfanyi" target="_blank" rel="external">知乎专栏</a>。</p>
+</blockquote>
+
+	
+	
+	
+	
+</div>
+				
+				
+
+                <!-- Post Comments -->
+                
+                    
+
+
+    <!-- 使用 DISQUS -->
+	<div id="disqus-comment">
+		<div id="disqus_thread"></div>
+<script>
+	var disqus_config = function () {
+		this.page.url = "http://llp0574.github.io/2017/10/19/performance-metrics-whats-this-all-about/index.html";  // Replace PAGE_URL with your page's canonical URL variable
+		this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+	};
+
+	(function() { // DON'T EDIT BELOW THIS LINE
+		var d = document, s = d.createElement('script');
+		s.src = '//llp-2.disqus.com/embed.js';
+		s.setAttribute('data-timestamp', +new Date());
+		(d.head || d.body).appendChild(s);
+	})();
+</script>
+	</div>
+	<style>
+		#disqus-comment{
+			background-color:#eee;
+			padding:2pc;
+		}
+	</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/09/07/the-simple-rules-to-this-in-javascript/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+        </div>
+    </div>
+
+				
+				
+					<!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay "></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored  sidebar-fixed-left" role="navigation">
+	<div id="sidebar-main">
+	    <!-- Sidebar Header -->
+		<div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+    <i class="material-icons">clear_all</i>
+    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="llp's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        llp0574@gmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+		<!-- Sidebar Navigation  -->
+		<ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+			
+                <li>
+                    <a href="mailto:llp0574@gmail.com" target="_blank" title="Email Me">
+						<i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    <li id="sidebar-first-li">
+        <a href="/" target="_self">
+            <i class="material-icons sidebar-material-icons">home</i>
+             主页
+        </a>
+    </li>
+
+    <!-- I'm Feeling Lucky -->
+<!--
+    <li class="dropdown">
+        <a href="" target="_self">
+            <i class="material-icons sidebar-material-icons">explore</i>
+             sidebar.imlucky
+        </a>
+    </li>
+-->
+
+	
+    <!-- Archives  -->
+    <li class="dropdown">
+        <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+            <i class="material-icons sidebar-material-icons">inbox</i>
+             归档
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+            <a class="sidebar_archives-link" href="/archives/2017/10/">十月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/09/">九月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/02/">二月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">十二月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/11/">十一月 2016<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">十月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">九月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">七月 2016<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/02/">二月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/01/">一月 2016<span class="sidebar_archives-count">2</span></a>
+        </ul>
+    </li>
+
+    <!-- Divider -->
+    <li class="divider"></li>
+
+
+    <!-- Pages  -->
+	
+		<li>
+			<a href="/about" title="关于我">
+				关于我
+			</a>
+		</li>
+	
+		<li>
+			<a href="/tags" title="标签云">
+				标签云
+			</a>
+		</li>
+	
+
+    <!-- Article Numebr  -->
+    <li>
+        <a href="/archives">
+             文章总数
+             <span class="sidebar-badge">19</span>
+        </a>
+    </li>
+</ul>
+
+		<!-- Sidebar Divider -->
+		<div class="sidebar-divider"></div>
+
+		<!-- Sidebar Footer -->
+		<!-- 
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持。 :) 
+-->
+
+<!-- Theme Material -->
+<a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+	<div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+		主题 - Material
+		<span class="sidebar-badge badge-circle">i</span>
+	</div>
+</a>
+
+<!-- Help & Support -->
+<!--
+<a href="mailto:hiviosey@gmail.com" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+		sidebar.help
+		<span class="mdl-button__ripple-container">
+			<span class="mdl-ripple"></span>
+		</span>
+	</div>
+</a>
+-->
+
+<!-- Feedback -->
+<!--
+<a href="https://github.com/viosey/hexo-theme-material/issues" target="_blank" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+         sidebar.feedback
+                    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+</a>
+-->
+
+<!-- Abount Theme -->
+<!--
+<a href="https://blog.viosey.com/index.php/Material.html" target="_blank" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+         sidebar.about_theme
+        <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+</a>-->
+
+	</div>
+    
+    <!-- Sidebar Sponsor -->
+    
+
+
+</aside>
+
+				
+				
+				
+					<!-- Footer Top Button -->
+					<div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+				
+				
+				<!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+	
+	
+		<!-- Paradox Footer Left Section -->
+		<div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+    <a href="https://twitter.com/geek_llp" target="view_window"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-twitter.png);">
+        <span class="visuallyhidden">Twitter</span>
+    </button></a>
+    
+
+    <!-- Facebook -->
+    
+    
+
+    <!-- Google + -->
+    
+    
+
+    <!-- Weibo -->
+    
+    <a href="http://weibo.com/u/1806141607" target="view_window"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-weibo.png);">
+        <span class="visuallyhidden">Weibo</span>
+    </button></a>
+    
+
+    <!-- Instagram -->
+    
+    
+
+    <!-- Tumblr -->
+    
+    
+
+    <!-- Github -->
+    
+    <a href="https://github.com/llp0574" target="view_window"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.png);">
+        <span class="visuallyhidden">Github</span>
+    </button></a>
+    
+
+    <!-- LinkedIn -->
+    
+    <a href="http://www.linkedin.com/in/%E6%9E%97%E7%92%9E-%E6%9D%8E-26b119b9" target="view_window"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-linkedin.png);">
+        <span class="visuallyhidden">LinkedIn</span>
+    </button></a>
+    
+</div>
+
+
+		<!--Copyright-->
+		<div id="copyright">Copyright&nbsp;©&nbsp;<script type="text/javascript">var fd = new Date();document.write(fd.getFullYear());</script>&nbsp;llp的程序猿之路</div>
+
+		<!-- Paradox Footer Right Section -->
+
+		<!-- 
+		I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+		It will not impact the appearance and can give developers a lot of support :)
+
+		很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+		它不会影响美观并可以给开发者很大的支持。 :) 
+		-->
+
+		<div class="mdl-mini-footer--right-section">
+			<div>
+				<div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+				<div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+			</div>
+		</div>
+	
+    
+</footer>
+                
+				<!-- Import File -->
+<script src="/js/highlight.min.js"></script>
+<script src="/js/js.min.js"></script>
+<script src="/js/nprogress.js"></script>
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    
+    $('#nprogress .bar').css({
+        'background': '#FF4081'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #FF4081, 0 0 15px #FF4081'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#FF4081',
+        'border-left-color': '#FF4081'
+    });
+    
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+    <!-- Leancloud -->
+	<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+	<script>
+		AV.initialize("dFsFONvyzhvCLBqr0vdTUuQI-gzGzoHsz", "gKQoW3SRT0IvN2krRAjKgAL2");
+	</script>
+    <script>
+	function showTime(Counter) {
+		var query = new AV.Query(Counter);
+		$(".leancloud-views_num").each(function() {
+			var url = $(this).attr("id").trim();
+			query.equalTo("url", url);
+			query.find({
+				success: function(results) {
+					if (results.length == 0) {
+						var content = '0 ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+						return;
+					}
+					for (var i = 0; i < results.length; i++) {
+						var object = results[i];
+						var content = object.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					}
+				},
+				error: function(object, error) {
+					console.log("Error: " + error.code + " " + error.message);
+				}
+			});
+
+		});
+	}
+
+	function addCount(Counter) {
+		var Counter = AV.Object.extend("Counter");
+		url = $(".leancloud-views_num").attr('id').trim();
+		title = $(".leancloud-views_num").attr('data-flag-title').trim();
+		var query = new AV.Query(Counter);
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length > 0) {
+					var counter = results[0];
+					counter.fetchWhenSave(true);
+					counter.increment("time");
+					counter.save(null, {
+						success: function(counter) {
+							var content =  counter.get('time') + ' ' + $(document.getElementById(url)).text();
+							$(document.getElementById(url)).text(content);
+						},
+						error: function(counter, error) {
+							console.log('Failed to save Visitor num, with error message: ' + error.message);
+						}
+					});
+				} else {
+					var newcounter = new Counter();
+					newcounter.set("title", title);
+					newcounter.set("url", url);
+					newcounter.set("time", 1);
+					newcounter.save(null, {
+						success: function(newcounter) {
+							console.log("newcounter.get('time')="+newcounter.get('time'));
+							var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
+							$(document.getElementById(url)).text(content);
+						},
+						error: function(newcounter, error) {
+							console.log('Failed to create');
+						}
+					});
+				}
+			},
+			error: function(error) {
+				console.log('Error:' + error.code + " " + error.message);
+			}
+		});
+	}
+	$(function() {
+		var Counter = AV.Object.extend("Counter");
+		if ($('.leancloud-views_num').length == 1) {
+			addCount(Counter);
+		} else if ($('.post-title-link').length > 1) {
+			showTime(Counter);
+		}
+	}); 
+</script>
+
+
+
+
+
+
+
+    <!-- 使用 DISQUS js 代码 -->
+	<script id="dsq-count-scr" src="//llp-2.disqus.com/count.js" async></script>
+
+
+<!-- Swiftye -->
+
+
+<!-- Local Search-->
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $(".post-toc-wrap").parent(".mdl-menu__container").css("position", "fixed");
+    });
+</script>
+
+<!-- MathJax Load-->
+
+            </main>
+        </div>
+		
+    </body>
+		
+	
+</html>
