@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <!-- Title -->
+    
+    <title>
+        创建无障碍 React 应用 | llp的程序猿之路
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" sizes="192x192" href="/img/favicon.png">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Meta & INfo -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="llp">
+    <meta name="description" content="llp的程序猿之路走得磕磕绊绊">
+    <meta name="keywords" content="null">
+
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="llp的程序猿之路">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://llp0574.github.io">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="创建无障碍 React 应用 | llp的程序猿之路">
+    <meta property="og:description" content="llp的程序猿之路走得磕磕绊绊">
+
+     <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS -->
+    <link rel="stylesheet" href="/css/material.min.css">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+	body, html{
+		font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+	}
+	
+    a{
+        color: #00838F
+    }
+    
+    .mdl-card__media,
+    #search-label,
+    #search-form-label:after,
+    #scheme-Paradox .hot_tags-count,
+    #scheme-Paradox .sidebar_archives-count,
+    #scheme-Paradox .sidebar-colored .sidebar-header,
+    #scheme-Paradox .sidebar-colored .sidebar-badge{
+        background-color: #0097A7 !important
+    }
+    
+	/* Sidebar User Drop Down Menu Text Color */
+	#scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus{
+        color: #0097A7 !important
+    }
+    
+    #post_entry-right-info,
+    .sidebar-colored .sidebar-nav li:hover > a,
+    .sidebar-colored .sidebar-nav li:hover > a i,
+    .sidebar-colored .sidebar-nav li > a:hover,
+    .sidebar-colored .sidebar-nav li > a:hover i,
+    .sidebar-colored .sidebar-nav li > a:focus i,
+    .sidebar-colored .sidebar-nav > .open > a,
+    .sidebar-colored .sidebar-nav > .open > a:hover,
+    .sidebar-colored .sidebar-nav > .open > a:focus,
+    #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a{
+        color: #0097A7 !important
+    }
+    
+    .toTop{
+        background: #757575 !important
+    }
+		
+	.material-layout .material-post>.material-nav,
+	.material-layout .material-index>.material-nav,
+	.material-nav a{
+		color: #757575;
+	}
+		
+	#scheme-Paradox .MD-burger-layer {
+		background-color: #757575;
+	}
+
+	#scheme-Paradox #post-toc-trigger-btn{
+		color: #757575;
+	}
+	
+	.post-toc a:hover{
+		color: #00838F;
+		text-decoration: underline;
+	}
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+        body{
+            background-color: #F5F5F5
+        }
+		
+		/* blog_info bottom background */
+        #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+            background-color: #fff;
+        }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+        .fade {
+            transition: all 800ms linear;
+            -webkit-transform: translate3d(0,0,0);
+            -moz-transform: translate3d(0,0,0);
+            -ms-transform: translate3d(0,0,0);
+            -o-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+            opacity: 1;
+        }
+
+        .fade.out{
+            opacity: 0;
+        }
+    </style>
+
+	<script src="/js/jquery.min.js"></script>
+
+	<link rel="stylesheet" href="/css/highlight/solarized-white.css">
+
+
+	<!-- UC Browser Compatible-->
+	<script>
+		var agent = navigator.userAgent.toLowerCase();
+		if(agent.indexOf('ucbrowser')>0) {
+			document.write('<link rel="stylesheet" href="/css/uc.css">');
+		   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+		}
+	</script>
+
+    <!-- Custom Head -->
+    
+
+    
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?73bb3e6eceb47c2e2f8f79e3bf611006";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+</head>
+	
+	
+
+    <body id="scheme-Paradox">
+
+		
+        <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+				
+			
+			
+            <!-- Main Container -->
+            <main class="material-layout__content" id="main">
+				
+                <!-- Top Anchor -->
+                <div id="top"></div>
+				
+				
+                <!-- Hamburger Button -->
+                <button class="MD-burger-icon sidebar-toggle">
+                    <span class="MD-burger-layer"></span>
+                </button>
+				
+				
+                <!-- Post TOC -->
+
+    
+	<!-- Back Button -->
+<!--
+	<div class="material-back" id="backhome-div" tabindex="0">
+		<a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="#" onclick="window.history.back();return false;" target="_self" role="button" data-upgraded=",MaterialButton,MaterialRipple">
+			<i class="material-icons" role="presentation">arrow_back</i>
+			<span class="mdl-button__ripple-container">
+				<span class="mdl-ripple"></span>
+			</span>
+		</a>
+	</div>			
+-->
+	<!-- Left aligned menu below button -->
+	<button id="post-toc-trigger-btn"
+			class="mdl-button mdl-js-button mdl-button--icon">
+	  <i class="material-icons">format_list_numbered</i>
+	</button>
+
+	<ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+		for="post-toc-trigger-btn">
+			
+			<ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#创建无障碍-React-应用"><span class="post-toc-number">1.</span> <span class="post-toc-text">创建无障碍 React 应用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#学习-React"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">学习 React</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Demo-应用"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Demo 应用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#HTML-属性及保留字"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">HTML 属性及保留字</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#设置页面标题"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">设置页面标题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#焦点管理（第一部分）"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">焦点管理（第一部分）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#实时消息"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">实时消息</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#焦点管理（第二部分）"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">焦点管理（第二部分）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Link-组件"><span class="post-toc-number">1.7.1.</span> <span class="post-toc-text">Link 组件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#调整键盘焦点"><span class="post-toc-number">1.7.2.</span> <span class="post-toc-text">调整键盘焦点</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#配置-ref"><span class="post-toc-number">1.7.2.1.</span> <span class="post-toc-text">配置 ref</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#使用-ref"><span class="post-toc-number">1.7.2.2.</span> <span class="post-toc-text">使用 ref</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#React-的无障碍性代码分析器"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">React 的无障碍性代码分析器</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装-ESLint-插件"><span class="post-toc-number">1.8.1.</span> <span class="post-toc-text">安装 ESLint 插件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装-eslint-plugin-jsx-a11y"><span class="post-toc-number">1.8.2.</span> <span class="post-toc-text">安装 eslint-plugin-jsx-a11y</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#更新-ESLint-配置"><span class="post-toc-number">1.8.3.</span> <span class="post-toc-text">更新 ESLint 配置</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#继续编写语义化-HTML"><span class="post-toc-number">1.9.</span> <span class="post-toc-text">继续编写语义化 HTML</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#结论"><span class="post-toc-number">1.10.</span> <span class="post-toc-text">结论</span></a></li></ol></li></ol>
+		
+<!--			<li class="mdl-menu__item">Some Action</li>-->
+	</ul>
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+		
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+	<!-- Paradox Post Header -->
+	
+		<!-- Custom Thumbnail -->
+		<div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/orange.jpeg)">
+	
+        <p class="article-headline-p">
+            创建无障碍 React 应用
+        </p>
+    </div>
+
+	
+
+				
+				
+					<!-- Paradox Post Info -->
+					<div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>llp</strong>
+        <span>12月 20, 2017</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <span class="post-count">共计&nbsp;5,192&nbsp;字&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+    <span class="post-read">预计阅读&nbsp;19&nbsp;分钟&nbsp;&nbsp;</span>
+    <!-- Favorite -->
+<!--
+    <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+        <i class="material-icons" role="presentation">favorite</i>
+        <span class="visuallyhidden">favorites</span>
+    </button>
+-->
+
+    <!-- Qrcode -->
+    
+
+
+    <!-- Tags (bookmark) -->
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/React/">React</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/前端/">前端</a>
+    </ul>
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+
+    
+    <!-- Leancloud Views -->
+    <a class="post_share-link" href="#">
+        <li class="mdl-menu__item">
+            <span id="/2017/12/20/creating-accessible-react-apps/" class="leancloud-views_num" data-flag-title="创建无障碍 React 应用">
+     &nbsp;浏览量
+</span>
+        </li>
+    </a>
+    
+
+    
+
+    <!-- Share Twitter -->
+    <a class="post_share-link" href="https://twitter.com/intent/tweet?text=创建无障碍 React 应用&url=http://llp0574.github.io//2017/12/20/creating-accessible-react-apps/index.html&via=llp" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Twitter
+        </li>
+    </a>
+
+    <!-- Share Google+ -->
+    <a class="post_share-link" href="https://plus.google.com/share?url=http://llp0574.github.io//2017/12/20/creating-accessible-react-apps/index.html" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Google+
+        </li>
+    </a>
+
+    <!-- Share Weibo -->
+    <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=创建无障碍 React 应用&url=http://llp0574.github.io//2017/12/20/creating-accessible-react-apps/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <li class="mdl-menu__item">
+            分享到微博
+        </li>
+    </a>
+
+    <!-- Share LinkedIn -->
+    <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=http://llp0574.github.io//2017/12/20/creating-accessible-react-apps/index.html&title=创建无障碍 React 应用" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 LinkedIn
+        </li>
+    </a>
+
+    <!-- Share QQ -->
+    <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=llp的程序猿之路&title=创建无障碍 React 应用&summary=llp的程序猿之路走得磕磕绊绊&pics=http://llp0574.github.io/img/favicon.png&url=http://llp0574.github.io/2017/12/20/creating-accessible-react-apps/index.html" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 QQ
+        </li>
+    </a>
+
+    <!-- Share Telegram -->
+    <a class="post_share-link" href="https://telegram.me/share/url?url=http://llp0574.github.io/2017/12/20/creating-accessible-react-apps/index.html&text=创建无障碍 React 应用" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Telegram
+        </li>
+    </a>
+</ul>
+
+</div>
+				
+
+                <!-- Post Content -->
+                <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+	
+		<blockquote>
+<p>原文地址：<a href="http://simplyaccessible.com/article/react-a11y/" target="_blank" rel="external">Creating accessible React apps</a><br>原文作者：<a href="http://simplyaccessible.com/article/author/scott/" target="_blank" rel="external">Scott Vinkle</a><br>译文出自：<a href="https://github.com/xitu/gold-miner" target="_blank" rel="external">掘金翻译计划</a><br>本文永久链接：<a href="https://github.com/xitu/gold-miner/blob/master/TODO/creating-accessible-react-apps.md" target="_blank" rel="external">https://github.com/xitu/gold-miner/blob/master/TODO/creating-accessible-react-apps.md</a><br>译者：<a href="https://github.com/llp0574" target="_blank" rel="external">llp0574</a><br>校对者：<a href="https://github.com/smancang" target="_blank" rel="external">smancang</a>，<a href="https://github.com/zhaoyi0113" target="_blank" rel="external">zhaoyi0113</a></p>
+</blockquote>
+<h1 id="创建无障碍-React-应用"><a href="#创建无障碍-React-应用" class="headerlink" title="创建无障碍 React 应用"></a>创建无障碍 React 应用</h1><p>使用 React 库创建可复用的模块组件在项目之间共享是一个非常好的开发方式。但是应该如何确保你的 React 应用适用于所有人？Scott 将通过一个详细且及时的教程来带领我们创建无障碍的 React 应用。</p>
+<h2 id="学习-React"><a href="#学习-React" class="headerlink" title="学习 React"></a>学习 React</h2><p><img src="http://simplyaccessible.com/wordpress/wp-content/uploads/2017/10/creating-accessible-react-apps-1.jpg" alt=""></p>
+<p>时间回到 2017 年 2 月，我从加拿大的金斯顿坐火车到多伦多。为什么我要经受这两小时的长途跋涉？就是为了去学习 <a href="https://reactjs.org/" target="_blank" rel="external">React</a> 库相关的内容。</p>
+<p>在为期一天的课程结束之后，我们各自开发了一个完整的应用程序。其中让我感到兴奋的一件事是 React 如何迫使你以模块化的方式来思考。每个组件会做一个任务，而且会完成得非常好。当以这种方式构建组件的时候，它可以帮助你把所有的想法和精力集中，确保你不仅在为当前项目，而且也在为将来的项目做正确的事情。React 组件都是可复用的，而且如果构造得当，还可以在不同的项目之间共享。只要找到合适的乐高积木，就可以把你需要的东西拼凑在一起，从而创造出绝佳的用户体验。</p>
+<p>然而，当我从旅途中回来的时候，我开始思考那几天我创建的应用是否无障碍。它是否可以做成无障碍应用？用我的笔记本电脑加载项目之后，我开始用我的键盘和 VoiceOver 屏幕阅读器来对其进行一些基本的检测。</p>
+<p>有一些微小、能快速修复的问题，比如在主页链接列表使用 <code>ul</code> + <code>li</code> 元素来替代当前的 <code>div</code> 元素。另外一个可以快速修复的地方：为带有装饰性图片的插图容器添加一个空的 <code>alt</code> 属性。</p>
+<p>但也有一些更具挑战性的问题要解决。随着每个新页面的加载，<code>title</code> 元素内容没有发生改变。不仅如此，键盘的焦点管理也非常糟糕，这就会让那些只使用键盘的用户无法使用这个应用。当一个新页面加载之后，焦点仍旧在前一个页面视图上！</p>
+<blockquote>
+<p>有没有什么技术可以用来解决这些更具挑战的无障碍问题？</p>
+</blockquote>
+<p>在花了一点时间阅读 <a href="https://reactjs.org/docs/hello-world.html" target="_blank" rel="external">React 文档</a>，并尝试了一些在课程当中习得的技术之后，我已经可以让这款应用更加无障碍了。在这篇文章里，我将带领大家研究一下最为紧迫的无障碍问题，以及如何解决它们，这些问题包括：</p>
+<ul>
+<li>React 保留字；</li>
+<li>更新页面标题；</li>
+<li>管理键盘焦点；</li>
+<li>创建一个实时消息组件；</li>
+<li>代码分析，再加上一些关于创建无障碍 React 应用的想法。</li>
+</ul>
+<h2 id="Demo-应用"><a href="#Demo-应用" class="headerlink" title="Demo 应用"></a>Demo 应用</h2><p>如果你更偏向于看到代码最终运行成果的话，那么可以看一下伴随这篇文章的 React demo 应用：<a href="https://simplyaccessible.github.io/tv-db/" target="_blank" rel="external">TV-Db</a>。</p>
+<p><a href="https://simplyaccessible.github.io/tv-db/" target="_blank" rel="external"><img src="http://simplyaccessible.com/wordpress/wp-content/uploads/2017/10/creating-accessible-react-apps-ipad-1.png" alt="Screen capture of the TV-Db demo app on an iPad. Text in the middle of the screen reads, &quot;Search TV-Db for your favourite TV shows!&quot; A search form is below, along with a few quick links to TV show info pages."></a></p>
+<p>你也可以在阅读这篇文章的时候查看这个 <a href="https://github.com/simplyaccessible/tv-db" target="_blank" rel="external">demo 应用的源码</a>来紧跟进度。</p>
+<p>准备好让你的 React 应用对有障碍人士及所有类型的用户都可以使用吗？开始吧！</p>
+<h2 id="HTML-属性及保留字"><a href="#HTML-属性及保留字" class="headerlink" title="HTML 属性及保留字"></a>HTML 属性及保留字</h2><p>在 React 组件里些 HTML 的时候需要谨记的一点是 HTML 属性需要以驼峰式（<code>camelCase</code>）书写。这在一开始很让我吃惊，但我很快就习惯了。如果你最后不小心插入了一个全小写（<code>lowercase</code>）的属性，那就会在 JavaScript 控制台里得到一个友好的警告，让你将其调整为驼峰式。</p>
+<p>举个例子，<code>tabindex</code> 这个属性需要写成 <code>tabIndex</code>（注意到大写的 “I” 字母）。这个规则的例外情况是任何 <code>data-*</code> 或 <code>aria-*</code> 类型的属性仍旧保持原来的写法。</p>
+<p>还有一些<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Reserved_keywords_as_of_ECMAScript_2015" target="_blank" rel="external"> JavaScript 保留字</a>，它们会匹配上一些特定的 HTML 属性名。这些属性就不能按照你所期望的方式来写：</p>
+<ul>
+<li><code>for</code> 在 JavaScript 里是用来遍历项目的保留字。当在 React 组件里创建 <code>label</code> 元素的时候，你必须使用 <code>htmlFor</code> 属性来替代 <code>for</code>，从而明确地设置 <code>label</code> 和 <code>input</code> 的关系。</li>
+<li><code>class</code> 也是 JavaScript 里的保留字。当需要在一个 HTML 元素上指派一个 <code>class</code> 属性来添加样式的时候，它必须替代写成 <code>className</code>。</li>
+</ul>
+<p>可能会有更多的属性需要注意，但目前为止当 JavaScript 保留字和 HTML 属性发生冲突的时候我只发现了这两个属性。你有遇到过任何其他的冲突吗？把它们写在评论里，我们就将发布一个后续文章来展示完整的列表。</p>
+<h2 id="设置页面标题"><a href="#设置页面标题" class="headerlink" title="设置页面标题"></a>设置页面标题</h2><p>因为 React 应用都是<a href="https://simplyaccessible.com/article/spangular-accessibility/" target="_blank" rel="external">单页面应用（SPA）</a>，<code>title</code> 元素将在整个浏览过程中显示相同的内容，这并不理想。</p>
+<blockquote>
+<p>页面的 <code>title</code> 元素通常会是屏幕阅读器在页面加载的时候首先阅读的一块内容。</p>
+</blockquote>
+<p>标题反映出页面内容是很重要的，因为那些依赖内容并首先接触到它的人就会知道接下来该期待什么。</p>
+<p>在 React 应用里，<code>title</code> 元素的内容是在 <code>public/index.html</code> 文件里设置的，而且之后就不会再修改了。</p>
+<p>我们可以通过在父组件里动态设置 <code>title</code> 元素的内容从而来解决这个问题，或者在所需“页面”里，通过给全局的 <code>document.title</code> 属性赋值来解决它。我们设置标题的地方是在 React 的 <code>componentWillMount()</code> <a href="https://reactjs.org/docs/react-component.html#the-component-lifecycle" target="_blank" rel="external">生命周期方法</a>。这个方法是让你在页面加载的时候运行一些代码片段。</p>
+<p>举个例子，如果这是个“联系我们”的页面，上面有联系信息或者联系表单，我们就会像 {<a href="https://github.com/simplyaccessible/tv-db/blob/master/src/pages/Home.js#L23" target="_blank" rel="external">Home.js:23</a>} 这样调用 <code>componentWillMount()</code> 这个生命周期方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">componentWillMount() &#123;</div><div class="line">  document.title = ‘Contact us | Site Name&apos;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当这个组件“页面”加载时，可以看到浏览器选项卡上的标题更新到了 “Contact us | Site Name”。只需确保将上面代码加入所有页面组件里，就可以更新 <code>title</code> 元素了。</p>
+<h2 id="焦点管理（第一部分）"><a href="#焦点管理（第一部分）" class="headerlink" title="焦点管理（第一部分）"></a>焦点管理（第一部分）</h2><p>让我们来讨论一下焦点管理，这对于确保你的应用同时具备无障碍和成功的用户体验来说是一个很重要的因素。如果你的客户试图填满一个多“页面”表单，并且你没有对每个视图进行焦点管理，那么就很可能会导致用户的困扰，而且如果他们正在使用辅助技术，那么他们可能很难继续完成这个表单。你可能会为此完全失去他们成为客户的可能。</p>
+<p>为了在组件内的特定元素上设置键盘焦点，你需要创建一个叫 “function ref” 的东西，或者简称 <code>ref</code>。如果你只是刚开始学习 React 的话，你可以认为 <code>ref</code> 就像是使用 jQuery 来选择 DOM 上的 HTML 元素，并将其缓存在一个变量里，比如： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var myBtn = $(&apos;#myBtn&apos;);</div></pre></td></tr></table></figure>
+<p>而创建 <code>ref</code> 时一个独特的地方是它可以命名为任何东西（希望是能对你及团队其他开发者来说有意义的东西），并且它不依赖 <code>id</code> 或 <code>class</code> 来作为选择器。</p>
+<p>举个例子，如果你有一个加载屏幕，那么将焦点发送到“加载”消息的容器以便屏幕阅读器读出当前应用的状态就会是理想的做法。在你的加载组件里，你可以创建一个 <code>ref</code> 指向加载容器 {<a href="https://github.com/simplyaccessible/tv-db/blob/master/src/components/Loader.js#L29" target="_blank" rel="external">Loader.js:29</a>}：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div tabIndex=&quot;-1&quot; ref=&quot;&#123;(loadingContainer) =&gt; &#123;this.loadingContainer = loadingContainer&#125;&#125;&quot;&gt;</div><div class="line">    &lt;p&gt;Loading…&lt;/p&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>当这个组件渲染完成后，<code>function ref</code> 就会触发并通过创建一个新的类属性来创建这个元素的一个“引用”。在这个例子里，我们对 <code>div</code> 元素创建了一个叫 “loadingContainer” 的引用，并将其值通过 <code>this.loadingContainer = loadingContainer</code> 赋值语句传递给了一个新的类属性。</p>
+<p>当组件加载 {<a href="https://github.com/simplyaccessible/tv-db/blob/master/src/components/Loader.js#L12" target="_blank" rel="external">Loader.js:12</a>} 的时候，我们在 <code>componentDidMount()</code> 生命周期钩子函数里使用 <code>ref</code>，明确地给“加载”容器设置焦点 ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">componentDidMount() &#123;</div><div class="line">    this.loadingContainer.focus();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当加载组件从视图中移除的时候，你可以使用不同的 <code>ref</code> 来在任何地方转移焦点。</p>
+<p>管理焦点移动<strong>到</strong>一个元素，以及<strong>从</strong>一个元素转移到另一个元素，这是相当重要的，毫无夸大。在正确构建无障碍单页面应用的过程中，这是最大的挑战之一。</p>
+<h2 id="实时消息"><a href="#实时消息" class="headerlink" title="实时消息"></a>实时消息</h2><p>在应用里使用实时消息来声明状态改变是一个很好方式。举个例子，当数据被添加到页面的时候，用某些辅助技术来通知用户是很有用的，比如屏幕阅读器，可以告诉用户发生了什么事情，以及现在有哪些项目是可用的。</p>
+<p>让我们通过创建一个新的组件来创建一个控制实时声明的方法。我们将把这个新组件叫做：<code>Announcements</code>。</p>
+<p>当这个组件被渲染的时候，<code>this.props.message</code> 的值将被注入到 <code>aria-live</code> 元素里，这在之后允许它被屏幕阅读器读出来。</p>
+<p>这个组件看上去是一个像 {<a href="https://github.com/simplyaccessible/tv-db/blob/master/src/components/Announcements.js#L12" target="_blank" rel="external">Announcements.js:12</a>} 的东西：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">import React from &apos;react&apos;;</div><div class="line"></div><div class="line">class Announcements extends React.Component &#123;</div><div class="line">    render() &#123;</div><div class="line">        return (</div><div class="line">            &lt;div className=&quot;visuallyhidden&quot; aria-live=&quot;polite&quot; aria-atomic=&quot;true&quot;&gt;</div><div class="line">                &#123;this.props.message&#125;</div><div class="line">            &lt;/div&gt;</div><div class="line">        );</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">export default Announcements;</div></pre></td></tr></table></figure>
+<p>这个组件简单地创建了一个 <code>div</code> 元素，并加上了一些无障碍相关的属性：<code>aria-live</code> 和 <code>aria-atomic</code>。屏幕阅读器将读取这些属性并为使用应用的用户大声朗读 <code>div</code> 里的任何文本内容使其听见。<code>aria-live</code> 属性真的非常强大，请明智地使用它。</p>
+<p>除此之外，一直在模板里渲染 <code>Announcement</code> 组件是很重要的，因为有些浏览器或屏幕阅读器技术在 <code>aria-live</code> 元素动态加载到 DOM 上的时候是不会朗读内容的。因此，在你的应用里，这个组件应该一直在任意父组件中引入。</p>
+<p>你应该像 {<a href="https://github.com/simplyaccessible/tv-db/blob/master/src/pages/Results.js#L91" target="_blank" rel="external">Results.js:91</a>} 一样引入 <code>Announcement</code> 组件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;Announcements message=&#123;this.state.announcementMessage&#125; /&gt;</div></pre></td></tr></table></figure>
+<p>为了传递消息给这些 Announcement 组件，在父组件里需要创建一个状态属性，用于存放消息文本 {<a href="https://github.com/simplyaccessible/tv-db/blob/master/src/pages/Results.js#L22" target="_blank" rel="external">Results.js:22</a>}：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">this.state = &#123;</div><div class="line">    announcementMessage: null</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>然后，在需要的时候更新状态，{<a href="https://github.com/simplyaccessible/tv-db/blob/master/src/pages/Results.js#L62" target="_blank" rel="external">Results.js:62</a>}：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">this.setState(&#123;announcementMessage: `Total results found: $&#123;data.length&#125;`&#125;);</div></pre></td></tr></table></figure>
+<h2 id="焦点管理（第二部分）"><a href="#焦点管理（第二部分）" class="headerlink" title="焦点管理（第二部分）"></a>焦点管理（第二部分）</h2><p>我们已经学习过关于用 <code>ref</code> 来管理焦点的内容，这是 React 里创建一个变量指向 DOM 元素的概念。现在，让我们来看一下另一种用同样概念实现的重要例子。</p>
+<p>当链接到应用另外的页面时，你可以使用 HTML 的 <code>a</code> 元素。这样做的话，就会如同预期那样，导致整个页面的重载。但是，如果你在应用里使用 <a href="https://reacttraining.com/react-router/" target="_blank" rel="external">React Router</a> 的话，你就可以使用 <code>Link</code> 组件了。<code>Link</code> 组件在 React 应用里实际上取代了久经考验的 <code>a</code> 元素。</p>
+<p>你会问，为什么你要用 <code>Link</code> 来替代<strong>真正的</strong> HTML 锚点链接？虽说在 React 组件里使用 HTML 链接是完全没问题的，但是使用 React Router 的 <code>Link</code> 组件可以让你的应用充分利用 React 虚拟 DOM 的优势。使用 <code>Link</code> 组件帮助我们更快地加载“页面”，因为在点击 <code>Link</code> 的时候浏览器不需要刷新了，但它们也有所限制。</p>
+<blockquote>
+<p>当使用 <code>Link</code> 组件的时候，你需要搞清楚键盘焦点的位置，并知道当下个“页面”出现的时候焦点会去到哪里。</p>
+</blockquote>
+<p>这里是我们的朋友 <code>ref</code> 来帮忙的地方。</p>
+<h3 id="Link-组件"><a href="#Link-组件" class="headerlink" title="Link 组件"></a>Link 组件</h3><p>一个典型的 Link 组件看上去像下面这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;Link to=&apos;/home&apos;&gt;Home&lt;/Link&gt;</div></pre></td></tr></table></figure>
+<p>这个语法看起来应该很熟悉，因为它和 HTML 的 <code>a</code> 元素非常相像；把 <code>a</code> 换成 <code>Link</code>，把 <code>href</code> 换成 <code>to</code> 就可以了。</p>
+<p>如同我已经提到过的，使用 <code>Link</code> 组件替代 HTML 链接不会刷新浏览器。作为替代，React Router 会按照 <code>to</code> 属性描述的内容加载下个组件。</p>
+<p>让我们来看一下如何确保键盘焦点会移动到合适的位置。</p>
+<h3 id="调整键盘焦点"><a href="#调整键盘焦点" class="headerlink" title="调整键盘焦点"></a>调整键盘焦点</h3><p>当一个新页面加载的时候，键盘焦点需要明确地设置。否则，焦点会仍然在前一个页面，那么当某用户开始浏览到下一页面的时候，谁会知道焦点在哪里结束呢？我们应该如何显示地设置焦点？又要找我们的老朋友 <code>ref</code> 了。</p>
+<h4 id="配置-ref"><a href="#配置-ref" class="headerlink" title="配置 ref"></a>配置 ref</h4><p>要决定焦点的走向，你需要检查组件是如何配置的，以及使用了哪些小部件。举个例子，如果你有一个“页面”组件，由许多子组件组成剩下的页面内容，那么你可能需要将焦点移动到页面最外层的父元素，有可能是一个 <code>div</code> 元素。从这里开始，用户就可以浏览页面内容的其他内容，就像经历了一次浏览器的整体刷新。</p>
+<p>让我们来在最外层的父亲 <code>div</code> 上创建一个叫 <code>contentContainer</code> 的 <code>ref</code>，就像 {<a href="https://github.com/simplyaccessible/tv-db/blob/master/src/pages/Details.js#L84" target="_blank" rel="external">Details.js:84</a>}：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div ref=&#123;(contentContainer) =&gt; &#123; this.contentContainer = contentContainer; &#125;&#125; tabIndex=&quot;-1&quot; aria-labelledby=&quot;pageHeading&quot;&gt;</div></pre></td></tr></table></figure>
+<p>你可能已经注意到元素还包含 <code>tabIndex</code> 和 <code>aria-labelledby</code> 属性。通过 <code>ref</code> 的程序逻辑，<code>tabIndex</code> 设为 <code>-1</code> 将允许一般不可聚焦的 <code>div</code> 元素接受键盘焦点。</p>
+<blockquote>
+<p>提示：就像焦点管理，有意地使用 <code>tabIndex=&quot;-1&quot;</code> 并按照一个明确的计划来处理。</p>
+</blockquote>
+<p><code>aria-labelledby</code> 属性值将程序化地关联页面的标题（也许是一个 id 为 “pageHeading” 的 <code>h1</code> 或 <code>h2</code> 元素），来帮助描述当前键盘焦点位置的上下文。</p>
+<p>既然我们创建了 <code>ref</code>，让我们来看看如何<strong>真正地</strong>使用它来转移焦点。</p>
+<h4 id="使用-ref"><a href="#使用-ref" class="headerlink" title="使用 ref"></a>使用 ref</h4><p>之前我们学习了关于 <code>componentDidMount()</code> 的生命周期方法。当在 React 的虚拟 DOM 里加载页面时，我们可以再次使用它来转移键盘焦点，在 {<a href="https://github.com/simplyaccessible/tv-db/blob/master/src/pages/Home.js#L26" target="_blank" rel="external">Home.js:26</a>} 里使用我们之前在组件里创建的 <code>contentContainer</code> 和 <code>ref</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">componentDidMount() &#123;</div><div class="line">    this.contentContainer.focus();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面的代码告诉 React：“在组件加载的时候，将键盘焦点转移到容器元素”。从这一点上，浏览会从页面的顶部开始，并且如果发生全页面刷新的话，内容就将是可以清楚看见的。</p>
+<h2 id="React-的无障碍性代码分析器"><a href="#React-的无障碍性代码分析器" class="headerlink" title="React 的无障碍性代码分析器"></a>React 的无障碍性代码分析器</h2><p>写一篇关于 React 无障碍性的文章不得不提到那个难以置信的开源项目：<a href="https://github.com/evcohen/eslint-plugin-jsx-a11y" target="_blank" rel="external"><code>eslint-plugin-jsx-a11y</code></a>。这是一个 <a href="https://eslint.org/" target="_blank" rel="external">ESLint</a> 插件，特别为 JSX 和 React 定制的，它会监视并报告你的代码里所有潜在的无障碍性问题。当你创建一个新的 React 项目时，它就会出现，所以你不需要担心任何设置问题。</p>
+<p>举个例子，如果你在组件里引入一张图片而没有添加 <code>alt</code> 属性，那么你就会在浏览器开发者工具控制台里看到：</p>
+<p><a href="http://simplyaccessible.com/wordpress/wp-content/uploads/2017/10/creating-accessible-react-apps-console.png" target="_blank" rel="external"><img src="http://simplyaccessible.com/wordpress/wp-content/uploads/2017/10/creating-accessible-react-apps-console.png" alt="Screen capture of Chrome’s developer tools console. A warning message states, “img elements must have an alt prop, either with meaningful text, or an empty string for decorative images. (jsx-a11y/alt-text)”"></a></p>
+<p>像这样的消息在开发应用的时候真的非常有用。即便如此，在代码编辑器看到这些类型的消息总比在浏览器看到更好一些吧？下面介绍如何在编码环境安装及配置 <code>eslint-plugin-jsx-a11y</code> 使用。</p>
+<h3 id="安装-ESLint-插件"><a href="#安装-ESLint-插件" class="headerlink" title="安装 ESLint 插件"></a>安装 ESLint 插件</h3><p>首先你需要为编辑器安装 ESLint 插件。在编辑器的插件库里搜索 “eslint” - 就有机会在那里找到可用的插件来安装。</p>
+<p>下面是几个编辑器插件的快速链接：</p>
+<ul>
+<li><a href="https://atom.io/packages/linter-eslint" target="_blank" rel="external">Atom</a></li>
+<li><a href="https://packagecontrol.io/packages/SublimeLinter-contrib-eslint" target="_blank" rel="external">Sublime Text</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=MadsKristensen.WebAnalyzer" target="_blank" rel="external">VS Code</a></li>
+</ul>
+<h3 id="安装-eslint-plugin-jsx-a11y"><a href="#安装-eslint-plugin-jsx-a11y" class="headerlink" title="安装 eslint-plugin-jsx-a11y"></a>安装 eslint-plugin-jsx-a11y</h3><p>下个步骤就是通过 <code>npm</code> 安装 <code>eslint-plugin-jsx-a11y</code>。只需运行以下命令即可安装它和 ESLint，并在编辑器里使用它：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install eslint eslint-plugin-jsx-a11y --save-dev</div></pre></td></tr></table></figure>
+<p>在这个命令运行完后，更新项目里的 <code>.eslintrc</code> 文件，接着 ESLint 就可以使用这个 <code>eslint-plugin-jsx-a11y</code> 插件了。</p>
+<h3 id="更新-ESLint-配置"><a href="#更新-ESLint-配置" class="headerlink" title="更新 ESLint 配置"></a>更新 ESLint 配置</h3><p>如果在项目的根目录里没有 <code>.eslintrc</code> 文件，可以轻易地以这个文件名创建一个新文件。查看<a href="https://eslint.org/docs/user-guide/configuring" target="_blank" rel="external">如何配置 <code>.eslintrc</code> 文件</a>，以及一些可以添加配置 ESLint 的<a href="https://eslint.org/docs/rules/" target="_blank" rel="external">规则</a>，以此满足项目的需求。</p>
+<p>在 <code>.eslintrc</code> 文件创建好之后，打开它进行编辑并在 “plugins” 部分添加下面的代码 {<a href="https://github.com/simplyaccessible/tv-db/blob/master/.eslintrc#L43" target="_blank" rel="external">.eslintrc:43</a>}：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&quot;plugins&quot;: [</div><div class="line">    &quot;jsx-a11y&quot;</div><div class="line">]</div></pre></td></tr></table></figure>
+<p>这段代码告诉 ESLint 的本地实例在分析项目文件的时候使用 <code>jsx-a11y</code> 插件。</p>
+<p>为了让 ESLint 在代码里找到无障碍相关的特定错误，我们还需要指定 ESLint 使用的规则集。你可以配置自己的规则，但我推荐至少一开始使用默认的集合。</p>
+<p>把下面的代码添加到 <code>.eslintrc</code> 文件的 “extends” 部分 {<a href="https://github.com/simplyaccessible/tv-db/blob/master/.eslintrc#L47" target="_blank" rel="external">.eslintrc:47</a>}：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&quot;extends&quot;: [</div><div class="line">    &quot;plugin:jsx-a11y/recommended&quot;</div><div class="line">]</div></pre></td></tr></table></figure>
+<p>这一行告诉 ESLint 使用默认推荐的规则集合，并且我发现非常好用。</p>
+<p>在完成这些编辑及重启编辑器之后，在出现无障碍相关问题的时候，你应该就可以看到一些类似下面截图的提示：</p>
+<p><a href="http://simplyaccessible.com/wordpress/wp-content/uploads/2017/10/creating-accessible-react-apps-atom.png" target="_blank" rel="external"><img src="http://simplyaccessible.com/wordpress/wp-content/uploads/2017/10/creating-accessible-react-apps-atom.png" alt="Screen capture of Atom text editor. A warning message appears overtop of some code with the following message, “img elements must have an alt prop, either with meaningful text, or an empty string for decorative images. (jsx-a11y/alt-text)”"></a></p>
+<h2 id="继续编写语义化-HTML"><a href="#继续编写语义化-HTML" class="headerlink" title="继续编写语义化 HTML"></a>继续编写语义化 HTML</h2><p>在 <a href="https://reactjs.org/docs/thinking-in-react.html" target="_blank" rel="external">“Thinking in React” 帮助文档</a>里，鼓励读者去创建组件模块，或者组件驱动开发，编写小型、可复用的代码片段。这么做的好处是可以在不同项目之间复用代码。想象一下，在某个站点创建了一个无障碍部件，然后如果在另一个站点需要同样的部件，只需复制粘贴代码！</p>
+<p>从这里可以看出，你通过模块套模块创建出更大的组件来构建你的 UI，然后最终拼凑成一个“页面”。起初这可能会带来一些学习曲线，但不久你就会习惯以这种方式思考，并最终在编写 HTML 的时候享受这种分解过程。</p>
+<blockquote>
+<p>因为 React 的组件使用 <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes" target="_blank" rel="external">ES6 的类</a>组成，所以继续编写良好、干净的语义化 HTML 取决于你自己（是否掌握 ES6）。 </p>
+</blockquote>
+<p>正如我们之前在文中提到的那样，有一些保留字需要注意，如 <code>htmlFor</code> 和 <code>className</code>，但除此之外，作为开发人员，你仍然有责任按照通常的方式编写和测试 HTML UI 界面。</p>
+<p>另外，还可以在适当的时候通过 JSX 在 HTML 里写入 JavaScript。这将大大有助于应用更具动态性和无障碍性。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>你现在已经完全有能力使 React 应用变得更加无障碍！<br>你学到的知识有：</p>
+<ul>
+<li>更新页面 <code>title</code>，让用户在应用里保持方向感并明白每个视图内容的目的；</li>
+<li>管理键盘焦点，以便用户可以顺利地跟随动态内容变化，而不会迷失或迷惑刚刚发生了什么； </li>
+<li>创建一个实时消息组件，提醒用户任何重要的状态变化；</li>
+<li>以及，在项目里加入代码分析，以便你可以在工作的时候及时捕获无障碍性错误。</li>
+</ul>
+<p>也许与网页开发人员分享的最好的无障碍性提示就是：在做任何静态、CMS 或基于框架的网站时，在模板里<a href="https://simplyaccessible.com/article/listening-web-part-two-semantics/" target="_blank" rel="external">编写语义化 HTML</a>。在创建用户界面应该选择什么元素时，React 不会成为你的拦路虎。这完全取决于你自己，亲爱的开发者，确保你自己创建的内容尽可能对大部分用户来说是有用且无障碍的。</p>
+<p>你有没有发现过其他方式来创建更具无障碍性的 React 应用？我十分乐意在评论里听到它们！</p>
+<hr>
+<blockquote>
+<p><a href="https://github.com/xitu/gold-miner" target="_blank" rel="external">掘金翻译计划</a> 是一个翻译优质互联网技术文章的社区，文章来源为 <a href="https://juejin.im" target="_blank" rel="external">掘金</a> 上的英文分享文章。内容覆盖 <a href="https://github.com/xitu/gold-miner#android" target="_blank" rel="external">Android</a>、<a href="https://github.com/xitu/gold-miner#ios" target="_blank" rel="external">iOS</a>、<a href="https://github.com/xitu/gold-miner#前端" target="_blank" rel="external">前端</a>、<a href="https://github.com/xitu/gold-miner#后端" target="_blank" rel="external">后端</a>、<a href="https://github.com/xitu/gold-miner#区块链" target="_blank" rel="external">区块链</a>、<a href="https://github.com/xitu/gold-miner#产品" target="_blank" rel="external">产品</a>、<a href="https://github.com/xitu/gold-miner#设计" target="_blank" rel="external">设计</a>、<a href="https://github.com/xitu/gold-miner#人工智能" target="_blank" rel="external">人工智能</a>等领域，想要查看更多优质译文请持续关注 <a href="https://github.com/xitu/gold-miner" target="_blank" rel="external">掘金翻译计划</a>、<a href="http://weibo.com/juejinfanyi" target="_blank" rel="external">官方微博</a>、<a href="https://zhuanlan.zhihu.com/juejinfanyi" target="_blank" rel="external">知乎专栏</a>。</p>
+</blockquote>
+
+	
+	
+	
+	
+</div>
+				
+				
+
+                <!-- Post Comments -->
+                
+                    
+
+
+    <!-- 使用 DISQUS -->
+	<div id="disqus-comment">
+		<div id="disqus_thread"></div>
+<script>
+	var disqus_config = function () {
+		this.page.url = "http://llp0574.github.io/2017/12/20/creating-accessible-react-apps/index.html";  // Replace PAGE_URL with your page's canonical URL variable
+		this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+	};
+
+	(function() { // DON'T EDIT BELOW THIS LINE
+		var d = document, s = d.createElement('script');
+		s.src = '//llp-2.disqus.com/embed.js';
+		s.setAttribute('data-timestamp', +new Date());
+		(d.head || d.body).appendChild(s);
+	})();
+</script>
+	</div>
+	<style>
+		#disqus-comment{
+			background-color:#eee;
+			padding:2pc;
+		}
+	</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/10/19/performance-metrics-whats-this-all-about/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+        </div>
+    </div>
+
+				
+				
+					<!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay "></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored  sidebar-fixed-left" role="navigation">
+	<div id="sidebar-main">
+	    <!-- Sidebar Header -->
+		<div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+    <i class="material-icons">clear_all</i>
+    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="llp's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        llp0574@gmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+		<!-- Sidebar Navigation  -->
+		<ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+			
+                <li>
+                    <a href="mailto:llp0574@gmail.com" target="_blank" title="Email Me">
+						<i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    <li id="sidebar-first-li">
+        <a href="/" target="_self">
+            <i class="material-icons sidebar-material-icons">home</i>
+             主页
+        </a>
+    </li>
+
+    <!-- I'm Feeling Lucky -->
+<!--
+    <li class="dropdown">
+        <a href="" target="_self">
+            <i class="material-icons sidebar-material-icons">explore</i>
+             sidebar.imlucky
+        </a>
+    </li>
+-->
+
+	
+    <!-- Archives  -->
+    <li class="dropdown">
+        <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+            <i class="material-icons sidebar-material-icons">inbox</i>
+             归档
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+            <a class="sidebar_archives-link" href="/archives/2017/12/">十二月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/10/">十月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/09/">九月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/02/">二月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">十二月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/11/">十一月 2016<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">十月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">九月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">七月 2016<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/02/">二月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/01/">一月 2016<span class="sidebar_archives-count">2</span></a>
+        </ul>
+    </li>
+
+    <!-- Divider -->
+    <li class="divider"></li>
+
+
+    <!-- Pages  -->
+	
+		<li>
+			<a href="/about" title="关于我">
+				关于我
+			</a>
+		</li>
+	
+		<li>
+			<a href="/tags" title="标签云">
+				标签云
+			</a>
+		</li>
+	
+
+    <!-- Article Numebr  -->
+    <li>
+        <a href="/archives">
+             文章总数
+             <span class="sidebar-badge">20</span>
+        </a>
+    </li>
+</ul>
+
+		<!-- Sidebar Divider -->
+		<div class="sidebar-divider"></div>
+
+		<!-- Sidebar Footer -->
+		<!-- 
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持。 :) 
+-->
+
+<!-- Theme Material -->
+<a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+	<div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+		主题 - Material
+		<span class="sidebar-badge badge-circle">i</span>
+	</div>
+</a>
+
+<!-- Help & Support -->
+<!--
+<a href="mailto:hiviosey@gmail.com" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+		sidebar.help
+		<span class="mdl-button__ripple-container">
+			<span class="mdl-ripple"></span>
+		</span>
+	</div>
+</a>
+-->
+
+<!-- Feedback -->
+<!--
+<a href="https://github.com/viosey/hexo-theme-material/issues" target="_blank" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+         sidebar.feedback
+                    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+</a>
+-->
+
+<!-- Abount Theme -->
+<!--
+<a href="https://blog.viosey.com/index.php/Material.html" target="_blank" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+         sidebar.about_theme
+        <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+</a>-->
+
+	</div>
+    
+    <!-- Sidebar Sponsor -->
+    
+
+
+</aside>
+
+				
+				
+				
+					<!-- Footer Top Button -->
+					<div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+				
+				
+				<!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+	
+	
+		<!-- Paradox Footer Left Section -->
+		<div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+    <a href="https://twitter.com/geek_llp" target="view_window"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-twitter.png);">
+        <span class="visuallyhidden">Twitter</span>
+    </button></a>
+    
+
+    <!-- Facebook -->
+    
+    
+
+    <!-- Google + -->
+    
+    
+
+    <!-- Weibo -->
+    
+    <a href="http://weibo.com/u/1806141607" target="view_window"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-weibo.png);">
+        <span class="visuallyhidden">Weibo</span>
+    </button></a>
+    
+
+    <!-- Instagram -->
+    
+    
+
+    <!-- Tumblr -->
+    
+    
+
+    <!-- Github -->
+    
+    <a href="https://github.com/llp0574" target="view_window"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.png);">
+        <span class="visuallyhidden">Github</span>
+    </button></a>
+    
+
+    <!-- LinkedIn -->
+    
+    <a href="http://www.linkedin.com/in/%E6%9E%97%E7%92%9E-%E6%9D%8E-26b119b9" target="view_window"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-linkedin.png);">
+        <span class="visuallyhidden">LinkedIn</span>
+    </button></a>
+    
+</div>
+
+
+		<!--Copyright-->
+		<div id="copyright">Copyright&nbsp;©&nbsp;<script type="text/javascript">var fd = new Date();document.write(fd.getFullYear());</script>&nbsp;llp的程序猿之路</div>
+
+		<!-- Paradox Footer Right Section -->
+
+		<!-- 
+		I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+		It will not impact the appearance and can give developers a lot of support :)
+
+		很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+		它不会影响美观并可以给开发者很大的支持。 :) 
+		-->
+
+		<div class="mdl-mini-footer--right-section">
+			<div>
+				<div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+				<div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+			</div>
+		</div>
+	
+    
+</footer>
+                
+				<!-- Import File -->
+<script src="/js/highlight.min.js"></script>
+<script src="/js/js.min.js"></script>
+<script src="/js/nprogress.js"></script>
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    
+    $('#nprogress .bar').css({
+        'background': '#FF4081'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #FF4081, 0 0 15px #FF4081'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#FF4081',
+        'border-left-color': '#FF4081'
+    });
+    
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+    <!-- Leancloud -->
+	<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+	<script>
+		AV.initialize("dFsFONvyzhvCLBqr0vdTUuQI-gzGzoHsz", "gKQoW3SRT0IvN2krRAjKgAL2");
+	</script>
+    <script>
+	function showTime(Counter) {
+		var query = new AV.Query(Counter);
+		$(".leancloud-views_num").each(function() {
+			var url = $(this).attr("id").trim();
+			query.equalTo("url", url);
+			query.find({
+				success: function(results) {
+					if (results.length == 0) {
+						var content = '0 ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+						return;
+					}
+					for (var i = 0; i < results.length; i++) {
+						var object = results[i];
+						var content = object.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					}
+				},
+				error: function(object, error) {
+					console.log("Error: " + error.code + " " + error.message);
+				}
+			});
+
+		});
+	}
+
+	function addCount(Counter) {
+		var Counter = AV.Object.extend("Counter");
+		url = $(".leancloud-views_num").attr('id').trim();
+		title = $(".leancloud-views_num").attr('data-flag-title').trim();
+		var query = new AV.Query(Counter);
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length > 0) {
+					var counter = results[0];
+					counter.fetchWhenSave(true);
+					counter.increment("time");
+					counter.save(null, {
+						success: function(counter) {
+							var content =  counter.get('time') + ' ' + $(document.getElementById(url)).text();
+							$(document.getElementById(url)).text(content);
+						},
+						error: function(counter, error) {
+							console.log('Failed to save Visitor num, with error message: ' + error.message);
+						}
+					});
+				} else {
+					var newcounter = new Counter();
+					newcounter.set("title", title);
+					newcounter.set("url", url);
+					newcounter.set("time", 1);
+					newcounter.save(null, {
+						success: function(newcounter) {
+							console.log("newcounter.get('time')="+newcounter.get('time'));
+							var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
+							$(document.getElementById(url)).text(content);
+						},
+						error: function(newcounter, error) {
+							console.log('Failed to create');
+						}
+					});
+				}
+			},
+			error: function(error) {
+				console.log('Error:' + error.code + " " + error.message);
+			}
+		});
+	}
+	$(function() {
+		var Counter = AV.Object.extend("Counter");
+		if ($('.leancloud-views_num').length == 1) {
+			addCount(Counter);
+		} else if ($('.post-title-link').length > 1) {
+			showTime(Counter);
+		}
+	}); 
+</script>
+
+
+
+
+
+
+
+    <!-- 使用 DISQUS js 代码 -->
+	<script id="dsq-count-scr" src="//llp-2.disqus.com/count.js" async></script>
+
+
+<!-- Swiftye -->
+
+
+<!-- Local Search-->
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $(".post-toc-wrap").parent(".mdl-menu__container").css("position", "fixed");
+    });
+</script>
+
+<!-- MathJax Load-->
+
+            </main>
+        </div>
+		
+    </body>
+		
+	
+</html>
