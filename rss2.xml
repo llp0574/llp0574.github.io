@@ -310,7 +310,7 @@
 <ol>
 <li>“<strong>它正在运行吗？</strong>”</li>
 </ol>
-<p>我的网页浏览开始了吗（服务器有回应，等等）？<br>Has my navigation started successfully (the server has responded, etc.)?</p>
+<p>我的网页浏览开始了吗（服务器有回应，等等）？</p>
 <ol>
 <li>“<strong>它有用吗？</strong>”</li>
 </ol>
@@ -480,11 +480,12 @@
       <pubDate>Wed, 06 Sep 2017 17:10:50 GMT</pubDate>
       <description>
       
-        &lt;p&gt;&lt;a href=&quot;https://codeburst.io/the-simple-rules-to-this-in-javascript-35d97f31bde3&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;原文链接&lt;/a&gt;&lt;br&gt;几条规则确定函数里的 
+        &lt;p&gt;本文为译文，想看原文请戳&lt;a href=&quot;https://codeburst.io/the-simple-rules-to-this-in-javascript-35d97f31bde3&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;。&lt;/p&gt;
       
       </description>
       
-      <content:encoded><![CDATA[<p><a href="https://codeburst.io/the-simple-rules-to-this-in-javascript-35d97f31bde3" target="_blank" rel="external">原文链接</a><br>几条规则确定函数里的 <code>this</code> 是什么。</p>
+      <content:encoded><![CDATA[<p>本文为译文，想看原文请戳<a href="https://codeburst.io/the-simple-rules-to-this-in-javascript-35d97f31bde3" target="_blank" rel="external">这里</a>。</p>
+<p>几条规则确定函数里的 <code>this</code> 是什么。</p>
 <p>想确定 <code>this</code> 是什么其实非常简单。总体的规则是，通过检查它的调用位置，在函数被调用的的时候确定 <code>this</code>。它遵循下面这些规则，接下来以优先级顺序说明。</p>
 <h2 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h2><p>1、如果在调用函数时使用 <code>new</code> 关键字，那么函数里的 <code>this</code> 就是一个全新的对象。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">ConstructorExample</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">    <span class="keyword">this</span>.value = <span class="number">10</span>;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">new</span> ConstructorExample();</div><div class="line"><span class="comment">// -&gt; &#123;&#125;</span></div><div class="line"><span class="comment">// -&gt; &#123; value: 10 &#125;</span></div></pre></td></tr></table></figure>
