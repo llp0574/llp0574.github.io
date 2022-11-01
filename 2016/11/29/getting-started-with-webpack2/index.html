@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <!-- Title -->
+    
+    <title>
+        Webpack 2 入门教程 | llp的程序猿之路
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" sizes="192x192" href="/img/favicon.png">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="./styles.css">
+
+    <!-- Meta & INfo -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="llp">
+    <meta name="description" content="llp的程序猿之路走得磕磕绊绊">
+    <meta name="keywords" content="null">
+
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="llp的程序猿之路">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://llp0574.github.io">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Webpack 2 入门教程 | llp的程序猿之路">
+    <meta property="og:description" content="llp的程序猿之路走得磕磕绊绊">
+
+     <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS -->
+    <link rel="stylesheet" href="/css/material.min.css">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+	body, html{
+		font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+	}
+	
+    a{
+        color: #00838F
+    }
+    
+    .mdl-card__media,
+    #search-label,
+    #search-form-label:after,
+    #scheme-Paradox .hot_tags-count,
+    #scheme-Paradox .sidebar_archives-count,
+    #scheme-Paradox .sidebar-colored .sidebar-header,
+    #scheme-Paradox .sidebar-colored .sidebar-badge{
+        background-color: #0097A7 !important
+    }
+    
+	/* Sidebar User Drop Down Menu Text Color */
+	#scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus{
+        color: #0097A7 !important
+    }
+    
+    #post_entry-right-info,
+    .sidebar-colored .sidebar-nav li:hover > a,
+    .sidebar-colored .sidebar-nav li:hover > a i,
+    .sidebar-colored .sidebar-nav li > a:hover,
+    .sidebar-colored .sidebar-nav li > a:hover i,
+    .sidebar-colored .sidebar-nav li > a:focus i,
+    .sidebar-colored .sidebar-nav > .open > a,
+    .sidebar-colored .sidebar-nav > .open > a:hover,
+    .sidebar-colored .sidebar-nav > .open > a:focus,
+    #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a{
+        color: #0097A7 !important
+    }
+    
+    .toTop{
+        background: #757575 !important
+    }
+		
+	.material-layout .material-post>.material-nav,
+	.material-layout .material-index>.material-nav,
+	.material-nav a{
+		color: #757575;
+	}
+		
+	#scheme-Paradox .MD-burger-layer {
+		background-color: #757575;
+	}
+
+	#scheme-Paradox #post-toc-trigger-btn{
+		color: #757575;
+	}
+	
+	.post-toc a:hover{
+		color: #00838F;
+		text-decoration: underline;
+	}
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+        body{
+            background-color: #F5F5F5
+        }
+		
+		/* blog_info bottom background */
+        #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+            background-color: #fff;
+        }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+        .fade {
+            transition: all 800ms linear;
+            -webkit-transform: translate3d(0,0,0);
+            -moz-transform: translate3d(0,0,0);
+            -ms-transform: translate3d(0,0,0);
+            -o-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+            opacity: 1;
+        }
+
+        .fade.out{
+            opacity: 0;
+        }
+    </style>
+
+	<script src="/js/jquery.min.js"></script>
+
+	<link rel="stylesheet" href="/css/highlight/solarized-white.css">
+
+
+	<!-- UC Browser Compatible-->
+	<script>
+		var agent = navigator.userAgent.toLowerCase();
+		if(agent.indexOf('ucbrowser')>0) {
+			document.write('<link rel="stylesheet" href="/css/uc.css">');
+		   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+		}
+	</script>
+
+    <!-- Custom Head -->
+    
+    
+
+</head>
+	
+	
+
+    <body id="scheme-Paradox">
+
+		
+        <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+				
+			
+			
+            <!-- Main Container -->
+            <main class="material-layout__content" id="main">
+				
+                <!-- Top Anchor -->
+                <div id="top"></div>
+				
+				
+                <!-- Hamburger Button -->
+                <button class="MD-burger-icon sidebar-toggle">
+                    <span class="MD-burger-layer"></span>
+                </button>
+				
+				
+                
+	<!-- Back Button -->
+<!--
+	<div class="material-back" id="backhome-div" tabindex="0">
+		<a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="#" onclick="window.history.back();return false;" target="_self" role="button" data-upgraded=",MaterialButton,MaterialRipple">
+			<i class="material-icons" role="presentation">arrow_back</i>
+			<span class="mdl-button__ripple-container">
+				<span class="mdl-ripple"></span>
+			</span>
+		</a>
+	</div>			
+-->
+	<!-- Left aligned menu below button -->
+	<button id="post-toc-trigger-btn"
+			class="mdl-button mdl-js-button mdl-button--icon">
+	  <i class="material-icons">format_list_numbered</i>
+	</button>
+
+	<ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+		for="post-toc-trigger-btn">
+			
+			<ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是-Webpack？"><span class="post-toc-number">1.</span> <span class="post-toc-text">什么是 Webpack？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第一步"><span class="post-toc-number">2.</span> <span class="post-toc-text">第一步</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#处理多个文件"><span class="post-toc-number">3.</span> <span class="post-toc-text">处理多个文件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#多个文件，打包在一起"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">多个文件，打包在一起</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#多个文件，多个输出"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">多个文件，多个输出</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#进阶自动打包"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">进阶自动打包</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#开发"><span class="post-toc-number">4.</span> <span class="post-toc-text">开发</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#全局可访问方法"><span class="post-toc-number">5.</span> <span class="post-toc-text">全局可访问方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Loaders"><span class="post-toc-number">6.</span> <span class="post-toc-text">Loaders</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Babel-ES6"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">Babel + ES6</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#CSS-Style-Loader"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">CSS + Style Loader</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#CSS-Node-modules"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">CSS + Node modules</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#CSS-Modules"><span class="post-toc-number">6.4.</span> <span class="post-toc-text">CSS Modules</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Sass"><span class="post-toc-number">6.5.</span> <span class="post-toc-text">Sass</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#分开打包-CSS"><span class="post-toc-number">6.6.</span> <span class="post-toc-text">分开打包 CSS</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#HTML"><span class="post-toc-number">6.7.</span> <span class="post-toc-text">HTML</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#从模块角度思考"><span class="post-toc-number">7.</span> <span class="post-toc-text">从模块角度思考</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#延伸阅读"><span class="post-toc-number">8.</span> <span class="post-toc-text">延伸阅读</span></a></li></ol>
+		
+<!--			<li class="mdl-menu__item">Some Action</li>-->
+	</ul>
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+		
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+	<!-- Paradox Post Header -->
+	
+		<!-- Custom Thumbnail -->
+		<div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/webpack.png)">
+	
+        <p class="article-headline-p">
+            Webpack 2 入门教程
+        </p>
+    </div>
+
+	
+
+				
+				
+					<!-- Paradox Post Info -->
+					<div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>llp</strong>
+        <span>11月 29, 2016</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <span class="post-count">共计&nbsp;4,435&nbsp;字&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+    <span class="post-read">预计阅读&nbsp;17&nbsp;分钟&nbsp;&nbsp;</span>
+    <!-- Favorite -->
+<!--
+    <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+        <i class="material-icons" role="presentation">favorite</i>
+        <span class="visuallyhidden">favorites</span>
+    </button>
+-->
+
+    <!-- Tags (bookmark) -->
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/JavaScript/">JavaScript</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Webpack/">Webpack</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Webpack-2/">Webpack 2</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/前端/">前端</a>
+    </ul>
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+    
+    <!-- Leancloud Views -->
+    <a class="post_share-link" href="#">
+        <li class="mdl-menu__item">
+            <span id="/2016/11/29/getting-started-with-webpack2/" class="leancloud-views_num" data-flag-title="Webpack 2 入门教程">
+     &nbsp;浏览量
+</span>
+        </li>
+    </a>
+    
+    
+    
+    
+    <!-- Share Twitter -->
+    <a class="post_share-link" href="#" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Twitter
+        </li>
+    </a>
+    
+    <!-- Share Google+ -->
+    <a class="post_share-link" href="#" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Google+
+        </li>
+    </a>
+    
+    <!-- Share Weibo -->
+    <a class="post_share-link" href="#" target="_blank">
+        <li class="mdl-menu__item">
+            分享到微博
+        </li>
+    </a>
+</ul>
+</div>
+				
+
+                <!-- Post Content -->
+                <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+	
+		<p>本文写于 Webpack 2 正式发布之前（完善文档阶段），不仅是 Webpack 2 的入门教程，也介绍了 Webpack 是什么。</p>
+<blockquote>
+<ul>
+<li>原文地址：<a href="#" target="_blank" rel="external">Getting Started with Webpack 2
+</a></li>
+<li>原文作者：Drew Powers</li>
+<li>译者：<a href="https://llp0574.github.io/">linpu.li</a></li>
+</ul>
+</blockquote>
+<p>Webpack 2 将在其文档完成之后正式发布。但这并不意味着不可以开始使用它，如果你知道怎么配置的话。</p>
+<h3 id="什么是-Webpack？"><a href="#什么是-Webpack？" class="headerlink" title="什么是 Webpack？"></a>什么是 Webpack？</h3><p>简单来说，Webpack 就是一个针对 JavaScript 代码的模块打包工具。但是自发布以来，它演变成了一个针对所有前端代码的管理工具（不管是其本身有意还是社区的意愿）。</p>
+<p><img src="/img/1.png" alt=""></p>
+<p>旧的任务运行工具处理方式：HTML、CSS 和 JavaScript 都是分离的。必须分别对每一项进行管理，并且还要确保所有东西正确地部署到生产环境。</p>
+<p>像 <strong>Gulp</strong> 这样的任务运行工具可以操作很多不同的预处理器和编译器，但是在所有情况下，它都需要接收一个源码<strong>输入</strong>并将其处理成一个编译好的<strong>输出</strong>。然而，它是在不关心整个系统的情况下逐个去处理的。这就是开发者的负担了：检查任务运行工具有无遗漏的地方，并为所有改动的部分找到正确的方式，将它们在生产环境上协调一致。</p>
+<p>Webpack 通过一个大胆的询问试图减轻开发者的负担：<strong>如果开发过程的某个部分可以自己管理依赖会怎么样？如果我们可以以这样一种方式来简单地写代码：构建过程仅基于最后所需要的东西来管理它自己，会怎么样？</strong></p>
+<p><img src="/img/2.png" alt=""></p>
+<p>Webpack 处理方式：如果是 Webpack 知道的代码，那么它就只会打包实际在生产环境当中使用的部分。<a href="https://coindataflow.com/de/aktie/UEC"><img src="./cdf.svg" alt="https://coindataflow.com/de/aktie/UEC" class="svg-filter"></a></p>
+<p>如果你是过去几年里 Web 社区当中的一员，那么你肯定已经知道首选解决问题的方法：<strong>使用 JavaScript 构建</strong>。所以 Webpack 试图通过用 JavaScript 传递依赖来使构建过程变得更加容易。但是它设计的精妙之处并不在于简单的代码管理部分，而在于它的管理层面是百分百有效的 JavaScript（还有 Node 特性）。Webpack 使你有机会写出一些对整体系统有更好感知的 JavaScript 代码。</p>
+<p>换句话说：<strong>你不是为了 Webpack 写代码，而是为了你的项目写代码。</strong>而且 Webpack 在保持进步（当然包括某些配置）。</p>
+<p>总而言之，如果你曾经挣扎于下面这些情况中的其中之一：</p>
+<ul>
+<li>不小心将一些不需要的样式表或者 JS 库引入生产环境，导致项目体积变大</li>
+<li>遇到作用域问题 - 不管是来自 CSS 还是 JavaScript</li>
+<li>不停寻找一个好的系统好让你可以在 JavaScript 代码里使用 Node 或 Bower 的模块，或者依赖一系列疯狂的后端配置来正确地使用那些模块</li>
+<li>需要优化资源分发机制却又担心会破坏掉某些东西</li>
+</ul>
+<p>…那么你就可以受益于 Webpack 了。它通过让 JavaScript 取代开发者的大脑来关心依赖和加载顺序，轻松地解决了上面这些问题。最好的部分是什么？Webpack 甚至可以在服务端无缝运行，这意味着你仍然可以使用 Webpack 来构建渐进式增强的网站。</p>
+<h3 id="第一步">Yarn（<code>brew install yarn</code>）来替代 <code>npm</code>，但这完全取决于你自己，它们做的是同样的事情。打开到项目文件夹，在命令行窗口运行下面的命令添加 Webpack 2 到全局包和本地项目里：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yarn global add webpack@2.1.0-beta.25 webpack-dev-server@2.1.0-beta.10</div><div class="line">yarn add --dev webpack@2.1.0-beta.25 webpack-dev-server@2.1.0-beta.10</div></pre></td></tr></table></figure>
+<p>然后在根目录新建一个 <code>webpack.config.js</code> 文件用来声明 Webpack 的配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&apos;use strict&apos;;</div><div class="line"></div><div class="line">const webpack = require(&quot;webpack&quot;);</div><div class="line"></div><div class="line">module.exports = &#123;</div><div class="line">  context: __dirname + &quot;/src&quot;,</div><div class="line">  entry: &#123;</div><div class="line">    app: &quot;./app.js&quot;,</div><div class="line">  &#125;,</div><div class="line">  output: &#123;</div><div class="line">    path: __dirname + &quot;/dist&quot;,</div><div class="line">    filename: &quot;[name].bundle.js&quot;,</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>注意：<strong><code>__dirname</code>指的是根目录。</strong></p>
+<p>还记得 Webpack “知道”项目里发生了什么吗？它是通过读取你的代码知道的（不用担心，它签署了一份保密协议）。Webpack 基本做了下面这些事情：</p>
+<ol>
+<li>从 <code>context</code> 对应的文件夹开始…</li>
+<li>…寻找 <code>entry</code> 里所有的文件名…</li>
+<li>…然后读取它们的内容。在解析代码时，每一个通过 <code>import</code>（ES6） 或 <code>require()</code>（Node） 引入的依赖都会被打包到最终的构建结果当中。它会接着搜索<strong>那些</strong>依赖，以及那些依赖的依赖，直到“依赖树”的叶子节点 — 只打包它所需要的依赖，没有其他的东西。</li>
+<li>接着，Webpack 将所有东西打包到 <code>output.path</code> 对应的文件夹里，使用 <code>output.filename</code> 对应的命名模板来命名（<code>[name]</code> 被 <code>entry</code> 里的对象键值所替代）</li>
+</ol>
+<p>所以如果 <code>src/app.js</code> 文件看起来像下面这样的话（假设提前运行了 <code>yarn add --dev moment</code>）:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&apos;use strict&apos;;</div><div class="line">import moment from &apos;moment&apos;;</div><div class="line">var rightNow = moment().format(&apos;MMMM Do YYYY, h:mm:ss a&apos;);</div><div class="line">console.log( rightNow );</div><div class="line">// &quot;October 23rd 2016, 9:30:24 pm&quot;</div></pre></td></tr></table></figure>
+<p>接着运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">webpack -p</div></pre></td></tr></table></figure>
+<p>注意：<strong><code>p</code> 标记表示“生产（production）”模式并且会压缩或丑化（uglify/minify）输出。</strong></p>
+<p>然后它将输出一个 <code>dist/app.bundle.js</code> 文件，作用就是打印出当前日期和时间到控制台。注意到 Webpack 自动知道了 <code>&#39;moment&#39;</code> 指的是什么（但如果已经有一个 <code>moment.js</code> 在你的目录当中，那么 Webpack 默认就会优先使用这个而不是 <code>moment</code> 的 Node 模块）。</p>
+<h3 id="处理多个文件"><a href="#处理多个文件" class="headerlink" title="处理多个文件"></a>处理多个文件</h3><p>你只需要通过修改 <code>entry</code> 对象就可以指定任意数量所期望的 entry 或 output 点。</p>
+<h4 id="多个文件，打包在一起"><a href="#多个文件，打包在一起" class="headerlink" title="多个文件，打包在一起"></a>多个文件，打包在一起</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&apos;use strict&apos;;</div><div class="line"></div><div class="line">const webpack = require(&quot;webpack&quot;);</div><div class="line"></div><div class="line">module.exports = &#123;</div><div class="line">  context: __dirname + &quot;/src&quot;,</div><div class="line">  entry: &#123;</div><div class="line">    app: [&quot;./home.js&quot;, &quot;./events.js&quot;, &quot;./vendor.js&quot;],</div><div class="line">  &#125;,</div><div class="line">  output: &#123;</div><div class="line">    path: __dirname + &quot;/dist&quot;,</div><div class="line">    filename: &quot;[name].bundle.js&quot;,</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>所有文件会按数组顺序一起打包到 <code>dist/app.bundle.js</code> 一个文件当中。</p>
+<h4 id="多个文件，多个输出"><a href="#多个文件，多个输出" class="headerlink" title="多个文件，多个输出"></a>多个文件，多个输出</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">const webpack = require(&quot;webpack&quot;);</div><div class="line"></div><div class="line">module.exports = &#123;</div><div class="line">  context: __dirname + &quot;/src&quot;,</div><div class="line">  entry: &#123;</div><div class="line">    home: &quot;./home.js&quot;,</div><div class="line">    events: &quot;./events.js&quot;,</div><div class="line">    contact: &quot;./contact.js&quot;,</div><div class="line">  &#125;,</div><div class="line">  output: &#123;</div><div class="line">    path: __dirname + &quot;/dist&quot;,</div><div class="line">    filename: &quot;[name].bundle.js&quot;,</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>另外，你还可以选择打包成多个 JS 文件来将应用拆解成几个部分。像上面这样做就可以打包成三个文件：<code>dist/home.bundle.js</code>、<code>dist/events.bundle.js</code> 和 <code>dist/contact.bundle.js</code>。</p>
+<h4 id="进阶自动打包"><a href="#进阶自动打包" class="headerlink" title="进阶自动打包"></a>进阶自动打包</h4><p>如果你正在将应用拆解，打包成多个 <code>output</code> 的话（如果应用的某部分有大量不需要提前加载的 JS 的话，这样做会很有用），那么在这些文件里就有可能出现重复的代码，因为在解决依赖问题的时候它们是互相不干预的。幸好，Webpack 有一个内建插件 <strong>CommonsChunk</strong> 来处理这个问题：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">module.exports = &#123;</div><div class="line">  // …</div><div class="line">  plugins: [</div><div class="line">    new webpack.optimize.CommonsChunkPlugin(&#123;</div><div class="line">      name: &quot;commons&quot;,</div><div class="line">      filename: &quot;commons.js&quot;,</div><div class="line">      minChunks: 2,</div><div class="line">    &#125;),</div><div class="line">  ],</div><div class="line">// …</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>现在，在 <code>output</code> 的文件里，如果有任意模块加载了两次或更多（通过 <code>minChunks</code> 设置该值），它就会被打包进一个叫 <code>commons.js</code> 的文件里，后面你就可以在客户端缓存这个文件了。当然，这肯定会造成一次额外的请求，但是却避免了客户端多次下载相同库的问题。所以在很多场景下，这都是提升速度的举措。</p>
+<h3 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h3><p>实际上 Webpack 有它自己的开发服务器，所以无论你正在开发一个静态网站，或者只是正在原型化前端阶段，这个服务器都是完美可用的。想要运行它，只需要在 <code>webpack.config.js</code> 里添加一个 <code>devServer</code> 对象：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">module.exports = &#123;</div><div class="line">  context: __dirname + &quot;/src&quot;,</div><div class="line">  entry: &#123;</div><div class="line">    app: &quot;./app.js&quot;,</div><div class="line">  &#125;,</div><div class="line">  output: &#123;</div><div class="line">    filename: &quot;[name].bundle.js&quot;,</div><div class="line">    path: __dirname + &quot;/dist/assets&quot;,</div><div class="line">    publicPath: &quot;/assets&quot;,            // New</div><div class="line">  &#125;,</div><div class="line">  devServer: &#123;</div><div class="line">    contentBase: __dirname + &quot;/src&quot;,  // New</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>现在新建一个 <code>src/index.html</code> 文件，加入下面这行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script src=&quot;/assets/app.bundle.js&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>然后在命令行中，运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">webpack-dev-server</div></pre></td></tr></table></figure>
+<p>服务器现在就运行在了 <code>localhost:8080</code> 上。注意 script 标签中的 <code>/assets</code> 对应的是 <code>output.publicPath</code> 的值 - 可以随便填成你想要的命名（如果需要一个 CDN，这就很有用了）。</p>
+<p>当你更改 JavaScript 代码的时候，Webpack 就会实时更新页面而无需手动刷新浏览器。但是，<strong>任何对 <code>webpack.config.js</code> 的更改都需要重启服务器</strong>才可以生效。</p>
+<h3 id="全局可访问方法"><a href="#全局可访问方法" class="headerlink" title="全局可访问方法"></a>全局可访问方法</h3><p>需要在全局命名空间里使用某些自己的方法吗？只需简单地在 <code>webpack.config.js</code> 里设置 <code>output.library</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">module.exports = &#123;</div><div class="line">  output: &#123;</div><div class="line">    library: &apos;myClassName&apos;,</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>…这样就会把打包结果绑定到一个 <code>window.myClassName</code> 实例上。所以使用这种命名作用域，就可以调用 entry 点里面的方法了（可以阅读文档获取更多关于这个配置的信息）。</p>
+<h3 id="Loaders"><a href="#Loaders" class="headerlink" title="Loaders"></a>Loaders</h3><p>目前为止，我们所讲到的都是关于 JavaScript 代码的使用。从 JavaScript 代码开始是非常重要的，因为<strong>这是 Webpack 唯一使用的语言</strong>。我们可以处理任何文件类型，只要将它们传进 JavaScript 代码中。这个功能用 <strong>Loaders</strong> 来实现。</p>
+<p>一个 loader 可以指向一个像 Sass 的预处理器，或者像 Babel 的编译器。在 NPM 中，它们通常是像 <code>sass-loader</code> 或 <code>babel-loader</code> 这样命名为 <code>*-loader</code>。</p>
+<h4 id="Babel-ES6"><a href="#Babel-ES6" class="headerlink" title="Babel + ES6"></a>Babel + ES6</h4><p>如果我们想要在项目中通过 Babel 来使用 ES6，首先要在本地正确地安装一些 loader：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yarn add --dev babel-loader babel-core babel-preset-es2015</div></pre></td></tr></table></figure>
+<p>…然后把它们添加进 <code>webpack.config.js</code> 好让 Webpack 知道哪里使用它们。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">module.exports = &#123;</div><div class="line">  // …</div><div class="line">  module: &#123;</div><div class="line">    rules: [</div><div class="line">      &#123;</div><div class="line">        test: /\.js$/,</div><div class="line">        use: [&#123;</div><div class="line">          loader: &quot;babel-loader&quot;,</div><div class="line">          options: &#123; presets: [&quot;es2015&quot;] &#125;</div><div class="line">        &#125;],</div><div class="line">      &#125;,</div><div class="line"></div><div class="line">      // Loaders for other file types can go here</div><div class="line">    ],</div><div class="line">  &#125;,</div><div class="line">  // …</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>一个给 Webpack 1 用户的提示：Loaders 的核心概念仍然是一样的，但语法上做了改进。在他们完成文档之前这可能不是确切的首选语法。</p>
+<p>这样做就可以为 <code>/\.js$/</code> 正则表达式寻找以 <code>.js</code> 结尾的文件，最后通过 Babel 编译加载。Webpack 依赖正则表达式给予你完整的控制 - 但它不会限制你的文件后缀，或者假设你的代码必须以某种特定形式组织起来。举个例子：也许你的 <code>/my_legacy_code/</code> 文件夹里的代码不是用 ES6 写的，那么你就可以把上面的 <code>test</code> 修改为 <code>/^((?!my_legacy_code).)*\.js$/</code>，这样就可以绕过这个文件夹，其余文件用 Babel 编译。</p>
+<h4 id="CSS-Style-Loader"><a href="#CSS-Style-Loader" class="headerlink" title="CSS + Style Loader"></a>CSS + Style Loader</h4><p>如果我们只想加载应用需要的 CSS，也可以那么做。假设有一个 <code>index.js</code> 文件，在里面引入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import styles from &apos;./assets/stylesheets/application.css&apos;;</div></pre></td></tr></table></figure>
+<p>就会得到一个错误：<code>You may need an appropriate loader to handle this file type</code>。记住 Webpack 只能读取 JavaScript，所以我们必须安装正确的 loader：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yarn add --dev css-loader style-loader</div></pre></td></tr></table></figure>
+<p>然后在 <code>webpack.config.js</code> 里添加一个规则：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">module.exports = &#123;</div><div class="line">  // …</div><div class="line">  module: &#123;</div><div class="line">    rules: [</div><div class="line">      &#123;</div><div class="line">        test: /\.css$/,</div><div class="line">        use: [&quot;style-loader&quot;, &quot;css-loader&quot;],</div><div class="line">      &#125;,</div><div class="line">      // …</div><div class="line">    ],</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>这些 loader 会以数组逆序运行。这意味着 <code>css-loader</code> 会在 <code>style-loader</code> 之前运行。</p>
+<p>你可能注意到甚至在生产构建的结果中，也把 CSS 打包进了 JavaScript 里面，并且 <code>style-loader</code> 手动地将样式写进了 <code>&lt;head&gt;</code> 中。乍一看这可能有点奇怪，但当你考虑足够多的时候就会慢慢发现这其实是有道理的。你保存了一个头部请求（在某些连接上节省宝贵的时间），并且如果你用 JavaScript 来加载 DOM，这么做基本上就消除了它自身的<a href="https://en.wikipedia.org/wiki/Flash_of_unstyled_content" target="_blank" rel="external">无样式闪屏</a>问题。</p>
+<p>还注意到 Webpack 已经通过把所有文件打包成一个从而自动解决了所有的 <code>@import</code> 查询问题（比起依赖 CSS 默认的引入导致不必要的头部请求和缓慢的资源加载，这么做显然更好）。</p>
+<p>从 JS 里加载 CSS 相当爽，<strong>因为你可以用一种强有力的新方式去模块化 CSS 代码了</strong>。假设你只通过 <code>button.js</code> 加载了 <code>button.css</code>，这就意味着如果 <code>button.js</code> 没有实际用到的话，它的 CSS 也不会打包进我们的生产构建结果。如果你坚持使用像 SMACSS 或者 BEM 那样的面向组件的 CSS，就会知道把 CSS 和 HTML + JavaScript 代码放更近的价值了。</p>
+<h4 id="CSS-Node-modules"><a href="#CSS-Node-modules" class="headerlink" title="CSS + Node modules"></a>CSS + Node modules</h4><p>我们可以在 Webpack 里用 Node 的 <code>~</code> 前缀去引入 Node Modules。假设我们提前运行了 <code>yarn add normalize.css</code>，就可以这么用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@import &quot;~normalize.css&quot;;</div></pre></td></tr></table></figure>
+<p>这样就可以全面使用 NPM 来管理第三方样式库（版本及其他）而对我们而言就无需复制粘贴了。更进一步的是，Webpack 打包 CSS 比使用默认的 CSS 引入有着显而易见的优势，让客户端远离不必要的头部请求和缓慢的资源加载。</p>
+<p><strong>更新：这个部分和下面的部分为了更准确都进行了更新，不用再困扰于使用 CSS Modules 去简单地引入 Node Modules 了。感谢 Albert Fernández 的帮助！</strong></p>
+<h4 id="CSS-Modules">CSS Modules，它将 CSS（Cascading Style Sheets）里的 C（Cascading）给提出来了。它只在用 JavaScript 构建 DOM 的时候使用有最佳效果，但本质上来说，它巧妙地将 CSS 在加载它的 JavaScript 里作用域化了（点击这个链接学习更多相关知识）。如果你计划使用它，CSS Modules 对应的 loader 是 <code>css-loader</code>（<code>yarn add --dev css-loader</code>）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">module.exports = &#123;</div><div class="line">  // …</div><div class="line">  module: &#123;</div><div class="line">    rules: [</div><div class="line">      &#123;</div><div class="line">        test: /\.css$/,</div><div class="line">        use: [</div><div class="line">          &quot;style-loader&quot;,</div><div class="line">          &#123; loader: &quot;css-loader&quot;, options: &#123; modules: true &#125; &#125;</div><div class="line">        ],</div><div class="line">      &#125;,</div><div class="line">      // …</div><div class="line">    ],</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p><strong>注意：对于 <code>css-loader</code> 我们使用了展开的对象语法来为它添加配置。你可以写简单的字符串代表使用默认配置，<code>style-loader</code> 就还是这么做的。</strong></p>
+<hr>
+<p>值得注意的是实际上在使用 CSS Modules 引入 Node Modules 的时候可以去掉 <code>~</code> 符号（如 <code>@import &quot;normalize.css&quot;;</code>）。但是，当 <code>@import</code> 你自己的 CSS 时可能会遇到错误。如果你得到了 “can’t find ___” 这样的错误，尝试添加一个 <code>resolve</code> 对象到 <code>webpack.config.js</code> 里，好让 Webpack 更好地理解你预期的模块顺序。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">const path = require(&quot;path&quot;);</div><div class="line">module.exports = &#123;</div><div class="line">  //…</div><div class="line">  resolve: &#123;</div><div class="line">    modules: [path.resolve(__dirname, &quot;src&quot;), &quot;node_modules&quot;]</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>首先指定了我们自己的源文件目录，然后是 <code>node_modules</code>。这样子 Webpack 解决起来就会处理得更好一些，按照那个顺序先找我们的源文件目录，然后是已安装的 Node Modules（分别用你自己的源码和 Node Modules 目录替换其中的 <code>src</code> 和 <code>node_modules</code>）。</p>
+<h4 id="Sass"><a href="#Sass" class="headerlink" title="Sass"></a>Sass</h4><p>想用 Sass？没问题，安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yarn add --dev sass-loader node-sass</div></pre></td></tr></table></figure>
+<p>然后添加另一条规则：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">module.exports = &#123;</div><div class="line">  // …</div><div class="line">  module: &#123;</div><div class="line">    rules: [</div><div class="line">      &#123;</div><div class="line">        test: /\.(sass|scss)$/,</div><div class="line">        use: [</div><div class="line">          &quot;style-loader&quot;,</div><div class="line">          &quot;css-loader&quot;,</div><div class="line">          &quot;sass-loader&quot;,</div><div class="line">        ]</div><div class="line">      &#125;</div><div class="line">      // …</div><div class="line">    ],</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>接下来当 JavaScript 调用 <code>import</code> 引入一个 <code>.scss</code> 或 <code>.sass</code> 文件时，Webpack 就会做它该做的事情了。</p>
+<h4 id="分开打包-CSS"><a href="#分开打包-CSS" class="headerlink" title="分开打包 CSS"></a>分开打包 CSS</h4><p>或许你正在处理渐进式增强的网站，又或许因为其他的原因你需要一个分离的 CSS 文件。我们可以简单地实现，只需要在配置里用 <code>extract-text-webpack-plugin</code> 替换掉 <code>style-loader</code>，而无需改变其他任何代码。以 <code>app.js</code> 文件为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import styles from &apos;./assets/stylesheets/application.css&apos;;</div></pre></td></tr></table></figure>
+<p>本地安装插件（我们需要这个的测试版本，2016年10月发布）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yarn add --dev extract-text-webpack-plugin@2.0.0-beta.4</div></pre></td></tr></table></figure>
+<p>添加到 <code>webpack.config.js</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">const ExtractTextPlugin = require(&quot;extract-text-webpack-plugin&quot;);</div><div class="line">module.exports = &#123;</div><div class="line">  // …</div><div class="line">  module: &#123;</div><div class="line">    rules: [</div><div class="line">      &#123;</div><div class="line">        test: /\.css$/,</div><div class="line">        loader:  ExtractTextPlugin.extract(&#123;</div><div class="line">          loader: &apos;css-loader?importLoaders=1&apos;,</div><div class="line">        &#125;),</div><div class="line">      &#125;,</div><div class="line"></div><div class="line">      // …</div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  plugins: [</div><div class="line">    new ExtractTextPlugin(&#123;</div><div class="line">      filename: &quot;[name].bundle.css&quot;,</div><div class="line">      allChunks: true,</div><div class="line">    &#125;),</div><div class="line">  ],</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>现在运行 <code>webpack -p</code> 的时候就可以看到一个 <code>app.bundle.css</code> 文件出现在 <code>output</code> 目录里了。像往常一样简单地添加一个 <code>&lt;link&gt;</code> 标签到 HTML 文件里就可以了。</p>
+<h4 id="HTML">插件。但是，当我们开始用 JavaScript 加载 HTML 的时候，这其实是一个可以分支成不同方法的地方，而且我想不到一个单独的简单示例可以覆盖所有下一步操作的可能性。通常，你可能会在用 React、Angular、Vue 或者 Ember 构建的大型系统中加载诸如 JSX、Mustache 或者 Handlebars 这样偏向 JavaScript 的模板 HTML；或者你可能使用一个像 Pug（以前的 Jade）或者 Haml 这样的 HTML 预处理器；或者你可能只是想简单地将源文件目录里的 HTML 复制到构建结果目录里。不管你想做什么，我没办法假设。</p>
+<p>所以我准备在此结束本教程：你可以用 Webpack 加载 HTML，但这一点你必须自己根据你的架构做出决策，不管是我还是 Webpack 都没办法帮到你。不过使用上述例子作为参考并在 NPM 上找到正确的 loader 应该足够让你继续下去了。</p>
+<h3 id="从模块角度思考"><a href="#从模块角度思考" class="headerlink" title="从模块角度思考"></a>从模块角度思考</h3><p>为了最大程度发挥 Webpack 的作用，你不得不从模块的角度去思考（小、可复用、自包含进程），一件件事情慢慢去做好。这意味着下面这样的东西：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">└── js/</div><div class="line">    └── application.js   // 300KB of spaghetti code</div></pre></td></tr></table></figure>
+<p>把它变成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">└── js/</div><div class="line">    ├── components/</div><div class="line">    │   ├── button.js</div><div class="line">    │   ├── calendar.js</div><div class="line">    │   ├── comment.js</div><div class="line">    │   ├── modal.js</div><div class="line">    │   ├── tab.js</div><div class="line">    │   ├── timer.js</div><div class="line">    │   ├── video.js</div><div class="line">    │   └── wysiwyg.js</div><div class="line">    │</div><div class="line">    └── application.js  // ~ 1KB of code; imports from ./components/</div></pre></td></tr></table></figure>
+<p>结果是干净且可复用的代码。每个独立的组件取决于导入自身的依赖，并按照它想要的方式导出到其他模块。配合 Babel + ES6 使用，还可以利用 JavaScript Classes 做出更好的模块化，并且<strong>不要去想它</strong>，作用域只是在起作用。</p>
+<p>想知道更多关于模块的内容，可以看这篇 Preethi Kasreddy 写的很棒的文章。</p>
+<h3 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读"></a>延伸阅读</h3><ul>
+<li>What’s New in Webpack 2</li>
+<li>Webpack + PostCSS + cssnext</li>
+<li>Webpack Config docs</li>
+<li>Webpack Examples</li>
+<li>React + Webpack Starter Kit</li>
+<li>Webpack How-to</li>
+</ul>
+
+	
+	
+	
+	
+</div>
+				
+				
+
+                <!-- Post Comments -->
+                
+    <!-- 使用多说评论 -->
+    <link rel="stylesheet" href="/css/duoshuo.min.css">
+<style>
+    #ds-thread #ds-reset .ds-post-button{
+        background-color: #0097A7 !important;
+    }
+    #ds-wrapper #ds-reset .ds-icons-32{
+        background-color: #0097A7 !important;
+    }
+    #ds-reset .ds-highlight {
+        color: #0097A7 !important;
+    }
+</style>
+<div id="comments">
+    <!-- 多说评论框 start -->
+        <div class="ds-thread" 
+            data-thread-key="2016/11/29/getting-started-with-webpack2/" 
+            data-url="http://llp0574.github.io/2016/11/29/getting-started-with-webpack2/"
+            data-title="Webpack 2 入门教程"></div>
+    <!-- 多说评论框 end -->
+</div>
+
+
+
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2016/11/25/git-use/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+        </div>
+    </div>
+
+				
+				
+					<!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay "></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored  sidebar-fixed-left" role="navigation">
+	<div id="sidebar-main">
+	    <!-- Sidebar Header -->
+		<div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+    <i class="material-icons">clear_all</i>
+    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="llp's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        llp0574@gmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+		<!-- Sidebar Navigation  -->
+		<ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+			
+                <li>
+                    <a href="mailto:llp0574@gmail.com" target="_blank" title="Email Me">
+						<i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    <li id="sidebar-first-li">
+        <a href="/" target="_self">
+            <i class="material-icons sidebar-material-icons">home</i>
+             主页
+        </a>
+    </li>
+
+    <!-- I'm Feeling Lucky -->
+<!--
+    <li class="dropdown">
+        <a href="" target="_self">
+            <i class="material-icons sidebar-material-icons">explore</i>
+             sidebar.imlucky
+        </a>
+    </li>
+-->
+
+	
+    <!-- Archives  -->
+    <li class="dropdown">
+        <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+            <i class="material-icons sidebar-material-icons">inbox</i>
+             归档
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+            <a class="sidebar_archives-link" href="/archives/2016/11/">十一月 2016<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">十月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">九月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">七月 2016<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/02/">二月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/01/">一月 2016<span class="sidebar_archives-count">2</span></a>
+        </ul>
+    </li>
+
+    <!-- Divider -->
+    <li class="divider"></li>
+
+
+    <!-- Pages  -->
+	
+		<li>
+			<a href="/about" title="关于我">
+				关于我
+			</a>
+		</li>
+	
+		<li>
+			<a href="/tags" title="标签云">
+				标签云
+			</a>
+		</li>
+	
+
+    <!-- Article Numebr  -->
+    <li>
+        <a href="/archives">
+             文章总数
+             <span class="sidebar-badge">14</span>
+        </a>
+    </li>
+</ul>
+
+		<!-- Sidebar Divider -->
+		<div class="sidebar-divider"></div>
+
+		<!-- Sidebar Footer -->
+		<!-- 
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持。 :) 
+-->
+
+<!-- Theme Material -->
+<a href="#"  class="sidebar-footer-text-a" target="_blank">
+	<div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+		主题 - Material
+		<span class="sidebar-badge badge-circle">i</span>
+	</div>
+</a>
+
+<!-- Help & Support -->
+<!--
+<a href="mailto:hiviosey@gmail.com" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+		sidebar.help
+		<span class="mdl-button__ripple-container">
+			<span class="mdl-ripple"></span>
+		</span>
+	</div>
+</a>
+-->
+
+<!-- Feedback -->
+<!--
+<a href="https://github.com/viosey/hexo-theme-material/issues" target="_blank" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+         sidebar.feedback
+                    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+</a>
+-->
+
+<!-- Abount Theme -->
+<!--
+<a href="https://blog.viosey.com/index.php/Material.html" target="_blank" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+         sidebar.about_theme
+        <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+</a>-->
+
+	</div>
+    
+    <!-- Sidebar Sponsor -->
+    
+
+
+</aside>
+
+				
+				
+				
+					<!-- Footer Top Button -->
+					<div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+				
+				
+				<!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+	
+	
+		<!-- Paradox Footer Left Section -->
+		<div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+    
+    
+    <!-- Facebook -->
+    
+    
+    
+    <!-- Google + -->
+    
+    
+    
+    <!-- Weibo -->
+    
+    <a href="#" target="view_window"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-weibo.png);">
+        <span class="visuallyhidden">Weibo</span>
+    </button></a>
+    
+    
+    <!-- Instagram -->
+    
+    
+    
+    <!-- Tumblr -->
+    
+    
+    
+    <!-- Github -->
+    
+    <a href="https://github.com/llp0574" target="view_window"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.png);">
+        <span class="visuallyhidden">Github</span>
+    </button></a>
+    
+</div>
+
+
+		<!--Copyright-->
+		<div id="copyright">Copyright&nbsp;©&nbsp;<script type="text/javascript">var fd = new Date();document.write(fd.getFullYear());</script>&nbsp;llp的程序猿之路</div>
+
+		<!-- Paradox Footer Right Section -->
+
+		<!-- 
+		I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+		It will not impact the appearance and can give developers a lot of support :)
+
+		很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+		它不会影响美观并可以给开发者很大的支持。 :) 
+		-->
+
+		<div class="mdl-mini-footer--right-section">
+			<div>
+				<div class="footer-develop-div">Powered by Hexo</div>
+				<div class="footer-develop-div">Theme - Material</div>
+			</div>
+		</div>
+	
+    
+</footer>
+                
+				<!-- Import File -->
+<script src="/js/highlight.min.js"></script>
+<script src="/js/js.min.js"></script>
+<script src="/js/nprogress.js"></script>
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    
+    $('#nprogress .bar').css({
+        'background': '#FF4081'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #FF4081, 0 0 15px #FF4081'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#FF4081',
+        'border-left-color': '#FF4081'
+    });
+    
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+    <!-- Leancloud -->
+	<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+	<script>
+		AV.initialize("dFsFONvyzhvCLBqr0vdTUuQI-gzGzoHsz", "gKQoW3SRT0IvN2krRAjKgAL2");
+	</script>
+    <script>
+	function showTime(Counter) {
+		var query = new AV.Query(Counter);
+		$(".leancloud-views_num").each(function() {
+			var url = $(this).attr("id").trim();
+			query.equalTo("url", url);
+			query.find({
+				success: function(results) {
+					if (results.length == 0) {
+						var content = '0 ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+						return;
+					}
+					for (var i = 0; i < results.length; i++) {
+						var object = results[i];
+						var content = object.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					}
+				},
+				error: function(object, error) {
+					console.log("Error: " + error.code + " " + error.message);
+				}
+			});
+
+		});
+	}
+
+	function addCount(Counter) {
+		var Counter = AV.Object.extend("Counter");
+		url = $(".leancloud-views_num").attr('id').trim();
+		title = $(".leancloud-views_num").attr('data-flag-title').trim();
+		var query = new AV.Query(Counter);
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length > 0) {
+					var counter = results[0];
+					counter.fetchWhenSave(true);
+					counter.increment("time");
+					counter.save(null, {
+						success: function(counter) {
+							var content =  counter.get('time') + ' ' + $(document.getElementById(url)).text();
+							$(document.getElementById(url)).text(content);
+						},
+						error: function(counter, error) {
+							console.log('Failed to save Visitor num, with error message: ' + error.message);
+						}
+					});
+				} else {
+					var newcounter = new Counter();
+					newcounter.set("title", title);
+					newcounter.set("url", url);
+					newcounter.set("time", 1);
+					newcounter.save(null, {
+						success: function(newcounter) {
+							console.log("newcounter.get('time')="+newcounter.get('time'));
+							var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
+							$(document.getElementById(url)).text(content);
+						},
+						error: function(newcounter, error) {
+							console.log('Failed to create');
+						}
+					});
+				}
+			},
+			error: function(error) {
+				console.log('Error:' + error.code + " " + error.message);
+			}
+		});
+	}
+	$(function() {
+		var Counter = AV.Object.extend("Counter");
+		if ($('.leancloud-views_num').length == 1) {
+			addCount(Counter);
+		} else if ($('.post-title-link').length > 1) {
+			showTime(Counter);
+		}
+	}); 
+</script>
+
+
+
+
+
+    <!-- 多说公共 js 代码 start -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"llp0574"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';ds.async = true;
+            ds.src = 'https://static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+             || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+    <!-- 多说公共 js 代码 end -->
+
+
+
+
+<!-- Swiftye -->
+
+
+<!-- Local Search-->
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $(".post-toc-wrap").parent(".mdl-menu__container").css("position", "fixed");
+    });
+</script>
+
+<!-- MathJax Load-->
+
+            </main>
+        </div>
+		
+    </body>
+		
+	
+</html>

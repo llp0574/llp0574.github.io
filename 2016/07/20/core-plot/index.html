@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <!-- Title -->
+    
+    <title>
+        iOS 开源图形库 Core Plot 使用教程 | llp的程序猿之路
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" sizes="192x192" href="/img/favicon.png">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Meta & INfo -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="llp">
+    <meta name="description" content="llp的程序猿之路走得磕磕绊绊">
+    <meta name="keywords" content="null">
+
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="llp的程序猿之路">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://llp0574.github.io">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="iOS 开源图形库 Core Plot 使用教程 | llp的程序猿之路">
+    <meta property="og:description" content="llp的程序猿之路走得磕磕绊绊">
+
+     <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS -->
+    <link rel="stylesheet" href="/css/material.min.css">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+	body, html{
+		font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+	}
+	
+    a{
+        color: #00838F
+    }
+    
+    .mdl-card__media,
+    #search-label,
+    #search-form-label:after,
+    #scheme-Paradox .hot_tags-count,
+    #scheme-Paradox .sidebar_archives-count,
+    #scheme-Paradox .sidebar-colored .sidebar-header,
+    #scheme-Paradox .sidebar-colored .sidebar-badge{
+        background-color: #0097A7 !important
+    }
+    
+	/* Sidebar User Drop Down Menu Text Color */
+	#scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus{
+        color: #0097A7 !important
+    }
+    
+    #post_entry-right-info,
+    .sidebar-colored .sidebar-nav li:hover > a,
+    .sidebar-colored .sidebar-nav li:hover > a i,
+    .sidebar-colored .sidebar-nav li > a:hover,
+    .sidebar-colored .sidebar-nav li > a:hover i,
+    .sidebar-colored .sidebar-nav li > a:focus i,
+    .sidebar-colored .sidebar-nav > .open > a,
+    .sidebar-colored .sidebar-nav > .open > a:hover,
+    .sidebar-colored .sidebar-nav > .open > a:focus,
+    #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a{
+        color: #0097A7 !important
+    }
+    
+    .toTop{
+        background: #757575 !important
+    }
+		
+	.material-layout .material-post>.material-nav,
+	.material-layout .material-index>.material-nav,
+	.material-nav a{
+		color: #757575;
+	}
+		
+	#scheme-Paradox .MD-burger-layer {
+		background-color: #757575;
+	}
+
+	#scheme-Paradox #post-toc-trigger-btn{
+		color: #757575;
+	}
+	
+	.post-toc a:hover{
+		color: #00838F;
+		text-decoration: underline;
+	}
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+        body{
+            background-color: #F5F5F5
+        }
+		
+		/* blog_info bottom background */
+        #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+            background-color: #fff;
+        }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+        .fade {
+            transition: all 800ms linear;
+            -webkit-transform: translate3d(0,0,0);
+            -moz-transform: translate3d(0,0,0);
+            -ms-transform: translate3d(0,0,0);
+            -o-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+            opacity: 1;
+        }
+
+        .fade.out{
+            opacity: 0;
+        }
+    </style>
+
+	<script src="/js/jquery.min.js"></script>
+
+	<link rel="stylesheet" href="/css/highlight/solarized-white.css">
+
+
+	<!-- UC Browser Compatible-->
+	<script>
+		var agent = navigator.userAgent.toLowerCase();
+		if(agent.indexOf('ucbrowser')>0) {
+			document.write('<link rel="stylesheet" href="/css/uc.css">');
+		   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+		}
+	</script>
+
+    <!-- Custom Head -->
+    
+
+    
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?73bb3e6eceb47c2e2f8f79e3bf611006";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+</head>
+	
+	
+
+    <body id="scheme-Paradox">
+
+		
+        <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+				
+			
+			
+            <!-- Main Container -->
+            <main class="material-layout__content" id="main">
+				
+                <!-- Top Anchor -->
+                <div id="top"></div>
+				
+				
+                <!-- Hamburger Button -->
+                <button class="MD-burger-icon sidebar-toggle">
+                    <span class="MD-burger-layer"></span>
+                </button>
+				
+				
+                
+	<!-- Back Button -->
+<!--
+	<div class="material-back" id="backhome-div" tabindex="0">
+		<a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="#" onclick="window.history.back();return false;" target="_self" role="button" data-upgraded=",MaterialButton,MaterialRipple">
+			<i class="material-icons" role="presentation">arrow_back</i>
+			<span class="mdl-button__ripple-container">
+				<span class="mdl-ripple"></span>
+			</span>
+		</a>
+	</div>			
+-->
+	<!-- Left aligned menu below button -->
+	<button id="post-toc-trigger-btn"
+			class="mdl-button mdl-js-button mdl-button--icon">
+	  <i class="material-icons">format_list_numbered</i>
+	</button>
+
+	<ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+		for="post-toc-trigger-btn">
+			
+			<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#入门"><span class="post-toc-number">1.</span> <span class="post-toc-text">入门</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装-Core-Plot"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">安装 Core Plot</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#创建饼图"><span class="post-toc-number">2.</span> <span class="post-toc-text">创建饼图</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#建立图表托管视图"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">建立图表托管视图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#绘制饼图"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">绘制饼图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#等一下…图例呢！"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">等一下…图例呢！</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#创建柱状图"><span class="post-toc-number">3.</span> <span class="post-toc-text">创建柱状图</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#再次配置图表托管视图"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">再次配置图表托管视图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#绘制柱状图"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">绘制柱状图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#功能化坐标轴"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">功能化坐标轴</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#隐藏和查找"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">隐藏和查找</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#接下来干点啥？"><span class="post-toc-number">4.</span> <span class="post-toc-text">接下来干点啥？</span></a></li></ol>
+		
+<!--			<li class="mdl-menu__item">Some Action</li>-->
+	</ul>
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+		
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+	<!-- Paradox Post Header -->
+	
+		<!-- Custom Thumbnail -->
+		<div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/ios.png)">
+	
+        <p class="article-headline-p">
+            iOS 开源图形库 Core Plot 使用教程
+        </p>
+    </div>
+
+	
+
+				
+				
+					<!-- Paradox Post Info -->
+					<div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>llp</strong>
+        <span>7月 20, 2016</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <span class="post-count">共计&nbsp;5,623&nbsp;字&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+    <span class="post-read">预计阅读&nbsp;23&nbsp;分钟&nbsp;&nbsp;</span>
+    <!-- Favorite -->
+<!--
+    <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+        <i class="material-icons" role="presentation">favorite</i>
+        <span class="visuallyhidden">favorites</span>
+    </button>
+-->
+
+    <!-- Tags (bookmark) -->
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/iOS/">iOS</a>
+    </ul>
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+    
+    <!-- Leancloud Views -->
+    <a class="post_share-link" href="#">
+        <li class="mdl-menu__item">
+            <span id="/2016/07/20/core-plot/" class="leancloud-views_num" data-flag-title="iOS 开源图形库 Core Plot 使用教程">
+     &nbsp;浏览量
+</span>
+        </li>
+    </a>
+    
+    
+    
+    
+    <!-- Share Twitter -->
+    <a class="post_share-link" href="https://twitter.com/intent/tweet?text=iOS 开源图形库 Core Plot 使用教程&url=http://llp0574.github.io//2016/07/20/core-plot/index.html&via=llp" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Twitter
+        </li>
+    </a>
+    
+    <!-- Share Google+ -->
+    <a class="post_share-link" href="https://plus.google.com/share?url=http://llp0574.github.io//2016/07/20/core-plot/index.html" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Google+
+        </li>
+    </a>
+    
+    <!-- Share Weibo -->
+    <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=iOS 开源图形库 Core Plot 使用教程&url=http://llp0574.github.io//2016/07/20/core-plot/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <li class="mdl-menu__item">
+            分享到微博
+        </li>
+    </a>
+</ul>
+</div>
+				
+
+                <!-- Post Content -->
+                <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+	
+		<blockquote>
+<p>原文链接 : <a href="https://www.raywenderlich.com/131985/core-plot-tutorial-getting-started" target="_blank" rel="external">Core Plot Tutorial: Getting Started</a><br>原文作者 : <a href="https://www.raywenderlich.com/u/cynicalme" target="_blank" rel="external">Attila Hegedüs</a><br>译文出自 : <a href="https://github.com/xitu/gold-miner" target="_blank" rel="external">掘金翻译计划</a><br>译者 : <a href="https://github.com/llp0574" target="_blank" rel="external">llp</a>（web前端领域）<br>校对者: <a href="https://github.com/yifili09" target="_blank" rel="external">yifili09</a>,<a href="https://github.com/cdpath" target="_blank" rel="external">cdpath</a><br>译者注：转载请保留此头部。</p>
+</blockquote>
+<p><img src="http://ac-Myg6wSTV.clouddn.com/868c57b7dfa6957573cd.png" alt="使用Core Plot绘制饼图，柱状图，散点图及更多！"></p>
+<p><em>注意</em> ：本篇教程已被 Attila Hegedüs 更新，可适用于 iOS 9 和 Swift 2.2。原始教程出自教程组成员 Steve Baranski。</p>
+<p>如果你曾经想在自己的 app 中引入图表或图形，那么你应该已经考虑过下面两种选项：</p>
+<ol>
+<li><em>自己写。</em> 通过使用 Core Graphics 或者 Quartz 这样的框架编写全部的绘制代码。然而，这显然要花费大量的功夫。</li>
+<li><em>买一个！</em> 购买一个像 <a href="http://www.shinobicontrols.com" target="_blank" rel="external">ShinobiControls</a> 这样的商业型框架。这或许可以节省你的时间，但就要花钱啦。</li>
+</ol>
+<p>但是如果你不想花费时间和精力从零开始写(代码)，也不想花那么多钱，该怎么办呢？这时候第三个选项就派上用场了：使用开源库 <a href="https://github.com/core-plot/core-plot" target="_blank" rel="external">Core Plot</a>！</p>
+<p>Core Plot 是一个2D绘制库，适用于 iOS，Mac OS X 和 tvOS。它使用了像 Quartz 和 Core Animation 这样的苹果应用框架，同时有着全面的测试覆盖，而且是遵照BSD这个比较宽松的许可证进行发布的。</p>
+<p>在这个教程中，你将学习到如何使用 Core Plot 来创建饼图和柱状图，同时还会实现一些很酷的图表交互！</p>
+<p>开始之前，你需要安装好 <em>Xcode 7.3</em> ，同时对 <em>Swift</em> ， <em>Interface Builder</em> 和 <em>storyboards</em> 有所了解。如果你对这些主题知之甚少，那么你应该在继续阅读本教程之前先学习一下我们其他的一些<a href="https://www.raywenderlich.com/?page_id=2519" target="_blank" rel="external">教程</a>。</p>
+<p>本教程同时还使用了 CocoaPods 去安装一些第三方的依赖库。如果你从来没使用过 CocoaPods 的话，那你还应该阅读一下我们关于它的<a href="https://www.raywenderlich.com/97014/use-cocoapods-with-swift" target="_blank" rel="external">教程</a>。</p>
+<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><p>在本教程中，你将创建一个在一定时间间隔内显示货币汇率(情况)的 App。从<a href="https://cdn2.raywenderlich.com/wp-content/uploads/2016/05/SwiftRates_Starter-2.zip" target="_blank" rel="external">这里</a>下载本教程的入门项目，把它解压缩后打开 <em>SwiftRates.xcworkspace</em> 。</p>
+<p>项目的关键类在 <em>App</em> 这个文件夹和它的子文件夹下，它们包括了：</p>
+<ul>
+<li><em>DataStore.swift</em><br>这是一个从 <a href="http://fixer.io/" target="_blank" rel="external">Fixer.io</a> 请求货币汇率数据的帮助类。</li>
+<li><em>Rate.swift</em><br>这是一个模型，表示给定日期里的货币汇率。</li>
+<li><em>Currency.swift</em><br>这是一个表示货币类型的模型。支持的货币类型定义在 <em>Resources/Currencies.plist</em> 里。</li>
+<li><em>MenuViewController.swift</em><br>这是一个app启动后展示的第一个视图控制器。它让用户选择一个货币作为基准然后再选两个对照。</li>
+<li><em>HostViewController.swift</em><br>这是一个容器视图控制器，基于它的分段选项选中状态去控制展示 <code>PieChartViewController</code> 或者 <code>BarGraphViewController</code> 的内容。它还会去检查从 <code>DataStore</code> 请求来的汇率数据，因为它们也将在这个视图控制器里展现。</li>
+<li><em>PieChartViewController.swift</em><br>这个控制器将用饼图的形式展示一个给定日期里的汇率。当然你首先要实现它！</li>
+<li><em>BarGraphViewController.swift</em><br>这个控制器将以柱状图的形式展示几天的汇率。当你掌握绘制饼图的方法后，这个图简直小菜一碟！（看到我做的事情了吗？拜托，这真的有点意思！）;]</li>
+</ul>
+<p>构建并运行看看这个教程入门项目实际展示。</p>
+<p><img src="http://ac-Myg6wSTV.clouddn.com/f9346c33b479bfc2a302.png" alt=""></p>
+<p>点选 <em>Get Rates</em> 导航去到 <code>HostViewController</code> 控制的视图然后可以切换分段选项。这个 app 确实还没有实现太多功能…;]</p>
+<p>是时候用 Core Plot 开始真正的绘制了！</p>
+<h3 id="安装-Core-Plot"><a href="#安装-Core-Plot" class="headerlink" title="安装 Core Plot"></a>安装 Core Plot</h3><p>首先你需要安装 Core Plot，最简单的方式是通过 <a href="https://cocoapods.org/" target="_blank" rel="external">CocoaPods</a> 安装。</p>
+<p>把下面这行代码添加进你的 <em>Podfile</em> 文件， <code>pod &#39;SwiftDate&#39;</code> 这行的后面：</p>
+<pre><code>pod &apos;CorePlot&apos;, &apos;~&gt; 2.1&apos;
+</code></pre><p>打开 <em>Terminal</em> （终端），<code>cd</code> 进入你的项目根目录，然后运行 <code>pod install</code>。</p>
+<p>安装完成后，构建项目。</p>
+<p>没报错吧？很好，现在你可以随便使用 Core Plot 啦，感谢 CocoaPods。:]</p>
+<p>如果你遇到了任何报错，可以尝试通过 <code>sudo gem install cocoapods</code> 更新一下 CocoaPods 然后再次运行 <code>pod install</code>。</p>
+<h2 id="创建饼图"><a href="#创建饼图" class="headerlink" title="创建饼图"></a>创建饼图</h2><p>打开 <em>PieChartViewController.swift</em> 并添加下面这行引入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import CorePlot</div></pre></td></tr></table></figure></p>
+<p>接着，添加下面这个属性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@IBOutlet weak var hostView: CPTGraphHostingView!</div></pre></td></tr></table></figure>
+<p><code>CPTGraphHostingView</code> 负责“托管”一个图表或图形。你可以把它想象成一个“图形容器”。</p>
+<p>然后，把下面这个类扩展添加到文件结尾的花括号之后：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">extension PieChartViewController: CPTPieChartDataSource, CPTPieChartDelegate &#123;</div><div class="line"></div><div class="line">  func numberOfRecordsForPlot(plot: CPTPlot) -&gt; UInt &#123;</div><div class="line">    return 0</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  func numberForPlot(plot: CPTPlot, field fieldEnum: UInt, recordIndex idx: UInt) -&gt; AnyObject? &#123;</div><div class="line">    return 0</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  func dataLabelForPlot(plot: CPTPlot, recordIndex idx: UInt) -&gt; CPTLayer? &#123;</div><div class="line">    return nil</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  func sliceFillForPieChart(pieChart: CPTPieChart, recordIndex idx: UInt) -&gt; CPTFill? &#123;</div><div class="line">    return nil</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  func legendTitleForPieChart(pieChart: CPTPieChart, recordIndex idx: UInt) -&gt; String? &#123;</div><div class="line">    return nil</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>你将通过 <code>CPTPieChartDataSource</code> 为一个 Core Plot 图表提供数据，同时你会通过 <code>CPTPieChartDelegate</code> 得到用户交互的所有事件。随着教程递进，你将填满这些方法。</p>
+<h3 id="建立图表托管视图"><a href="#建立图表托管视图" class="headerlink" title="建立图表托管视图"></a>建立图表托管视图</h3><p>继续往下，打开 <em>Main.storyboard</em> 然后选择 <code>PieChartViewController</code> 窗口。</p>
+<p>在这个视图上拖出一个新的 <code>UIView</code>，然后把它的类更改成 <code>CPTGraphHostingView</code>，并将它连接到 <code>hostView</code>。</p>
+<p>对这个视图的每个方向添加约束让撑满父视图，并确认没有设置外边距的约束：</p>
+<p><img src="https://cdn2.raywenderlich.com/wp-content/uploads/2016/04/swiftrates-05.png" alt=""></p>
+<p>设置一个你喜欢的背景色。我使用了透明度为92%的灰度颜色。</p>
+<p>现在回到 <em>PieChartViewController.swift</em> ，在 <code>viewDidLoad()</code> 后面添加下面的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">override func viewDidLayoutSubviews() &#123;</div><div class="line">  super.viewDidLayoutSubviews()</div><div class="line">  initPlot()</div><div class="line">&#125;</div><div class="line"></div><div class="line">func initPlot() &#123;</div><div class="line">  configureHostView()</div><div class="line">  configureGraph()</div><div class="line">  configureChart()</div><div class="line">  configureLegend()</div><div class="line">&#125;</div><div class="line"></div><div class="line">func configureHostView() &#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">func configureGraph() &#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">func configureChart() &#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">func configureLegend() &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样子就正好在子视图渲染好后设置了绘制策略。这里是你最早为视图设置框架大小的地方，接下来你将需要配置绘制策略。</p>
+<p><code>initPlot()</code> 里的每个方法都代表了一个设置绘制策略的阶段。这样子可以让代码保持其可维护性。</p>
+<p>把下面这行添加进 <code>configureHostView()</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hostView.allowPinchScaling = false</div></pre></td></tr></table></figure>
+<p>这行代码将对饼图禁用手势捏合缩放，它决定了托管视图对捏合手势是否会有反应。</p>
+<p>接下来你需要添加一个图表到<code>hostView</code>。添加下面的代码到 <code>configureGraph()</code> 里吧：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">// 1 - Create and configure the graph</div><div class="line">let graph = CPTXYGraph(frame: hostView.bounds)</div><div class="line">hostView.hostedGraph = graph</div><div class="line">graph.paddingLeft = 0.0</div><div class="line">graph.paddingTop = 0.0</div><div class="line">graph.paddingRight = 0.0</div><div class="line">graph.paddingBottom = 0.0</div><div class="line">graph.axisSet = nil</div><div class="line"></div><div class="line">// 2 - Create text style</div><div class="line">let textStyle: CPTMutableTextStyle = CPTMutableTextStyle()</div><div class="line">textStyle.color = CPTColor.blackColor()</div><div class="line">textStyle.fontName = &quot;HelveticaNeue-Bold&quot;</div><div class="line">textStyle.fontSize = 16.0</div><div class="line">textStyle.textAlignment = .Center</div><div class="line"></div><div class="line">// 3 - Set graph title and text style</div><div class="line">graph.title = &quot;\(base.name) exchange rates\n\(rate.date)&quot;</div><div class="line">graph.titleTextStyle = textStyle</div><div class="line">graph.titlePlotAreaFrameAnchor = CPTRectAnchor.Top</div></pre></td></tr></table></figure>
+<p>下面对每个部分的代码进行分解：</p>
+<ol>
+<li><p>首先你创建了一个 <code>CPTXYGraph</code> 的实例并指定它作为 <code>hostView</code> 的 <code>hostedGraph</code>。这就将图表和托管视图联系起来了。</p>
+<p>这个 <code>CPTGraph</code> 包括了你所看到的标准图表或图形的全部东西：边，标题，绘制相关数据，轴和图例。</p>
+<p>默认情况下，<code>CPTXYGraph</code> 每个方向都有一个<code>20</code>的内边距。从我们这个项目来看这样并不好，所以你可以显式地将每个方向的内边距设置为<code>0</code>。</p>
+</li>
+<li><p>接下来就是通过创建和配置一个 <code>CPTMutableTextStyle</code> 实例来设置该图标标题的文本样式。</p>
+</li>
+<li>最后，就是给你刚刚创建的图表实例设置标题和其样式。同样你还需要指定标题锚点为该视图的上边界。</li>
+</ol>
+<p>构建并运行app，你应该就可以看到这个图表的标题展示在屏幕上了：</p>
+<p><img src="http://ac-Myg6wSTV.clouddn.com/fd0411a63ef0affb512a.png" alt="Core Plot Tutorial"></p>
+<h3 id="绘制饼图"><a href="#绘制饼图" class="headerlink" title="绘制饼图"></a>绘制饼图</h3><p>标题看起来不错，但你知道接下来什么会更棒吗？确确实实地看到饼图！</p>
+<p>将下面的代码添加进 <code>configureChart()</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">    // 1 - Get a reference to the graph</div><div class="line">    let graph = hostView.hostedGraph!</div><div class="line"></div><div class="line">    // 2 - Create the chart</div><div class="line">    let pieChart = CPTPieChart()</div><div class="line">    pieChart.delegate = self</div><div class="line">    pieChart.dataSource = self</div><div class="line">    pieChart.pieRadius = (min(hostView.bounds.size.width, hostView.bounds.size.height) * 0.7) / 2</div><div class="line">    pieChart.identifier = graph.title</div><div class="line">    pieChart.startAngle = CGFloat(M_PI_4)</div><div class="line">    pieChart.sliceDirection = .Clockwise</div><div class="line">    pieChart.labelOffset = -0.6 * pieChart.pieRadius</div><div class="line"></div><div class="line">    // 3 - Configure border style</div><div class="line">    let borderStyle = CPTMutableLineStyle()</div><div class="line">    borderStyle.lineColor = CPTColor.whiteColor()</div><div class="line">    borderStyle.lineWidth = 2.0</div><div class="line">    pieChart.borderLineStyle = borderStyle</div><div class="line"></div><div class="line">    // 4 - Configure text style</div><div class="line">    let textStyle = CPTMutableTextStyle()</div><div class="line">    textStyle.color = CPTColor.whiteColor()</div><div class="line">    textStyle.textAlignment = .Center</div><div class="line">    pieChart.labelTextStyle = textStyle</div><div class="line"></div><div class="line">    // 3 - Add chart to graph</div><div class="line">    graph.addPlot(pieChart)</div><div class="line">```</div></pre></td></tr></table></figure>
+<p>下面看看这段代码做了什么：</p>
+<ol>
+<li>首先获取了刚刚创建的图表的引用。</li>
+<li>然后实例化一个 <code>CPTPieChart</code>，将它的代理和数据源设置成这个视图控制器本身，并配置它的一些外观属性。</li>
+<li>接着配置这个图表的边框样式。</li>
+<li>配置它的文本样式。</li>
+<li>最后，将这个饼图添加进刚刚引用的图表里。</li>
+</ol>
+<p>如果现在重新构建并运行 app，你将看不到任何变化…因为你还需要实现这个饼图的代理和数据源。</p>
+<p>首先，用下面这段替代了现在的 <code>numberOfRecordsForPlot(_:)</code> 方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">func numberOfRecordsForPlot(plot: CPTPlot) -&gt; UInt &#123;</div><div class="line">  return UInt(symbols.count) ?? 0</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个方法决定了有多少块(部分)显示在饼状图上，它将为每一个标记显示一块(部分)。</p>
+<p>接下来，用下面这段替换掉 <code>numberForPlot(_:field:recordIndex:)</code> ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">func numberForPlot(plot: CPTPlot, field fieldEnum: UInt, recordIndex idx: UInt) -&gt; AnyObject? &#123;</div><div class="line">  let symbol = symbols[Int(idx)]</div><div class="line">  let currencyRate = rate.rates[symbol.name]!.floatValue</div><div class="line">  return 1.0 / currencyRate</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>饼图会使用这个方法得到索引为 <code>recordIndex</code> 的货币符号的“总”值。</p>
+<p>你应该注意到这个值并 <em>不是</em> 一个百分比值。取而代之的是，这个方法计算出了相对基准货币的货币汇率：返回的这个 <code>1.0 / currencyRate</code> 的值是”一个单位的基准货币是多少价值的另外的对照货币”的汇率。</p>
+<p><code>CPTPieChart</code> 将查看计算每个分块的百分比值，这个值最终决定了这个分块占多大。</p>
+<p>下面，用下面这行替代掉 <code>dataLabelForPlot(_:recordIndex:)</code> ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">func dataLabelForPlot(plot: CPTPlot, recordIndex idx: UInt) -&gt; CPTLayer? &#123;</div><div class="line">  let value = rate.rates[symbols[Int(idx)].name]!.floatValue</div><div class="line">  let layer = CPTTextLayer(text: String(format: &quot;\(symbols[Int(idx)].name)\n%.2f&quot;, value))</div><div class="line">  layer.textStyle = plot.labelTextStyle</div><div class="line">  return layer</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个方法返回了饼图分片的标签。期望的返回类型 <code>CPTLayer</code> 和 <code>CALayer</code> 有点相似，但是 CPTLayer 更加抽象，在 Mac OS X 和 iOS 上都能用，还提供了额外的绘图细节供 Core Plot 使用。</p>
+<p>这里，创建并返回一个 <code>CPTLayer</code> 的子类 <code>CPTTextLayer</code> 去展示文本。</p>
+<p>最后，将下面这段代码替换掉 <code>sliceFillForPieChart(_:, recordIndex:)</code> 去添加分片的颜色：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">func sliceFillForPieChart(pieChart: CPTPieChart, recordIndex idx: UInt) -&gt; CPTFill? &#123;</div><div class="line">  switch idx &#123;</div><div class="line">  case 0:   return CPTFill(color: CPTColor(componentRed:0.92, green:0.28, blue:0.25, alpha:1.00))</div><div class="line">  case 1:   return CPTFill(color: CPTColor(componentRed:0.06, green:0.80, blue:0.48, alpha:1.00))</div><div class="line">  case 2:   return CPTFill(color: CPTColor(componentRed:0.22, green:0.33, blue:0.49, alpha:1.00))</div><div class="line">  default:  return nil</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>构建并运行，你就将看到一个漂亮的饼图了：</p>
+<p><img src="http://ac-Myg6wSTV.clouddn.com/17097b407bd6dbdcc299.png" alt="Core Plot Tutorial"></p>
+<h3 id="等一下…图例呢！"><a href="#等一下…图例呢！" class="headerlink" title="等一下…图例呢！"></a>等一下…图例呢！</h3><p>这个图表看上去相当不错，但是添加一个图例应该会让它更棒。接下来你将学习怎么添加一个图例到这个图表里。</p>
+<p>首先，用下面这段替换掉 <code>configureLegend()</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">func configureLegend() &#123;</div><div class="line">  // 1 - Get graph instance</div><div class="line">  guard let graph = hostView.hostedGraph else &#123; return &#125;</div><div class="line"></div><div class="line">  // 2 - Create legend</div><div class="line">  let theLegend = CPTLegend(graph: graph)</div><div class="line"></div><div class="line">  // 3 - Configure legend</div><div class="line">  theLegend.numberOfColumns = 1</div><div class="line">  theLegend.fill = CPTFill(color: CPTColor.whiteColor())</div><div class="line">  let textStyle = CPTMutableTextStyle()</div><div class="line">  textStyle.fontSize = 18</div><div class="line">  theLegend.textStyle = textStyle</div><div class="line"></div><div class="line">  // 4 - Add legend to graph</div><div class="line">  graph.legend = theLegend</div><div class="line">  if view.bounds.width &gt; view.bounds.height &#123;</div><div class="line">    graph.legendAnchor = .Right</div><div class="line">    graph.legendDisplacement = CGPoint(x: -20, y: 0.0)</div><div class="line"></div><div class="line">  &#125; else &#123;</div><div class="line">    graph.legendAnchor = .BottomRight</div><div class="line">    graph.legendDisplacement = CGPoint(x: -8.0, y: 8.0)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>同样你也需要为每个分片提供图例的数据。</p>
+<p>要提供数据，就用下面这段替换掉 <code>legendTitleForPieChart(_:recordIndex:)</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">func legendTitleForPieChart(pieChart: CPTPieChart, recordIndex idx: UInt) -&gt; String? &#123;</div><div class="line">  return symbols[Int(idx)].name</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>构建并运行，你就会得到一个“带图例的”图表啦。</p>
+<p><img src="http://ac-Myg6wSTV.clouddn.com/98244c1f592db447f90a.png" alt="Core Plot Tutorial"></p>
+<h2 id="创建柱状图"><a href="#创建柱状图" class="headerlink" title="创建柱状图"></a>创建柱状图</h2><p>看样子你已经是绘制饼图的专家啦，但是时候去搞一个柱状图了！</p>
+<p>打开 <code>BarGraphViewController</code> 并添加下面这行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import CorePlot</div></pre></td></tr></table></figure></p>
+<p>接着，再添加下面这行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@IBOutlet var hostView: CPTGraphHostingView!</div></pre></td></tr></table></figure>
+<p>其实就和饼图一样，托管视图将承载这个柱状图的展示。</p>
+<p>下一步，添加下面这些属性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var plot1: CPTBarPlot!</div><div class="line">var plot2: CPTBarPlot!</div><div class="line">var plot3: CPTBarPlot!</div></pre></td></tr></table></figure>
+<p>这里声明了三个 <code>CPTBarPlot</code> 类型的属性，它们就相当于展示在图表中的每种货币。</p>
+<p>注意到同样也有三个 <code>IBOutlet</code> 标签和三个 <code>IBAction</code> 方法已经被定义了，你都可以在 storyboard 上看到它们。</p>
+<p>最后，把下面这个类扩展添加到文件末尾：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">extension BarGraphViewController: CPTBarPlotDataSource, CPTBarPlotDelegate &#123;</div><div class="line"></div><div class="line">  func numberOfRecordsForPlot(plot: CPTPlot) -&gt; UInt &#123;</div><div class="line">    return 0</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  func numberForPlot(plot: CPTPlot, field fieldEnum: UInt, recordIndex idx: UInt) -&gt; AnyObject? &#123;</div><div class="line">    return 0</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  func barPlot(plot: CPTBarPlot, barWasSelectedAtRecordIndex idx: UInt, withEvent event: UIEvent) &#123;</div><div class="line"></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这和创建饼图的过程太像了：通过 <code>CPTBarPlotDataSource</code> 为柱状图提供数据，通过 <code>CPTBarPlotDelegate</code> 捕捉用户交互事件。你只需要复制粘贴就好了。</p>
+<h3 id="再次配置图表托管视图"><a href="#再次配置图表托管视图" class="headerlink" title="再次配置图表托管视图"></a>再次配置图表托管视图</h3><p>就像刚刚创建饼图时候一样，再次需要通过界面生成器把托管视图添加进去。</p>
+<p>回到 <em>Main.storyboard</em> 并选择 <code>BarGraphViewController</code> 窗口。</p>
+<p>在视图上拖拽出一个新的 <code>UIView</code>，将它的类更改为 <code>CPTGraphHostingView</code> 并将其输出连接到控制器里的 <code>hostView</code>。</p>
+<p>通过 <em>Utilities\Size Inspector</em> （那个 <em>刻度尺</em> 选项卡）将它的框架更新到下面那样：</p>
+<p><em>X = 0, Y = 53, Width = 600, Height = 547</em></p>
+<p><img src="http://ww1.sinaimg.cn/large/a490147fjw1f5tbltfjfpj20dc07oaam.jpg" alt=""></p>
+<p>添加它和所有相邻元素的约束，确认没有设置 <em>外边距约束</em> 。</p>
+<p><img src="https://cdn5.raywenderlich.com/wp-content/uploads/2016/05/BarGraph_HostView_Constraints.png" alt=""></p>
+<p>最后，设置一个你喜欢的背景颜色。我再次用了92%透明度的灰度颜色。</p>
+<h3 id="绘制柱状图"><a href="#绘制柱状图" class="headerlink" title="绘制柱状图"></a>绘制柱状图</h3><p>既然 UI 已经通过上面的学习全部弄好了，是时候去绘制一个柱状图了。</p>
+<p>首先，回到 <code>BarGraphViewController</code>，你需要一对常量属性。把下面这段添加到其他属性之前：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let BarWidth = 0.25</div><div class="line">let BarInitialX = 0.25</div></pre></td></tr></table></figure>
+<p>你还需要一个帮助函数去计算最高的率值。把下面这段添加到 <code>updateLabels()</code>之后：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">func highestRateValue() -&gt; Double &#123;</div><div class="line">  var maxRate = DBL_MIN</div><div class="line">  for rate in rates &#123;</div><div class="line">    maxRate = max(maxRate, rate.maxRate().doubleValue)</div><div class="line">  &#125;</div><div class="line">  return maxRate</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>接着，把下面的方法添加到 <code>highestRateValue()</code> 之后：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">override func viewDidLayoutSubviews() &#123;</div><div class="line">  super.viewDidLayoutSubviews()</div><div class="line">  initPlot()</div><div class="line">&#125;</div><div class="line"></div><div class="line">func initPlot() &#123;</div><div class="line">  configureHostView()</div><div class="line">  configureGraph()</div><div class="line">  configureChart()</div><div class="line">  configureAxes()</div><div class="line">&#125;</div><div class="line"></div><div class="line">func configureHostView() &#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">func configureGraph() &#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">func configureChart() &#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">func configureAxes() &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>是不是看上去很眼熟？是的，这些和之前的结构完全一样。</p>
+<p>下面这行添加到 <code>configureHostView()</code> 里：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hostView.allowPinchScaling = false</div></pre></td></tr></table></figure>
+<p>因为你不需要捏合缩放，所以你应该再次把它禁用。</p>
+<p>接着，把下面那么多行代码添加到 <code>configureGraph()</code> 里：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">// 1 - Create the graph</div><div class="line">let graph = CPTXYGraph(frame: hostView.bounds)</div><div class="line">graph.plotAreaFrame?.masksToBorder = false</div><div class="line">hostView.hostedGraph = graph</div><div class="line"></div><div class="line">// 2 - Configure the graph</div><div class="line">graph.applyTheme(CPTTheme(named: kCPTPlainWhiteTheme))</div><div class="line">graph.fill = CPTFill(color: CPTColor.clearColor())</div><div class="line">graph.paddingBottom = 30.0</div><div class="line">graph.paddingLeft = 30.0</div><div class="line">graph.paddingTop = 0.0</div><div class="line">graph.paddingRight = 0.0</div><div class="line"></div><div class="line">// 3 - Set up styles</div><div class="line">let titleStyle = CPTMutableTextStyle()</div><div class="line">titleStyle.color = CPTColor.blackColor()</div><div class="line">titleStyle.fontName = &quot;HelveticaNeue-Bold&quot;</div><div class="line">titleStyle.fontSize = 16.0</div><div class="line">titleStyle.textAlignment = .Center</div><div class="line">graph.titleTextStyle = titleStyle</div><div class="line"></div><div class="line">let title = &quot;\(base.name) exchange rates\n\(rates.first!.date) - \(rates.last!.date)&quot;</div><div class="line">graph.title = title</div><div class="line">graph.titlePlotAreaFrameAnchor = .Top</div><div class="line">graph.titleDisplacement = CGPointMake(0.0, -16.0)</div><div class="line"></div><div class="line">// 4 - Set up plot space</div><div class="line">let xMin = 0.0</div><div class="line">let xMax = Double(rates.count)</div><div class="line">let yMin = 0.0</div><div class="line">let yMax = 1.4 * highestRateValue()</div><div class="line">guard let plotSpace = graph.defaultPlotSpace as? CPTXYPlotSpace else &#123; return &#125;</div><div class="line">plotSpace.xRange = CPTPlotRange(locationDecimal: CPTDecimalFromDouble(xMin), lengthDecimal: CPTDecimalFromDouble(xMax - xMin))</div><div class="line">plotSpace.yRange = CPTPlotRange(locationDecimal: CPTDecimalFromDouble(yMin), lengthDecimal: CPTDecimalFromDouble(yMax - yMin))</div></pre></td></tr></table></figure>
+<p>下面是这段代码逻辑的拆解：</p>
+<ol>
+<li>首先，实例化一个 <code>CPTXYGraph</code>，实际上就是一个柱状图，并将它关联到 <code>hostView</code>。</li>
+<li>然后声明一个 <em>简约的白色</em> 默认主题并为了展示 XY 轴去设置左侧和下方的内边距。</li>
+<li>接着设置文本样式，图表标题以及标题位置。</li>
+<li>最后，配置 <code>CPTXYPlotSpace</code>，它负责将设备的坐标系映射到图表的坐标系。针对这个图表，你正在绘制三个使用了相同坐标系的汇率。然而，也有可能每个条形图的坐标系都是 <em>分离</em> 的。你还要在坐标系中假定一个最大最小值汇率范围。在后面的教程中，你将学习到怎么样在不提前设定范围的情况下自动调节空间大小。</li>
+</ol>
+<p>既然已经创建好图表了，那是时候增加一些绘制方法进去了！把下面的代码添加到 <code>configureChart()</code>里：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">// 1 - Set up the three plots</div><div class="line">plot1 = CPTBarPlot()</div><div class="line">plot1.fill = CPTFill(color: CPTColor(componentRed:0.92, green:0.28, blue:0.25, alpha:1.00))</div><div class="line">plot2 = CPTBarPlot()</div><div class="line">plot2.fill = CPTFill(color: CPTColor(componentRed:0.06, green:0.80, blue:0.48, alpha:1.00))</div><div class="line">plot3 = CPTBarPlot()</div><div class="line">plot3.fill = CPTFill(color: CPTColor(componentRed:0.22, green:0.33, blue:0.49, alpha:1.00))</div><div class="line"></div><div class="line">// 2 - Set up line style</div><div class="line">let barLineStyle = CPTMutableLineStyle()</div><div class="line">barLineStyle.lineColor = CPTColor.lightGrayColor()</div><div class="line">barLineStyle.lineWidth = 0.5</div><div class="line"></div><div class="line">// 3 - Add plots to graph</div><div class="line">guard let graph = hostView.hostedGraph else &#123; return &#125;</div><div class="line">var barX = BarInitialX</div><div class="line">let plots = [plot1, plot2, plot3]</div><div class="line">for plot: CPTBarPlot in plots &#123;</div><div class="line">  plot.dataSource = self</div><div class="line">  plot.delegate = self</div><div class="line">  plot.barWidth = BarWidth</div><div class="line">  plot.barOffset = barX</div><div class="line">  plot.lineStyle = barLineStyle</div><div class="line">  graph.addPlot(plot, toPlotSpace: graph.defaultPlotSpace)</div><div class="line">  barX += BarWidth</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>接着来看看上面的代码干了什么：</p>
+<ol>
+<li>实例化每个条形图并设置它们的填充色。</li>
+<li>实例化一个代表每个条形图的外部边框的 <code>CPTMutableLineStyle</code> 实例。</li>
+<li>给每个条形图提供“共同配置”。该配置包括设置数据源和代理，宽度和每个条形图在坐标系中的相对位置（左右）以及线条样式，最后，添加这个坐标系到图表当中。</li>
+</ol>
+<p>虽然还不可以看到柱状图展示出来，但通过构建 app 可以去验证目前为止是否所有代码都可以正确编译通过。</p>
+<p>为了确切看到柱状图展示数据出来，需要去实现提供图表所需数据的代理方法。</p>
+<p>用下面这行替换掉 <code>numberOfRecordsForPlot(:_)</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">return UInt(rates.count ?? 0)</div></pre></td></tr></table></figure>
+<p>该方法返回了应该展示的记录的总数。</p>
+<p>下面这段替换掉 <code>numberForPlot(_:field:recordIndex:)</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">if fieldEnum == UInt(CPTBarPlotField.BarTip.rawValue) &#123;</div><div class="line">  if plot == plot1 &#123;</div><div class="line">    return 1.0</div><div class="line">  &#125;</div><div class="line">  if plot == plot2 &#123;</div><div class="line">    return rates[Int(idx)].rates[symbols[0].name]!.floatValue</div><div class="line">  &#125;</div><div class="line">  if plot == plot3 &#123;</div><div class="line">    return rates[Int(idx)].rates[symbols[1].name]!.floatValue</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">return idx</div></pre></td></tr></table></figure>
+<p><code>CPTBarPlotField.BarTip</code> 的值表明了柱状图的相对大小。在你需要取回数据的时候可以使用保留属性计算出汇率，<code>recordIndex</code> 对应了利息率的位置。</p>
+<p>构建并运行，你应该可以看到和下面这张图一样的情况：</p>
+<p><img src="http://ac-Myg6wSTV.clouddn.com/4b5878afc9ec6c9b4427.png" alt="Core Plot Tutorial"></p>
+<p>已经快完成了！但请注意还没有任何东西指明每个坐标轴是代表什么意思。</p>
+<p>要解决这个问题，把下面这段添加进 <code>configureAxes()</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">// 1 - Configure styles</div><div class="line">let axisLineStyle = CPTMutableLineStyle()</div><div class="line">axisLineStyle.lineWidth = 2.0</div><div class="line">axisLineStyle.lineColor = CPTColor.blackColor()</div><div class="line"></div><div class="line">// 2 - Get the graph&apos;s axis set</div><div class="line">guard let axisSet = hostView.hostedGraph?.axisSet as? CPTXYAxisSet else &#123; return &#125;</div><div class="line"></div><div class="line">// 3 - Configure the x-axis</div><div class="line">if let xAxis = axisSet.xAxis &#123;</div><div class="line">  xAxis.labelingPolicy = .None</div><div class="line">  xAxis.majorIntervalLength = 1</div><div class="line">  xAxis.axisLineStyle = axisLineStyle</div><div class="line">  var majorTickLocations = Set&lt;nsnumber&gt;()</div><div class="line">  var axisLabels = Set&lt;cptaxislabel&gt;()</div><div class="line">  for (idx, rate) in rates.enumerate() &#123;</div><div class="line">    majorTickLocations.insert(idx)</div><div class="line">    let label = CPTAxisLabel(text: &quot;\(rate.date)&quot;, textStyle: CPTTextStyle())</div><div class="line">    label.tickLocation = idx</div><div class="line">    label.offset = 5.0</div><div class="line">    label.alignment = .Left</div><div class="line">    axisLabels.insert(label)</div><div class="line">  &#125;</div><div class="line">  xAxis.majorTickLocations = majorTickLocations</div><div class="line">  xAxis.axisLabels = axisLabels</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 4 - Configure the y-axis</div><div class="line">if let yAxis = axisSet.yAxis &#123;</div><div class="line">  yAxis.labelingPolicy = .FixedInterval</div><div class="line">  yAxis.labelOffset = -10.0</div><div class="line">  yAxis.minorTicksPerInterval = 3</div><div class="line">  yAxis.majorTickLength = 30</div><div class="line">  let majorTickLineStyle = CPTMutableLineStyle()</div><div class="line">  majorTickLineStyle.lineColor = CPTColor.blackColor().colorWithAlphaComponent(0.1)</div><div class="line">  yAxis.majorTickLineStyle = majorTickLineStyle</div><div class="line">  yAxis.minorTickLength = 20</div><div class="line">  let minorTickLineStyle = CPTMutableLineStyle()</div><div class="line">  minorTickLineStyle.lineColor = CPTColor.blackColor().colorWithAlphaComponent(0.05)</div><div class="line">  yAxis.minorTickLineStyle = minorTickLineStyle</div><div class="line">  yAxis.axisLineStyle = axisLineStyle</div><div class="line">&#125;&lt;/cptaxislabel&gt;&lt;/nsnumber&gt;</div></pre></td></tr></table></figure>
+<p>简单地说，上面的代码首先为轴线和标题定义了样式，然后，为图表添加坐标轴的设置并配置好 x 轴和 y 轴的一些属性。</p>
+<p>构建并运行就可以看到这些改动的结果了。</p>
+<p><img src="https://cdn2.raywenderlich.com/wp-content/uploads/2016/04/swiftrates-09.png" alt="Core Plot Tutorial"></p>
+<h3 id="功能化坐标轴"><a href="#功能化坐标轴" class="headerlink" title="功能化坐标轴"></a>功能化坐标轴</h3><p>更棒了对吧？唯一的缺陷在于这个坐标轴太简单了，没办法从这儿得到一个准确的汇率展示。</p>
+<p>你可以修复这个问题以便当用户点按在一个单独的柱状图时，这个 app 可以展示这个图表示的汇率。为了实现它，需要增加一个新的属性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var priceAnnotation: CPTPlotSpaceAnnotation?</div></pre></td></tr></table></figure>
+<p>然后把下面的代码添加到 <code>barPlot(_:barWasSelectedAtRecordIndex:)</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">// 1 - Is the plot hidden?</div><div class="line">if plot.hidden == true &#123;</div><div class="line">  return</div><div class="line">&#125;</div><div class="line">// 2 - Create style, if necessary</div><div class="line">let style = CPTMutableTextStyle()</div><div class="line">style.fontSize = 12.0</div><div class="line">style.fontName = &quot;HelveticaNeue-Bold&quot;</div><div class="line"></div><div class="line">// 3 - Create annotation</div><div class="line">guard let price = numberForPlot(plot,</div><div class="line">                                field: UInt(CPTBarPlotField.BarTip.rawValue),</div><div class="line">                                recordIndex: idx) as? CGFloat else &#123; return &#125;</div><div class="line"></div><div class="line">priceAnnotation?.annotationHostLayer?.removeAnnotation(priceAnnotation)</div><div class="line">priceAnnotation = CPTPlotSpaceAnnotation(plotSpace: plot.plotSpace!, anchorPlotPoint: [0,0])</div><div class="line"></div><div class="line">// 4 - Create number formatter</div><div class="line">let formatter = NSNumberFormatter()</div><div class="line">formatter.maximumFractionDigits = 2</div><div class="line">// 5 - Create text layer for annotation</div><div class="line">let priceValue = formatter.stringFromNumber(price)!</div><div class="line">let textLayer = CPTTextLayer(text: priceValue, style: style)</div><div class="line"></div><div class="line">priceAnnotation!.contentLayer = textLayer</div><div class="line">// 6 - Get plot index</div><div class="line">var plotIndex: Int = 0</div><div class="line">if plot == plot1 &#123;</div><div class="line">  plotIndex = 0</div><div class="line">&#125;</div><div class="line">else if plot == plot2 &#123;</div><div class="line">  plotIndex = 1</div><div class="line">&#125;</div><div class="line">else if plot == plot3 &#123;</div><div class="line">  plotIndex = 2</div><div class="line">&#125;</div><div class="line">// 7 - Get the anchor point for annotation</div><div class="line">let x = CGFloat(idx) + CGFloat(BarInitialX) + (CGFloat(plotIndex) * CGFloat(BarWidth))</div><div class="line">let y = CGFloat(price) + 0.05</div><div class="line">priceAnnotation!.anchorPlotPoint = [x, y]</div><div class="line">// 8 - Add the annotation</div><div class="line">guard let plotArea = plot.graph?.plotAreaFrame?.plotArea else &#123; return &#125;</div><div class="line">plotArea.addAnnotation(priceAnnotation)</div></pre></td></tr></table></figure>
+<p>这里需要一些解释：</p>
+<ol>
+<li>不要给一个隐藏的柱状图展示注解，而当图没有设置隐藏属性的时候，在把切换开关整合到图表之后，你就将实现它了。</li>
+<li>这里还要为你的注解创建一个文本样式。</li>
+<li>得到指定柱状图的汇率，然后如果它不存在一个注解对象，就创建一个。</li>
+<li>如果没有数值格式化的方法还需要创建一个，因为在汇率展示的时候需要先格式化它。</li>
+<li>创建一个使用这个格式化汇率的文本层，并将注解的内容层设置到这个新的文本层上。</li>
+<li>获取你将展示的注解需要放置的柱状图索引。</li>
+<li>基于这个索引计算注解的位置，并给使用这个计算位置注解设置 <code>anchorPlotPoint</code> 的值。</li>
+<li>最后，将注解添加到图表上。</li>
+</ol>
+<p>构建并运行。每次当你点按图表中的一个柱体时，该柱体所表示的值就应该正好在其上方弹出来。</p>
+<p>棒极了! :]</p>
+<p><img src="https://cdn3.raywenderlich.com/wp-content/uploads/2016/04/swiftrates-10.png" alt="Core Plot Tutorial"></p>
+<h3 id="隐藏和查找"><a href="#隐藏和查找" class="headerlink" title="隐藏和查找"></a>隐藏和查找</h3><p>这个柱状图看起来很棒，但屏幕最上方的切换开关并没有起什么作用，是时候改动它们了。</p>
+<p>首先，需要添加一个帮助方法，把下面这段添加到 <code>switch3Changed(_:)</code> 之后：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">func hideAnnotation(graph: CPTGraph) &#123;</div><div class="line">  guard let plotArea = graph.plotAreaFrame?.plotArea,</div><div class="line">    priceAnnotation = priceAnnotation else &#123;</div><div class="line">      return</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  plotArea.removeAnnotation(priceAnnotation)</div><div class="line">  self.priceAnnotation = nil</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这段代码首先简单地移除了一个如果存在的注解。</p>
+<p>下一步，你希望用户通过切换开关展示一个给定的货币汇率柱状图。</p>
+<p>要做到这个功能，用下面这段替换到 <code>switch1Changed(_:)</code>，<code>switch2Changed(_:)</code> 和 <code>switch3Changed(_:)</code> 的实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">@IBAction func switch1Changed(sender: UISwitch) &#123;</div><div class="line">  let on = sender.on</div><div class="line">  if !on &#123;</div><div class="line">    hideAnnotation(plot1.graph!)</div><div class="line">  &#125;</div><div class="line">  plot1.hidden = !on</div><div class="line">&#125;</div><div class="line"></div><div class="line">@IBAction func switch2Changed(sender: UISwitch) &#123;</div><div class="line">  let on = sender.on</div><div class="line">  if !on &#123;</div><div class="line">    hideAnnotation(plot2.graph!)</div><div class="line">  &#125;</div><div class="line">  plot2.hidden = !on</div><div class="line">&#125;</div><div class="line"></div><div class="line">@IBAction func switch3Changed(sender: UISwitch) &#123;</div><div class="line">  let on = sender.on</div><div class="line">  if !on &#123;</div><div class="line">    hideAnnotation(plot3.graph!)</div><div class="line">  &#125;</div><div class="line">  plot3.hidden = !on</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个逻辑相当简单。如果开关设置了关闭，相关的图和其可见的注解就将被隐藏，而如果设置为开启，则图就会被设置为可见。</p>
+<p>构建并运行。现在你可以在图表中随意切换每个柱状图的展示了。教程至此已经完成了很不错的工作！</p>
+<p><img src="http://ww4.sinaimg.cn/large/a490147fjw1f5tbq390v7g20fj08sgpr.gif" alt=""></p>
+<h2 id="接下来干点啥？"><a href="#接下来干点啥？" class="headerlink" title="接下来干点啥？"></a>接下来干点啥？</h2><p>你可以从<a href="https://cdn1.raywenderlich.com/wp-content/uploads/2016/05/SwiftRates_Final-1.zip" target="_blank" rel="external">这里</a>下载一个已完成的项目。</p>
+<p>哇哦，相当有趣！这个教程重点介绍了 Core Plot 的强大功能并希望提示了你该怎么在你自己的 apps 里使用它。</p>
+<p>当然还可以参考 <a href="https://github.com/core-plot/core-plot" target="_blank" rel="external">Core Plot</a> 仓库获取更多的信息，包括文档，例子和一些小贴士。</p>
+<p>还有，如果你对这个教程有任何的问题或者评论，欢迎加入下面的论坛进行讨论。</p>
+<p>祝你有个快乐的绘图过程！</p>
+
+	
+	
+	
+	
+</div>
+				
+				
+
+                <!-- Post Comments -->
+                
+    <!-- 使用多说评论 -->
+    <link rel="stylesheet" href="/css/duoshuo.min.css">
+<style>
+    #ds-thread #ds-reset .ds-post-button{
+        background-color: #0097A7 !important;
+    }
+    #ds-wrapper #ds-reset .ds-icons-32{
+        background-color: #0097A7 !important;
+    }
+    #ds-reset .ds-highlight {
+        color: #0097A7 !important;
+    }
+</style>
+<div id="comments">
+    <!-- 多说评论框 start -->
+        <div class="ds-thread" 
+            data-thread-key="2016/07/20/core-plot/" 
+            data-url="http://llp0574.github.io/2016/07/20/core-plot/"
+            data-title="iOS 开源图形库 Core Plot 使用教程"></div>
+    <!-- 多说评论框 end -->
+</div>
+
+
+
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    
+    <!-- Prev Nav -->
+    
+        <a href="/2016/07/21/angular-to-react/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2016/02/02/nvm-mac-use/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+        </div>
+    </div>
+
+				
+				
+					<!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay "></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored  sidebar-fixed-left" role="navigation">
+	<div id="sidebar-main">
+	    <!-- Sidebar Header -->
+		<div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+    <i class="material-icons">clear_all</i>
+    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="llp's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        llp0574@gmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+		<!-- Sidebar Navigation  -->
+		<ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+			
+                <li>
+                    <a href="mailto:llp0574@gmail.com" target="_blank" title="Email Me">
+						<i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    <li id="sidebar-first-li">
+        <a href="/" target="_self">
+            <i class="material-icons sidebar-material-icons">home</i>
+             主页
+        </a>
+    </li>
+
+    <!-- I'm Feeling Lucky -->
+<!--
+    <li class="dropdown">
+        <a href="" target="_self">
+            <i class="material-icons sidebar-material-icons">explore</i>
+             sidebar.imlucky
+        </a>
+    </li>
+-->
+
+	
+    <!-- Archives  -->
+    <li class="dropdown">
+        <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+            <i class="material-icons sidebar-material-icons">inbox</i>
+             归档
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+            <a class="sidebar_archives-link" href="/archives/2016/11/">十一月 2016<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">十月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">九月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">七月 2016<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/02/">二月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/01/">一月 2016<span class="sidebar_archives-count">2</span></a>
+        </ul>
+    </li>
+
+    <!-- Divider -->
+    <li class="divider"></li>
+
+
+    <!-- Pages  -->
+	
+		<li>
+			<a href="/about" title="关于我">
+				关于我
+			</a>
+		</li>
+	
+		<li>
+			<a href="/tags" title="标签云">
+				标签云
+			</a>
+		</li>
+	
+
+    <!-- Article Numebr  -->
+    <li>
+        <a href="/archives">
+             文章总数
+             <span class="sidebar-badge">14</span>
+        </a>
+    </li>
+</ul>
+
+		<!-- Sidebar Divider -->
+		<div class="sidebar-divider"></div>
+
+		<!-- Sidebar Footer -->
+		<!-- 
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持。 :) 
+-->
+
+<!-- Theme Material -->
+<a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+	<div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+		主题 - Material
+		<span class="sidebar-badge badge-circle">i</span>
+	</div>
+</a>
+
+<!-- Help & Support -->
+<!--
+<a href="mailto:hiviosey@gmail.com" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+		sidebar.help
+		<span class="mdl-button__ripple-container">
+			<span class="mdl-ripple"></span>
+		</span>
+	</div>
+</a>
+-->
+
+<!-- Feedback -->
+<!--
+<a href="https://github.com/viosey/hexo-theme-material/issues" target="_blank" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+         sidebar.feedback
+                    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+</a>
+-->
+
+<!-- Abount Theme -->
+<!--
+<a href="https://blog.viosey.com/index.php/Material.html" target="_blank" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+         sidebar.about_theme
+        <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+</a>-->
+
+	</div>
+    
+    <!-- Sidebar Sponsor -->
+    
+
+
+</aside>
+
+				
+				
+				
+					<!-- Footer Top Button -->
+					<div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+				
+				
+				<!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+	
+	
+		<!-- Paradox Footer Left Section -->
+		<div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+    
+    
+    <!-- Facebook -->
+    
+    
+    
+    <!-- Google + -->
+    
+    
+    
+    <!-- Weibo -->
+    
+    <a href="http://weibo.com/u/1806141607" target="view_window"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-weibo.png);">
+        <span class="visuallyhidden">Weibo</span>
+    </button></a>
+    
+    
+    <!-- Instagram -->
+    
+    
+    
+    <!-- Tumblr -->
+    
+    
+    
+    <!-- Github -->
+    
+    <a href="https://github.com/llp0574" target="view_window"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.png);">
+        <span class="visuallyhidden">Github</span>
+    </button></a>
+    
+</div>
+
+
+		<!--Copyright-->
+		<div id="copyright">Copyright&nbsp;©&nbsp;<script type="text/javascript">var fd = new Date();document.write(fd.getFullYear());</script>&nbsp;llp的程序猿之路</div>
+
+		<!-- Paradox Footer Right Section -->
+
+		<!-- 
+		I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+		It will not impact the appearance and can give developers a lot of support :)
+
+		很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+		它不会影响美观并可以给开发者很大的支持。 :) 
+		-->
+
+		<div class="mdl-mini-footer--right-section">
+			<div>
+				<div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+				<div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+			</div>
+		</div>
+	
+    
+</footer>
+                
+				<!-- Import File -->
+<script src="/js/highlight.min.js"></script>
+<script src="/js/js.min.js"></script>
+<script src="/js/nprogress.js"></script>
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    
+    $('#nprogress .bar').css({
+        'background': '#FF4081'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #FF4081, 0 0 15px #FF4081'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#FF4081',
+        'border-left-color': '#FF4081'
+    });
+    
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+    <!-- Leancloud -->
+	<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+	<script>
+		AV.initialize("dFsFONvyzhvCLBqr0vdTUuQI-gzGzoHsz", "gKQoW3SRT0IvN2krRAjKgAL2");
+	</script>
+    <script>
+	function showTime(Counter) {
+		var query = new AV.Query(Counter);
+		$(".leancloud-views_num").each(function() {
+			var url = $(this).attr("id").trim();
+			query.equalTo("url", url);
+			query.find({
+				success: function(results) {
+					if (results.length == 0) {
+						var content = '0 ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+						return;
+					}
+					for (var i = 0; i < results.length; i++) {
+						var object = results[i];
+						var content = object.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					}
+				},
+				error: function(object, error) {
+					console.log("Error: " + error.code + " " + error.message);
+				}
+			});
+
+		});
+	}
+
+	function addCount(Counter) {
+		var Counter = AV.Object.extend("Counter");
+		url = $(".leancloud-views_num").attr('id').trim();
+		title = $(".leancloud-views_num").attr('data-flag-title').trim();
+		var query = new AV.Query(Counter);
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length > 0) {
+					var counter = results[0];
+					counter.fetchWhenSave(true);
+					counter.increment("time");
+					counter.save(null, {
+						success: function(counter) {
+							var content =  counter.get('time') + ' ' + $(document.getElementById(url)).text();
+							$(document.getElementById(url)).text(content);
+						},
+						error: function(counter, error) {
+							console.log('Failed to save Visitor num, with error message: ' + error.message);
+						}
+					});
+				} else {
+					var newcounter = new Counter();
+					newcounter.set("title", title);
+					newcounter.set("url", url);
+					newcounter.set("time", 1);
+					newcounter.save(null, {
+						success: function(newcounter) {
+							console.log("newcounter.get('time')="+newcounter.get('time'));
+							var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
+							$(document.getElementById(url)).text(content);
+						},
+						error: function(newcounter, error) {
+							console.log('Failed to create');
+						}
+					});
+				}
+			},
+			error: function(error) {
+				console.log('Error:' + error.code + " " + error.message);
+			}
+		});
+	}
+	$(function() {
+		var Counter = AV.Object.extend("Counter");
+		if ($('.leancloud-views_num').length == 1) {
+			addCount(Counter);
+		} else if ($('.post-title-link').length > 1) {
+			showTime(Counter);
+		}
+	}); 
+</script>
+
+
+
+
+
+    <!-- 多说公共 js 代码 start -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"llp0574"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';ds.async = true;
+            ds.src = 'https://static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+             || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+    <!-- 多说公共 js 代码 end -->
+
+
+
+
+<!-- Swiftye -->
+
+
+<!-- Local Search-->
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $(".post-toc-wrap").parent(".mdl-menu__container").css("position", "fixed");
+    });
+</script>
+
+<!-- MathJax Load-->
+
+            </main>
+        </div>
+		
+    </body>
+		
+	
+</html>

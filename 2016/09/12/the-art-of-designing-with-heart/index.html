@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <!-- Title -->
+    
+    <title>
+        用心设计的艺术 | llp的程序猿之路
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" sizes="192x192" href="/img/favicon.png">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Meta & INfo -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="llp">
+    <meta name="description" content="llp的程序猿之路走得磕磕绊绊">
+    <meta name="keywords" content="null">
+
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="llp的程序猿之路">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://llp0574.github.io">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="用心设计的艺术 | llp的程序猿之路">
+    <meta property="og:description" content="llp的程序猿之路走得磕磕绊绊">
+
+     <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS -->
+    <link rel="stylesheet" href="/css/material.min.css">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+	body, html{
+		font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+	}
+	
+    a{
+        color: #00838F
+    }
+    
+    .mdl-card__media,
+    #search-label,
+    #search-form-label:after,
+    #scheme-Paradox .hot_tags-count,
+    #scheme-Paradox .sidebar_archives-count,
+    #scheme-Paradox .sidebar-colored .sidebar-header,
+    #scheme-Paradox .sidebar-colored .sidebar-badge{
+        background-color: #0097A7 !important
+    }
+    
+	/* Sidebar User Drop Down Menu Text Color */
+	#scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus{
+        color: #0097A7 !important
+    }
+    
+    #post_entry-right-info,
+    .sidebar-colored .sidebar-nav li:hover > a,
+    .sidebar-colored .sidebar-nav li:hover > a i,
+    .sidebar-colored .sidebar-nav li > a:hover,
+    .sidebar-colored .sidebar-nav li > a:hover i,
+    .sidebar-colored .sidebar-nav li > a:focus i,
+    .sidebar-colored .sidebar-nav > .open > a,
+    .sidebar-colored .sidebar-nav > .open > a:hover,
+    .sidebar-colored .sidebar-nav > .open > a:focus,
+    #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a{
+        color: #0097A7 !important
+    }
+    
+    .toTop{
+        background: #757575 !important
+    }
+		
+	.material-layout .material-post>.material-nav,
+	.material-layout .material-index>.material-nav,
+	.material-nav a{
+		color: #757575;
+	}
+		
+	#scheme-Paradox .MD-burger-layer {
+		background-color: #757575;
+	}
+
+	#scheme-Paradox #post-toc-trigger-btn{
+		color: #757575;
+	}
+	
+	.post-toc a:hover{
+		color: #00838F;
+		text-decoration: underline;
+	}
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+        body{
+            background-color: #F5F5F5
+        }
+		
+		/* blog_info bottom background */
+        #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+            background-color: #fff;
+        }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+        .fade {
+            transition: all 800ms linear;
+            -webkit-transform: translate3d(0,0,0);
+            -moz-transform: translate3d(0,0,0);
+            -ms-transform: translate3d(0,0,0);
+            -o-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+            opacity: 1;
+        }
+
+        .fade.out{
+            opacity: 0;
+        }
+    </style>
+
+	<script src="/js/jquery.min.js"></script>
+
+	<link rel="stylesheet" href="/css/highlight/solarized-white.css">
+
+
+	<!-- UC Browser Compatible-->
+	<script>
+		var agent = navigator.userAgent.toLowerCase();
+		if(agent.indexOf('ucbrowser')>0) {
+			document.write('<link rel="stylesheet" href="/css/uc.css">');
+		   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+		}
+	</script>
+
+    <!-- Custom Head -->
+    
+
+    
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?73bb3e6eceb47c2e2f8f79e3bf611006";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+</head>
+	
+	
+
+    <body id="scheme-Paradox">
+
+		
+        <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+				
+			
+			
+            <!-- Main Container -->
+            <main class="material-layout__content" id="main">
+				
+                <!-- Top Anchor -->
+                <div id="top"></div>
+				
+				
+                <!-- Hamburger Button -->
+                <button class="MD-burger-icon sidebar-toggle">
+                    <span class="MD-burger-layer"></span>
+                </button>
+				
+				
+                
+	<!-- Back Button -->
+<!--
+	<div class="material-back" id="backhome-div" tabindex="0">
+		<a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="#" onclick="window.history.back();return false;" target="_self" role="button" data-upgraded=",MaterialButton,MaterialRipple">
+			<i class="material-icons" role="presentation">arrow_back</i>
+			<span class="mdl-button__ripple-container">
+				<span class="mdl-ripple"></span>
+			</span>
+		</a>
+	</div>			
+-->
+	<!-- Left aligned menu below button -->
+	<button id="post-toc-trigger-btn"
+			class="mdl-button mdl-js-button mdl-button--icon">
+	  <i class="material-icons">format_list_numbered</i>
+	</button>
+
+	<ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+		for="post-toc-trigger-btn">
+			
+			<ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#🚨️-你的软件的存在是为了帮助人们！🚨"><span class="post-toc-number">1.</span> <span class="post-toc-text">🚨️ 你的软件的存在是为了帮助人们！🚨</span></a></li></ol>
+		
+<!--			<li class="mdl-menu__item">Some Action</li>-->
+	</ul>
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+		
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+	<!-- Paradox Post Header -->
+	
+		<!-- Custom Thumbnail -->
+		<div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/heart.png)">
+	
+        <p class="article-headline-p">
+            用心设计的艺术
+        </p>
+    </div>
+
+	
+
+				
+				
+					<!-- Paradox Post Info -->
+					<div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>llp</strong>
+        <span>9月 12, 2016</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <span class="post-count">共计&nbsp;2,513&nbsp;字&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+    <span class="post-read">预计阅读&nbsp;8&nbsp;分钟&nbsp;&nbsp;</span>
+    <!-- Favorite -->
+<!--
+    <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+        <i class="material-icons" role="presentation">favorite</i>
+        <span class="visuallyhidden">favorites</span>
+    </button>
+-->
+
+    <!-- Tags (bookmark) -->
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/设计/">设计</a>
+    </ul>
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+    
+    <!-- Leancloud Views -->
+    <a class="post_share-link" href="#">
+        <li class="mdl-menu__item">
+            <span id="/2016/09/12/the-art-of-designing-with-heart/" class="leancloud-views_num" data-flag-title="用心设计的艺术">
+     &nbsp;浏览量
+</span>
+        </li>
+    </a>
+    
+    
+    
+    
+    <!-- Share Twitter -->
+    <a class="post_share-link" href="https://twitter.com/intent/tweet?text=用心设计的艺术&url=http://llp0574.github.io//2016/09/12/the-art-of-designing-with-heart/index.html&via=llp" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Twitter
+        </li>
+    </a>
+    
+    <!-- Share Google+ -->
+    <a class="post_share-link" href="https://plus.google.com/share?url=http://llp0574.github.io//2016/09/12/the-art-of-designing-with-heart/index.html" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Google+
+        </li>
+    </a>
+    
+    <!-- Share Weibo -->
+    <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=用心设计的艺术&url=http://llp0574.github.io//2016/09/12/the-art-of-designing-with-heart/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <li class="mdl-menu__item">
+            分享到微博
+        </li>
+    </a>
+</ul>
+</div>
+				
+
+                <!-- Post Content -->
+                <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+	
+		<blockquote>
+<ul>
+<li>原文地址：<a href="https://m.signalvnoise.com/the-art-of-designing-with-heart-f5dc4df21697?swoff=true#.bwkktzgf7" target="_blank" rel="external">The Art of Designing With Heart</a></li>
+<li>原文作者：<a href="https://m.signalvnoise.com/@jonasdowney" target="_blank" rel="external">Jonas Downey</a></li>
+<li>译文出自：<a href="https://github.com/xitu/gold-miner" target="_blank" rel="external">掘金翻译计划</a></li>
+<li>译者：<a href="https://github.com/llp0574" target="_blank" rel="external">llp0574</a></li>
+<li>校对者：<a href="https://github.com/Graning" target="_blank" rel="external">Graning</a>,<a href="https://github.com/cyseria" target="_blank" rel="external">cyseria</a></li>
+</ul>
+</blockquote>
+<p>我喜爱软件开发的其中一个原因在于，它是一种深入的脑力锻炼，充满着令人兴奋的过程、各种抽象思想以及错综复杂的关联关系。</p>
+<p>你可以用诸如 IT 研究、策略、原型、编程、UI、运营等更多这些实际性的具体细节来丰富自己。</p>
+<p>如果这些都还不够呢？那就让自己尽情追求各项指标和性能吧。每一个最后的细节都可以被测试、量化以及优化，从而达到最完整的状态。努力提高各项 KPI（业务关键指标）并紧盯你的 ROI（投资回报率）吧！</p>
+<p>问题在于：有这么多事情去考虑，以及这么多逻辑去操心，那么就很容易忘记你开发软件的初心：</p>
+<h3 id="🚨️-你的软件的存在是为了帮助人们！🚨"><a href="#🚨️-你的软件的存在是为了帮助人们！🚨" class="headerlink" title="🚨️ 你的软件的存在是为了帮助人们！🚨"></a>🚨️ 你的软件的存在是为了帮助人们！🚨</h3><p>设计师们通常把这个概念称为<strong>用户体验</strong>或者<strong>用户心理</strong>。我认为这些称谓很糟糕，它们都过于套话和含糊，在不同的环境下可以有着不同的意思。</p>
+<p>但我认为它真正是什么我们就应该称作什么：<strong>用心设计</strong>。</p>
+<p>这并不是某个在你的公司里一个特定小组的职责，或者在一个过程当中你可以检查的某一步骤，它是一个会告诉你做每一个决策的核心价值。</p>
+<hr>
+<p>下面将说明它在实践中意味着什么。</p>
+<p>在所有的策略、指标和技术的另外一端面临的是<strong>真实的人</strong>，这些人生存、呼吸，忙于处理他们各自稀奇古怪的生活琐事，和他们的小孩争论，试图弄清晚饭要吃什么。</p>
+<p>当开发软件的时候，不免你会站在自己的角度发明一种机器，假设用户的感受，并以自己为代表用户模拟人机交互好让它们能有意义地实现某些功能。</p>
+<p>你的软件不仅仅只是杂糅在一起的一堆代码和 UI。它还是你的最佳想法、最佳意图、帮助他人的渴望、你的爱、感受和灵魂的一个编译结果。</p>
+<p>你的软件就是你自己。</p>
+<p>（如果你相信它的艺术，那它就是，并且如果你做的是对的话那就更应该是了。）</p>
+<hr>
+<p>当你从这个角度看待软件的时候，就将注意到大量的软件其实是无聊且缺乏生命力的。</p>
+<p>仔细想想你经常登录的银行网站，或者你的保险公司的账单系统，它们大概都是冰冷且没有生命力的。那是因为这些设计师都把他们的工作当作了一种机械操作：接受一组需求、创造想象的人物、写用户故事以及在需求到来前混混他们的工作。这些都是机械的工作，没有用心。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/662490-c18c85a6d02a50e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>Capital One 的登录页面</p>
+<p>现在，你可能会认为对于一个银行网站来说，看起来简单朴素且属于交易型并没什么问题。毕竟，银行业不夸张地说就是<strong>一组组交易的集合</strong>。</p>
+<p>但相比起你可能曾经遇到过很体贴的银行柜员带来的体验（如果你仍然记得那是怎么样的一种体验），柜员对你微笑，询问你今天过得怎么样，仔细检查你的账目是正确的，为你可能忘记的事情提供帮助以及送你一根棒棒糖！🍭</p>
+<p>这就是用了一点心思的交易过程。</p>
+<hr>
+<p>好了，接下来讲一下我们的软件如何来替代银行柜员。这意味着软件在理想情况下，应该提供同样的人性化和真正有帮助的服务。但怎么做呢？</p>
+<p>选项之一是将对外接口拟人化并为软件赋予一些<a href="http://alistapart.com/article/personality-in-design" target="_blank" rel="external">个性</a>，这么做就可以让 UI 变得有趣、友好、智能、带有批判性或者卡通化。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/662490-428b645bfe2875e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>Poncho 生动的天气猫给你发送 “Zzz Zzzzzzz” 和 “Purrrrrrrrrrrrr.” 的信息</p>
+<p>我认为这只是其中一小部分，因为人们对胡说八道的忍耐力很低。除非你能<strong>真正</strong>起到好的作用，否则好玩和有趣的东西将会很快变得让人恼火不已，甚至比机械化还要糟糕，因为它很浪费时间，开门见山往往会更好。</p>
+<p>所以如果机械化不好，做的个性化也不好，那么什么是好的呢？</p>
+<p>最佳选择则是两者适中。好的软件是友好、随性以及容易上手的，但同时也是严格、亲切以及有礼貌的。就像你曾经在本地交易中体验过的的一次舒适的真实生活经验。</p>
+<hr>
+<p>要实现这样听起来很困难（确实也是），但有一个简单的技巧可以帮上很多忙。</p>
+<p><strong>当你设计某样东西的时候，想象你坐在一个房间里，正手把手地帮助真实的人解决问题。</strong>你将会对他们说些什么？你会怎么解释这个页面或特性？你会给出什么建议？你将告诉他们什么去进行下一步操作？</p>
+<p>大声说出这些答案来，然后写下你所说的。现在你就已经完成80%了！</p>
+<p>如果你正在亲自帮助某人，你肯定不会很严格或者拘谨，不会使用流行语、术语或一些商业辞令，你也不会向他们丢什么开玩笑的炸弹或者用旁边的高飞（迪士尼角色）来让他们分心。你肯定会观察他们在做什么，看看他们哪里遇到了困难，并帮助他们解决。<strong>你将用心和他们交流。</strong></p>
+<hr>
+<p>这个常识性的技巧可以让你不会只见树木不见森林。如果你费尽心思解释某样事情，那么可能往往还解释得不清楚。这个观点会让你问出类似下面的这些问题：</p>
+<ul>
+<li>我们可以让这个接口变得更简单或者更直接吗？</li>
+<li>我们可以减少或者去掉这些用户必要的选择吗？</li>
+<li>我们有没有用自然、随性的语言来充分解释这些操作？</li>
+<li>这个设计有没有充分利用用户的时间和注意力？</li>
+<li>这是一个我个人来说会很享受使用过程的东西吗？</li>
+<li>我们有没有采取一些捷径让我们而不是他们受益？</li>
+<li>我们有没有作出一些不正确的假设？</li>
+</ul>
+<p>现在你的设计完成后肯定更加清楚和友好。这就会让你的消费者更加开心并且更高效率，那么他们就可以停止摆弄软件，然后回去和他们那好争论的小孩继续吃晚饭了。</p>
+<p><strong>这应该成为你工作的潜在动力。</strong>不是技术，不是样式，不是数据，也不是金钱。帮助人们是首要的，其他的都是次要的。</p>
+<hr>
+<p><strong>用心设计</strong>不仅仅只是创造一个产品。它同样可以指导你去营销、做广告以及销售。</p>
+<p>比如说，你想要为你的产品增加付费用户。（谁不想？）这是一个商业为先的问题，不是一个用户为先的问题。</p>
+<p>如果你仅仅考虑商业为先，你可能会发出一大堆促销邮件，或者在页面上到处展示 “BUY NOW” 入口，或者用弹窗广告去打断他们的关键工作流。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/662490-252fed8f8e3414e0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>Wall Street Journal 甚至在你进入页面之前就弹窗询问你是否购买</p>
+<p>这些技巧或许对增加业务指标有所帮助，但它们对消费者来说却是恼人和讨厌的。这并不是我们想要的结果。那我们怎么来解决两者之间的冲突呢？</p>
+<p>简单：再次考虑用户！</p>
+<p>清楚地传达产品的价格、让其变得更容易购买、给新用户传播你的信息甚至寻求推荐或点评，这些本来就不是一件坏事情 — 只要你这么做的方式考虑周全、诚实并且在对的时间去做，就没问题了。</p>
+<p>不要在用户处理事情的中途去打断他们，不间断地去骚扰他们，或者强行去推销你想的主意。如果想要得到青睐，那么就该考虑清楚去解释为什么你需要他们的帮助，从而让他们的时间变得有价值，同时或许应该在交易过程中提出激励。</p>
+<p>遵循这些方法，你的推销将会是一个双赢的结果。</p>
+<hr>
+<p>还有一件事情可以让你做到用心设计：<strong>不要害怕去展现自己。</strong></p>
+<p>人们会和其他非人类机器建立起情绪化的连接。</p>
+<p>当你的消费者可以看到是谁在背后和其交流，并且当你诚实可靠地和他们交流时，他们就将更加可能确认你的信息和入口。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/662490-5e4751262dbf1b66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>Nate Kontny’s Highrise更新总会有一个人性化提示。</p>
+<p>如果你创造某个东西是因为你从根本上在意如何帮助用户，并且想要留住他们，那么就更应该说出来了！把你的名字放上去、讲述你的故事、展示你的形象并站出来为你的工作负责。分享你<strong>真实的</strong>个性肯定比捏造一个虚假的形象放在一个死气沉沉的应用上要好得多。</p>
+<p>你的消费者将会以同样的方式作出回应，并且这就是所有回报里最有价值的东西。💞</p>
+<hr>
+
+	
+	
+	
+	
+</div>
+				
+				
+
+                <!-- Post Comments -->
+                
+    <!-- 使用多说评论 -->
+    <link rel="stylesheet" href="/css/duoshuo.min.css">
+<style>
+    #ds-thread #ds-reset .ds-post-button{
+        background-color: #0097A7 !important;
+    }
+    #ds-wrapper #ds-reset .ds-icons-32{
+        background-color: #0097A7 !important;
+    }
+    #ds-reset .ds-highlight {
+        color: #0097A7 !important;
+    }
+</style>
+<div id="comments">
+    <!-- 多说评论框 start -->
+        <div class="ds-thread" 
+            data-thread-key="2016/09/12/the-art-of-designing-with-heart/" 
+            data-url="http://llp0574.github.io/2016/09/12/the-art-of-designing-with-heart/"
+            data-title="用心设计的艺术"></div>
+    <!-- 多说评论框 end -->
+</div>
+
+
+
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    
+    <!-- Prev Nav -->
+    
+        <a href="/2016/10/14/data-flow-in-vue-and-vuex/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2016/07/28/popovers-on-popovers/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+        </div>
+    </div>
+
+				
+				
+					<!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay "></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored  sidebar-fixed-left" role="navigation">
+	<div id="sidebar-main">
+	    <!-- Sidebar Header -->
+		<div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+    <i class="material-icons">clear_all</i>
+    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="llp's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        llp0574@gmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+		<!-- Sidebar Navigation  -->
+		<ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+			
+                <li>
+                    <a href="mailto:llp0574@gmail.com" target="_blank" title="Email Me">
+						<i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    <li id="sidebar-first-li">
+        <a href="/" target="_self">
+            <i class="material-icons sidebar-material-icons">home</i>
+             主页
+        </a>
+    </li>
+
+    <!-- I'm Feeling Lucky -->
+<!--
+    <li class="dropdown">
+        <a href="" target="_self">
+            <i class="material-icons sidebar-material-icons">explore</i>
+             sidebar.imlucky
+        </a>
+    </li>
+-->
+
+	
+    <!-- Archives  -->
+    <li class="dropdown">
+        <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+            <i class="material-icons sidebar-material-icons">inbox</i>
+             归档
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+            <a class="sidebar_archives-link" href="/archives/2016/11/">十一月 2016<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">十月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">九月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">七月 2016<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/02/">二月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/01/">一月 2016<span class="sidebar_archives-count">2</span></a>
+        </ul>
+    </li>
+
+    <!-- Divider -->
+    <li class="divider"></li>
+
+
+    <!-- Pages  -->
+	
+		<li>
+			<a href="/about" title="关于我">
+				关于我
+			</a>
+		</li>
+	
+		<li>
+			<a href="/tags" title="标签云">
+				标签云
+			</a>
+		</li>
+	
+
+    <!-- Article Numebr  -->
+    <li>
+        <a href="/archives">
+             文章总数
+             <span class="sidebar-badge">14</span>
+        </a>
+    </li>
+</ul>
+
+		<!-- Sidebar Divider -->
+		<div class="sidebar-divider"></div>
+
+		<!-- Sidebar Footer -->
+		<!-- 
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持。 :) 
+-->
+
+<!-- Theme Material -->
+<a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+	<div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+		主题 - Material
+		<span class="sidebar-badge badge-circle">i</span>
+	</div>
+</a>
+
+<!-- Help & Support -->
+<!--
+<a href="mailto:hiviosey@gmail.com" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+		sidebar.help
+		<span class="mdl-button__ripple-container">
+			<span class="mdl-ripple"></span>
+		</span>
+	</div>
+</a>
+-->
+
+<!-- Feedback -->
+<!--
+<a href="https://github.com/viosey/hexo-theme-material/issues" target="_blank" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+         sidebar.feedback
+                    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+</a>
+-->
+
+<!-- Abount Theme -->
+<!--
+<a href="https://blog.viosey.com/index.php/Material.html" target="_blank" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+         sidebar.about_theme
+        <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+</a>-->
+
+	</div>
+    
+    <!-- Sidebar Sponsor -->
+    
+
+
+</aside>
+
+				
+				
+				
+					<!-- Footer Top Button -->
+					<div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+				
+				
+				<!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+	
+	
+		<!-- Paradox Footer Left Section -->
+		<div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+    
+    
+    <!-- Facebook -->
+    
+    
+    
+    <!-- Google + -->
+    
+    
+    
+    <!-- Weibo -->
+    
+    <a href="http://weibo.com/u/1806141607" target="view_window"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-weibo.png);">
+        <span class="visuallyhidden">Weibo</span>
+    </button></a>
+    
+    
+    <!-- Instagram -->
+    
+    
+    
+    <!-- Tumblr -->
+    
+    
+    
+    <!-- Github -->
+    
+    <a href="https://github.com/llp0574" target="view_window"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.png);">
+        <span class="visuallyhidden">Github</span>
+    </button></a>
+    
+</div>
+
+
+		<!--Copyright-->
+		<div id="copyright">Copyright&nbsp;©&nbsp;<script type="text/javascript">var fd = new Date();document.write(fd.getFullYear());</script>&nbsp;llp的程序猿之路</div>
+
+		<!-- Paradox Footer Right Section -->
+
+		<!-- 
+		I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+		It will not impact the appearance and can give developers a lot of support :)
+
+		很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+		它不会影响美观并可以给开发者很大的支持。 :) 
+		-->
+
+		<div class="mdl-mini-footer--right-section">
+			<div>
+				<div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+				<div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+			</div>
+		</div>
+	
+    
+</footer>
+                
+				<!-- Import File -->
+<script src="/js/highlight.min.js"></script>
+<script src="/js/js.min.js"></script>
+<script src="/js/nprogress.js"></script>
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    
+    $('#nprogress .bar').css({
+        'background': '#FF4081'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #FF4081, 0 0 15px #FF4081'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#FF4081',
+        'border-left-color': '#FF4081'
+    });
+    
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+    <!-- Leancloud -->
+	<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+	<script>
+		AV.initialize("dFsFONvyzhvCLBqr0vdTUuQI-gzGzoHsz", "gKQoW3SRT0IvN2krRAjKgAL2");
+	</script>
+    <script>
+	function showTime(Counter) {
+		var query = new AV.Query(Counter);
+		$(".leancloud-views_num").each(function() {
+			var url = $(this).attr("id").trim();
+			query.equalTo("url", url);
+			query.find({
+				success: function(results) {
+					if (results.length == 0) {
+						var content = '0 ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+						return;
+					}
+					for (var i = 0; i < results.length; i++) {
+						var object = results[i];
+						var content = object.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					}
+				},
+				error: function(object, error) {
+					console.log("Error: " + error.code + " " + error.message);
+				}
+			});
+
+		});
+	}
+
+	function addCount(Counter) {
+		var Counter = AV.Object.extend("Counter");
+		url = $(".leancloud-views_num").attr('id').trim();
+		title = $(".leancloud-views_num").attr('data-flag-title').trim();
+		var query = new AV.Query(Counter);
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length > 0) {
+					var counter = results[0];
+					counter.fetchWhenSave(true);
+					counter.increment("time");
+					counter.save(null, {
+						success: function(counter) {
+							var content =  counter.get('time') + ' ' + $(document.getElementById(url)).text();
+							$(document.getElementById(url)).text(content);
+						},
+						error: function(counter, error) {
+							console.log('Failed to save Visitor num, with error message: ' + error.message);
+						}
+					});
+				} else {
+					var newcounter = new Counter();
+					newcounter.set("title", title);
+					newcounter.set("url", url);
+					newcounter.set("time", 1);
+					newcounter.save(null, {
+						success: function(newcounter) {
+							console.log("newcounter.get('time')="+newcounter.get('time'));
+							var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
+							$(document.getElementById(url)).text(content);
+						},
+						error: function(newcounter, error) {
+							console.log('Failed to create');
+						}
+					});
+				}
+			},
+			error: function(error) {
+				console.log('Error:' + error.code + " " + error.message);
+			}
+		});
+	}
+	$(function() {
+		var Counter = AV.Object.extend("Counter");
+		if ($('.leancloud-views_num').length == 1) {
+			addCount(Counter);
+		} else if ($('.post-title-link').length > 1) {
+			showTime(Counter);
+		}
+	}); 
+</script>
+
+
+
+
+
+    <!-- 多说公共 js 代码 start -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"llp0574"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';ds.async = true;
+            ds.src = 'https://static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+             || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+    <!-- 多说公共 js 代码 end -->
+
+
+
+
+<!-- Swiftye -->
+
+
+<!-- Local Search-->
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $(".post-toc-wrap").parent(".mdl-menu__container").css("position", "fixed");
+    });
+</script>
+
+<!-- MathJax Load-->
+
+            </main>
+        </div>
+		
+    </body>
+		
+	
+</html>

@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <!-- Title -->
+    
+    <title>
+        iOS 开发，该如何解决弹窗的设计问题？ | llp的程序猿之路
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" sizes="192x192" href="/img/favicon.png">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Meta & INfo -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="llp">
+    <meta name="description" content="llp的程序猿之路走得磕磕绊绊">
+    <meta name="keywords" content="null">
+
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="llp的程序猿之路">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://llp0574.github.io">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="iOS 开发，该如何解决弹窗的设计问题？ | llp的程序猿之路">
+    <meta property="og:description" content="llp的程序猿之路走得磕磕绊绊">
+
+     <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS -->
+    <link rel="stylesheet" href="/css/material.min.css">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+	body, html{
+		font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+	}
+	
+    a{
+        color: #00838F
+    }
+    
+    .mdl-card__media,
+    #search-label,
+    #search-form-label:after,
+    #scheme-Paradox .hot_tags-count,
+    #scheme-Paradox .sidebar_archives-count,
+    #scheme-Paradox .sidebar-colored .sidebar-header,
+    #scheme-Paradox .sidebar-colored .sidebar-badge{
+        background-color: #0097A7 !important
+    }
+    
+	/* Sidebar User Drop Down Menu Text Color */
+	#scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus{
+        color: #0097A7 !important
+    }
+    
+    #post_entry-right-info,
+    .sidebar-colored .sidebar-nav li:hover > a,
+    .sidebar-colored .sidebar-nav li:hover > a i,
+    .sidebar-colored .sidebar-nav li > a:hover,
+    .sidebar-colored .sidebar-nav li > a:hover i,
+    .sidebar-colored .sidebar-nav li > a:focus i,
+    .sidebar-colored .sidebar-nav > .open > a,
+    .sidebar-colored .sidebar-nav > .open > a:hover,
+    .sidebar-colored .sidebar-nav > .open > a:focus,
+    #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a{
+        color: #0097A7 !important
+    }
+    
+    .toTop{
+        background: #757575 !important
+    }
+		
+	.material-layout .material-post>.material-nav,
+	.material-layout .material-index>.material-nav,
+	.material-nav a{
+		color: #757575;
+	}
+		
+	#scheme-Paradox .MD-burger-layer {
+		background-color: #757575;
+	}
+
+	#scheme-Paradox #post-toc-trigger-btn{
+		color: #757575;
+	}
+	
+	.post-toc a:hover{
+		color: #00838F;
+		text-decoration: underline;
+	}
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+        body{
+            background-color: #F5F5F5
+        }
+		
+		/* blog_info bottom background */
+        #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+            background-color: #fff;
+        }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+        .fade {
+            transition: all 800ms linear;
+            -webkit-transform: translate3d(0,0,0);
+            -moz-transform: translate3d(0,0,0);
+            -ms-transform: translate3d(0,0,0);
+            -o-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+            opacity: 1;
+        }
+
+        .fade.out{
+            opacity: 0;
+        }
+    </style>
+
+	<script src="/js/jquery.min.js"></script>
+
+	<link rel="stylesheet" href="/css/highlight/solarized-white.css">
+
+
+	<!-- UC Browser Compatible-->
+	<script>
+		var agent = navigator.userAgent.toLowerCase();
+		if(agent.indexOf('ucbrowser')>0) {
+			document.write('<link rel="stylesheet" href="/css/uc.css">');
+		   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+		}
+	</script>
+
+    <!-- Custom Head -->
+    
+
+    
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?73bb3e6eceb47c2e2f8f79e3bf611006";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+</head>
+	
+	
+
+    <body id="scheme-Paradox">
+
+		
+        <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+				
+			
+			
+            <!-- Main Container -->
+            <main class="material-layout__content" id="main">
+				
+                <!-- Top Anchor -->
+                <div id="top"></div>
+				
+				
+                <!-- Hamburger Button -->
+                <button class="MD-burger-icon sidebar-toggle">
+                    <span class="MD-burger-layer"></span>
+                </button>
+				
+				
+                
+	<!-- Back Button -->
+<!--
+	<div class="material-back" id="backhome-div" tabindex="0">
+		<a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="#" onclick="window.history.back();return false;" target="_self" role="button" data-upgraded=",MaterialButton,MaterialRipple">
+			<i class="material-icons" role="presentation">arrow_back</i>
+			<span class="mdl-button__ripple-container">
+				<span class="mdl-ripple"></span>
+			</span>
+		</a>
+	</div>			
+-->
+	<!-- Left aligned menu below button -->
+	<button id="post-toc-trigger-btn"
+			class="mdl-button mdl-js-button mdl-button--icon">
+	  <i class="material-icons">format_list_numbered</i>
+	</button>
+
+	<ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+		for="post-toc-trigger-btn">
+			
+			<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#操作列表"><span class="post-toc-number">1.</span> <span class="post-toc-text">操作列表</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#活动视图控制器"><span class="post-toc-number">2.</span> <span class="post-toc-text">活动视图控制器</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#结论"><span class="post-toc-number">3.</span> <span class="post-toc-text">结论</span></a></li></ol>
+		
+<!--			<li class="mdl-menu__item">Some Action</li>-->
+	</ul>
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+		
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+	<!-- Paradox Post Header -->
+	
+		<!-- Custom Thumbnail -->
+		<div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/ios.png)">
+	
+        <p class="article-headline-p">
+            iOS 开发，该如何解决弹窗的设计问题？
+        </p>
+    </div>
+
+	
+
+				
+				
+					<!-- Paradox Post Info -->
+					<div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>llp</strong>
+        <span>7月 28, 2016</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <span class="post-count">共计&nbsp;1,581&nbsp;字&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+    <span class="post-read">预计阅读&nbsp;6&nbsp;分钟&nbsp;&nbsp;</span>
+    <!-- Favorite -->
+<!--
+    <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+        <i class="material-icons" role="presentation">favorite</i>
+        <span class="visuallyhidden">favorites</span>
+    </button>
+-->
+
+    <!-- Tags (bookmark) -->
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/iOS/">iOS</a>
+    </ul>
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+    
+    <!-- Leancloud Views -->
+    <a class="post_share-link" href="#">
+        <li class="mdl-menu__item">
+            <span id="/2016/07/28/popovers-on-popovers/" class="leancloud-views_num" data-flag-title="iOS 开发，该如何解决弹窗的设计问题？">
+     &nbsp;浏览量
+</span>
+        </li>
+    </a>
+    
+    
+    
+    
+    <!-- Share Twitter -->
+    <a class="post_share-link" href="https://twitter.com/intent/tweet?text=iOS 开发，该如何解决弹窗的设计问题？&url=http://llp0574.github.io//2016/07/28/popovers-on-popovers/index.html&via=llp" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Twitter
+        </li>
+    </a>
+    
+    <!-- Share Google+ -->
+    <a class="post_share-link" href="https://plus.google.com/share?url=http://llp0574.github.io//2016/07/28/popovers-on-popovers/index.html" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Google+
+        </li>
+    </a>
+    
+    <!-- Share Weibo -->
+    <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=iOS 开发，该如何解决弹窗的设计问题？&url=http://llp0574.github.io//2016/07/28/popovers-on-popovers/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <li class="mdl-menu__item">
+            分享到微博
+        </li>
+    </a>
+</ul>
+</div>
+				
+
+                <!-- Post Content -->
+                <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+	
+		<blockquote>
+<p>原文链接: <a href="https://pspdfkit.com/blog/2016/popovers-on-popovers/" target="_blank" rel="external">Preventing Popovers on Popovers</a><br>原文作者: <a href="https://twitter.com/qdoug" target="_blank" rel="external">Douglas Hill</a><br>译文出自: <a href="https://github.com/xitu/gold-miner" target="_blank" rel="external">掘金翻译计划</a><br>译者:  <a href="https://github.com/llp0574" target="_blank" rel="external">llp0574</a><br>校对者: <a href="https://github.com/yifili09" target="_blank" rel="external">yifili09</a>,<a href="https://github.com/Graning" target="_blank" rel="external">Graning</a><br>译者注：转载请保留此头部。</p>
+</blockquote>
+<p>iOS 9 的页面用了一种我们不能复现的方式去展示一个活动视图控制器，并且当从内部表单和弹窗呈现操作列表和活动视图控制器时 UIKit 的行为一开始看起来不那么连贯。我们提交了两份 Radars 给苹果：<a href="http://openradar.appspot.com/27448912" target="_blank" rel="external">rdar://27448912 Can’t show activity view controller filling a form sheet</a> 和 <a href="http://openradar.appspot.com/27448488" target="_blank" rel="external">rdar://27448488 Reading an alert controller’s popoverPresentationController property changes behavior</a>。</p>
+<p><a href="https://developer.apple.com/ios/human-interface-guidelines/interaction/modality/" target="_blank" rel="external">iOS 的人机交互指南</a>声明：</p>
+<blockquote>
+<p><strong>不要在一个弹窗上展示一个模态视图。</strong> 由于一个警告弹窗可能是一个异常，所以不应该在这上面展现任何东西。极少数情况下，当你真的需要在一个动作导致弹窗后展示一个模态视图时，应该先把弹窗关闭掉再进行展示。</p>
+</blockquote>
+<p><a href="https://developer.apple.com/ios/human-interface-guidelines/ui-views/popovers/" target="_blank" rel="external">并且</a>:</p>
+<blockquote>
+<p><strong>一次只展示一个弹窗。</strong> 展示多个弹窗会让交互变得杂乱并让人产生疑惑。千万不要展示一个级联或者有层次结构的弹窗，一个从另一个里面产生的那种。如果你需要展示一个新的弹窗，首先关闭已经弹出的那个。</p>
+</blockquote>
+<p>在横向水平的普通环境和全屏紧凑的环境下具有<a href="https://developer.apple.com/reference/uikit/uimodalpresentationstyle/1621382-popover" target="_blank" rel="external">弹窗</a>样式的视图控制器都应该呈现为弹窗。具有操作列表样式的 <a href="https://developer.apple.com/reference/uikit/uiactivityviewcontroller" target="_blank" rel="external"><code>UIActivityViewController</code></a> 和 <a href="https://developer.apple.com/reference/uikit/uialertcontroller" target="_blank" rel="external"><code>UIAlertController</code></a> 都遵守相同的规则：展示为弹窗或者一个上拉式表。所以如果一个弹窗展示一个活动视图控制器或者一个操作列表到底会发生什么？这个人机交互指南文档的说法好像有点矛盾。</p>
+<p>在 iOS 9 页面的一个相关说明里，我们注意到在一个表单的视图控制器展示了一个填充了这个表单的 <a href="https://developer.apple.com/reference/uikit/uiactivityviewcontroller" target="_blank" rel="external"><code>UIActivityViewController</code></a>，想知道这是不是一个我们之前没有留意到的默认行为呢？又或者它是不是一个我们可以自定义实现的东西？</p>
+<p><img src="https://pspdfkit.com/images/blog/2016/popovers-on-popovers/pages-sheet-in-form-sheet-59e3007e.jpg" alt="Screen shot of Pages on iPad showing an activity view controller presented as a sheet inside a form sheet"></p>
+<p>对于大多数视图控制器来说，在里面展示一个弹窗或者表单需要将当前视图控制器的 <a href="https://developer.apple.com/reference/uikit/uimodalpresentationstyle" target="_blank" rel="external"><code>modalPresentationStyle</code></a> 设置为 <a href="https://developer.apple.com/reference/uikit/uimodalpresentationstyle/1621493-currentcontext" target="_blank" rel="external"><code>currentContext</code></a> 或者 <a href="https://developer.apple.com/reference/uikit/uimodalpresentationstyle/1621507-overcurrentcontext" target="_blank" rel="external"><code>overCurrentContext</code></a>。但对于某些像 <a href="https://developer.apple.com/reference/uikit/uiactivityviewcontroller" target="_blank" rel="external"><code>UIActivityViewController</code></a> 和 <a href="https://developer.apple.com/reference/uikit/uialertcontroller" target="_blank" rel="external"><code>UIAlertController</code></a> 这种 UIKit 提供的视图控制器来说，它们已经被赋予了自己的样式，<a href="https://developer.apple.com/reference/uikit/uimodalpresentationstyle" target="_blank" rel="external"><code>modalPresentationStyle</code></a> 的变化将被忽略掉。</p>
+<p>一般，<a href="https://developer.apple.com/reference/uikit/uiactivityviewcontroller" target="_blank" rel="external"><code>UIActivityViewController</code></a> 会在常规宽度下展示为弹窗，在紧凑宽度下变成一个透明的表。但是如果一个常规宽度的视图控制器要从一个紧凑宽度的视图控制器里展示会怎么样呢？这种情况会在一个有<a href="https://developer.apple.com/reference/uikit/uimodalpresentationstyle/1621491-formsheet" target="_blank" rel="external">表格</a>或者<a href="https://developer.apple.com/reference/uikit/uimodalpresentationstyle/1621382-popover" target="_blank" rel="external">弹窗</a> 的 <a href="https://developer.apple.com/reference/uikit/uimodalpresentationstyle" target="_blank" rel="external"><code>modalPresentationStyle</code></a> 的视图控制器要在 iPad 上展示，或者它是一个使用了 <a href="https://developer.apple.com/reference/uikit/uipresentationcontroller/1618335-overridetraitcollection" target="_blank" rel="external"><code>overrideTraitCollection</code></a> 属性的自定义展示控制器，然后这个控制器展示了一个 <a href="https://developer.apple.com/reference/uikit/uiactivityviewcontroller" target="_blank" rel="external"><code>UIActivityViewController</code></a>。</p>
+<p><img src="https://pspdfkit.com/images/blog/2016/popovers-on-popovers/diagram-23ed42d7.png" alt="Diagram: First View Controller to Second View Controller to Activity View Controller or Action Sheet"></p>
+<h2 id="操作列表"><a href="#操作列表" class="headerlink" title="操作列表"></a>操作列表</h2><p>首先我们来看看 <a href="https://developer.apple.com/reference/uikit/uialertcontroller" target="_blank" rel="external"><code>UIAlertController</code></a>。图中根视图控制器（青色）用<a href="https://developer.apple.com/reference/uikit/uimodalpresentationstyle/1621382-popover" target="_blank" rel="external">弹窗</a>样式（下方，通过切分视图行为以作参考）展示了第二个用<a href="https://developer.apple.com/reference/uikit/uimodalpresentationstyle/1621491-formsheet" target="_blank" rel="external">表单</a>样式（上方）的视图控制器（粉色）。然后第二个视图控制器展示了一个操作列表样式的警告控制器。</p>
+<p><img src="https://pspdfkit.com/images/blog/2016/popovers-on-popovers/form-sheet-action-popover-c90794ab.jpg" alt="Form sheet presenting action sheet as popover"> <img src="https://pspdfkit.com/images/blog/2016/popovers-on-popovers/popover-action-popover-fca43393.jpg" alt="Popover presenting action sheet as popover"></p>
+<p>虽然我们想要用列表的展示样式去展示操作列表（而不是弹窗），但因为关注点分离的优势，我设置了警告控制器的 <a href="https://developer.apple.com/reference/uikit/uipopoverpresentationcontroller/1622313-sourceview" target="_blank" rel="external"><code>popoverPresentationController.sourceView</code></a> 和 <a href="https://developer.apple.com/reference/uikit/uipopoverpresentationcontroller/1622324-sourcerect" target="_blank" rel="external"><code>popoverPresentationController.sourceRect</code></a>，视图控制器不应该对它怎么展示作出假设。它应该在 app 的其他部分进行全屏展示，视图控制器不应该控制这些行为。</p>
+<p>出于好奇，我尝试注释掉了<a href="https://developer.apple.com/reference/uikit/uiviewcontroller/1621428-popoverpresentationcontroller" target="_blank" rel="external"><code>popoverPresentationController</code></a>的定义，发生了让我意想不到的情况：</p>
+<p><img src="https://pspdfkit.com/images/blog/2016/popovers-on-popovers/form-sheet-action-sheet-38753715.jpg" alt="Form sheet presenting action sheet as sheet"> <img src="https://pspdfkit.com/images/blog/2016/popovers-on-popovers/popover-action-sheet-2b011d4f.jpg" alt="Popover presenting action sheet as sheet"></p>
+<p>原来只读取警告控制器的<a href="https://developer.apple.com/reference/uikit/uiviewcontroller/1621428-popoverpresentationcontroller" target="_blank" rel="external"><code>popoverPresentationController</code></a>属性会导致即使是从一个紧凑宽度环境下呈现它也会展示为一个弹窗。如果你想这么做，请一定要确保好视图控制器展现的前后环境，因为如果你想从常规宽度的环境展现一个没有设置弹窗源码的警告控制器，UIKit 就会抛出一个异常。切记在展现触发的时候即使呈现视图控制器是在一个紧凑宽度环境下，当展示被激活的时候它还是有可能发生改变。</p>
+<p>我提交了一个 <a href="http://openradar.appspot.com/27448488" target="_blank" rel="external">rdar://27448488 Reading an alert controller’s popoverPresentationController property changes behavior</a>.</p>
+<h2 id="活动视图控制器"><a href="#活动视图控制器" class="headerlink" title="活动视图控制器"></a>活动视图控制器</h2><p>用<a href="https://developer.apple.com/reference/uikit/uiactivityviewcontroller" target="_blank" rel="external"><code>UIActivityViewController</code></a>做同样的事情，并指定弹窗源码信息，出现下面的情况：</p>
+<p><img src="https://pspdfkit.com/images/blog/2016/popovers-on-popovers/form-sheet-activity-318dfc25.jpg" alt="Form sheet presenting activity view controller as a popover"> <img src="https://pspdfkit.com/images/blog/2016/popovers-on-popovers/popover-activity-4bde59d8.jpg" alt="Popover presenting activity view controller as a sheet"></p>
+<p>不同于页面的行为，我发现表单把这个活动视图控制器展示为一个弹窗，弹窗将活动视图控制器展示在表单上。这是在 iOS 10 的新行为，iOS 9 里，是从另一个弹窗展示一个弹窗。</p>
+<p>用同样不访问<a href="https://developer.apple.com/reference/uikit/uiviewcontroller/1621428-popoverpresentationcontroller" target="_blank" rel="external"><code>popoverPresentationController</code></a>的技巧导致 UIKit 抛出一个异常说“必须为这个弹窗提供位置信息”。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>我们发现当 UIKit 的视图控制器是从一个展示在常规宽度环境的紧凑宽度的环境中展示时行为会变得很混乱。弹窗展现的一般规则是在常规宽度下展示为弹窗，在紧凑宽度下为全屏（尽管结合当前上下环境更有意义）。操作列表和活动视图控制器的展示有点像弹窗的展示，但不要完全按照一般的规则来展示。</p>
+<p>实际的行为看起来像是和人机交互指南说的一样，并很大程度上忽略了特征集合的 Size 类。UIKit 不会在操作列表的异常警告上展现一个弹窗。Size 类并不能控制所有的东西。</p>
+<p>我们不能重现页面(Pages)的行为。对于我们来说，当一个表单展示一个活动视图控制器时，它将展示为弹窗。我把这个问题报告给了 Apple ：<a href="http://openradar.appspot.com/27448912" target="_blank" rel="external">rdar://27448912 Can’t show activity view controller filling a form sheet</a>。如果你知道解决这个问题的方法，<a href="https://twitter.com/qdoug" target="_blank" rel="external">麻烦在我的 Twitter 留言</a>。</p>
+
+	
+	
+	
+	
+</div>
+				
+				
+
+                <!-- Post Comments -->
+                
+    <!-- 使用多说评论 -->
+    <link rel="stylesheet" href="/css/duoshuo.min.css">
+<style>
+    #ds-thread #ds-reset .ds-post-button{
+        background-color: #0097A7 !important;
+    }
+    #ds-wrapper #ds-reset .ds-icons-32{
+        background-color: #0097A7 !important;
+    }
+    #ds-reset .ds-highlight {
+        color: #0097A7 !important;
+    }
+</style>
+<div id="comments">
+    <!-- 多说评论框 start -->
+        <div class="ds-thread" 
+            data-thread-key="2016/07/28/popovers-on-popovers/" 
+            data-url="http://llp0574.github.io/2016/07/28/popovers-on-popovers/"
+            data-title="iOS 开发，该如何解决弹窗的设计问题？"></div>
+    <!-- 多说评论框 end -->
+</div>
+
+
+
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    
+    <!-- Prev Nav -->
+    
+        <a href="/2016/09/12/the-art-of-designing-with-heart/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2016/07/27/use-typescript-to-write-angular-controller/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+        </div>
+    </div>
+
+				
+				
+					<!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay "></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored  sidebar-fixed-left" role="navigation">
+	<div id="sidebar-main">
+	    <!-- Sidebar Header -->
+		<div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+    <i class="material-icons">clear_all</i>
+    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="llp's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        llp0574@gmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+		<!-- Sidebar Navigation  -->
+		<ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+			
+                <li>
+                    <a href="mailto:llp0574@gmail.com" target="_blank" title="Email Me">
+						<i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    <li id="sidebar-first-li">
+        <a href="/" target="_self">
+            <i class="material-icons sidebar-material-icons">home</i>
+             主页
+        </a>
+    </li>
+
+    <!-- I'm Feeling Lucky -->
+<!--
+    <li class="dropdown">
+        <a href="" target="_self">
+            <i class="material-icons sidebar-material-icons">explore</i>
+             sidebar.imlucky
+        </a>
+    </li>
+-->
+
+	
+    <!-- Archives  -->
+    <li class="dropdown">
+        <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+            <i class="material-icons sidebar-material-icons">inbox</i>
+             归档
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+            <a class="sidebar_archives-link" href="/archives/2016/11/">十一月 2016<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">十月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">九月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">七月 2016<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/02/">二月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/01/">一月 2016<span class="sidebar_archives-count">2</span></a>
+        </ul>
+    </li>
+
+    <!-- Divider -->
+    <li class="divider"></li>
+
+
+    <!-- Pages  -->
+	
+		<li>
+			<a href="/about" title="关于我">
+				关于我
+			</a>
+		</li>
+	
+		<li>
+			<a href="/tags" title="标签云">
+				标签云
+			</a>
+		</li>
+	
+
+    <!-- Article Numebr  -->
+    <li>
+        <a href="/archives">
+             文章总数
+             <span class="sidebar-badge">14</span>
+        </a>
+    </li>
+</ul>
+
+		<!-- Sidebar Divider -->
+		<div class="sidebar-divider"></div>
+
+		<!-- Sidebar Footer -->
+		<!-- 
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持。 :) 
+-->
+
+<!-- Theme Material -->
+<a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+	<div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+		主题 - Material
+		<span class="sidebar-badge badge-circle">i</span>
+	</div>
+</a>
+
+<!-- Help & Support -->
+<!--
+<a href="mailto:hiviosey@gmail.com" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+		sidebar.help
+		<span class="mdl-button__ripple-container">
+			<span class="mdl-ripple"></span>
+		</span>
+	</div>
+</a>
+-->
+
+<!-- Feedback -->
+<!--
+<a href="https://github.com/viosey/hexo-theme-material/issues" target="_blank" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+         sidebar.feedback
+                    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+</a>
+-->
+
+<!-- Abount Theme -->
+<!--
+<a href="https://blog.viosey.com/index.php/Material.html" target="_blank" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+         sidebar.about_theme
+        <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+</a>-->
+
+	</div>
+    
+    <!-- Sidebar Sponsor -->
+    
+
+
+</aside>
+
+				
+				
+				
+					<!-- Footer Top Button -->
+					<div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+				
+				
+				<!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+	
+	
+		<!-- Paradox Footer Left Section -->
+		<div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+    
+    
+    <!-- Facebook -->
+    
+    
+    
+    <!-- Google + -->
+    
+    
+    
+    <!-- Weibo -->
+    
+    <a href="http://weibo.com/u/1806141607" target="view_window"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-weibo.png);">
+        <span class="visuallyhidden">Weibo</span>
+    </button></a>
+    
+    
+    <!-- Instagram -->
+    
+    
+    
+    <!-- Tumblr -->
+    
+    
+    
+    <!-- Github -->
+    
+    <a href="https://github.com/llp0574" target="view_window"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.png);">
+        <span class="visuallyhidden">Github</span>
+    </button></a>
+    
+</div>
+
+
+		<!--Copyright-->
+		<div id="copyright">Copyright&nbsp;©&nbsp;<script type="text/javascript">var fd = new Date();document.write(fd.getFullYear());</script>&nbsp;llp的程序猿之路</div>
+
+		<!-- Paradox Footer Right Section -->
+
+		<!-- 
+		I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+		It will not impact the appearance and can give developers a lot of support :)
+
+		很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+		它不会影响美观并可以给开发者很大的支持。 :) 
+		-->
+
+		<div class="mdl-mini-footer--right-section">
+			<div>
+				<div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+				<div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+			</div>
+		</div>
+	
+    
+</footer>
+                
+				<!-- Import File -->
+<script src="/js/highlight.min.js"></script>
+<script src="/js/js.min.js"></script>
+<script src="/js/nprogress.js"></script>
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    
+    $('#nprogress .bar').css({
+        'background': '#FF4081'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #FF4081, 0 0 15px #FF4081'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#FF4081',
+        'border-left-color': '#FF4081'
+    });
+    
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+    <!-- Leancloud -->
+	<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+	<script>
+		AV.initialize("dFsFONvyzhvCLBqr0vdTUuQI-gzGzoHsz", "gKQoW3SRT0IvN2krRAjKgAL2");
+	</script>
+    <script>
+	function showTime(Counter) {
+		var query = new AV.Query(Counter);
+		$(".leancloud-views_num").each(function() {
+			var url = $(this).attr("id").trim();
+			query.equalTo("url", url);
+			query.find({
+				success: function(results) {
+					if (results.length == 0) {
+						var content = '0 ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+						return;
+					}
+					for (var i = 0; i < results.length; i++) {
+						var object = results[i];
+						var content = object.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					}
+				},
+				error: function(object, error) {
+					console.log("Error: " + error.code + " " + error.message);
+				}
+			});
+
+		});
+	}
+
+	function addCount(Counter) {
+		var Counter = AV.Object.extend("Counter");
+		url = $(".leancloud-views_num").attr('id').trim();
+		title = $(".leancloud-views_num").attr('data-flag-title').trim();
+		var query = new AV.Query(Counter);
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length > 0) {
+					var counter = results[0];
+					counter.fetchWhenSave(true);
+					counter.increment("time");
+					counter.save(null, {
+						success: function(counter) {
+							var content =  counter.get('time') + ' ' + $(document.getElementById(url)).text();
+							$(document.getElementById(url)).text(content);
+						},
+						error: function(counter, error) {
+							console.log('Failed to save Visitor num, with error message: ' + error.message);
+						}
+					});
+				} else {
+					var newcounter = new Counter();
+					newcounter.set("title", title);
+					newcounter.set("url", url);
+					newcounter.set("time", 1);
+					newcounter.save(null, {
+						success: function(newcounter) {
+							console.log("newcounter.get('time')="+newcounter.get('time'));
+							var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
+							$(document.getElementById(url)).text(content);
+						},
+						error: function(newcounter, error) {
+							console.log('Failed to create');
+						}
+					});
+				}
+			},
+			error: function(error) {
+				console.log('Error:' + error.code + " " + error.message);
+			}
+		});
+	}
+	$(function() {
+		var Counter = AV.Object.extend("Counter");
+		if ($('.leancloud-views_num').length == 1) {
+			addCount(Counter);
+		} else if ($('.post-title-link').length > 1) {
+			showTime(Counter);
+		}
+	}); 
+</script>
+
+
+
+
+
+    <!-- 多说公共 js 代码 start -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"llp0574"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';ds.async = true;
+            ds.src = 'https://static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+             || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+    <!-- 多说公共 js 代码 end -->
+
+
+
+
+<!-- Swiftye -->
+
+
+<!-- Local Search-->
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $(".post-toc-wrap").parent(".mdl-menu__container").css("position", "fixed");
+    });
+</script>
+
+<!-- MathJax Load-->
+
+            </main>
+        </div>
+		
+    </body>
+		
+	
+</html>

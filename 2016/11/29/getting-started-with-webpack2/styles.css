@@ -1,0 +1,5 @@
+.svg-filter{
+    filter: invert(34%) sepia(2%) saturate(30%) hue-rotate(343deg) brightness(106%) contrast(89%);
+    width: 15px;
+    vertical-align: middle;
+}

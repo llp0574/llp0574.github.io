@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <!-- Title -->
+    
+    <title>
+        逐渐去掌握 React（作为一名 Angular 开发者） | llp的程序猿之路
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" sizes="192x192" href="/img/favicon.png">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Meta & INfo -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="llp">
+    <meta name="description" content="llp的程序猿之路走得磕磕绊绊">
+    <meta name="keywords" content="null">
+
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="llp的程序猿之路">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://llp0574.github.io">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="逐渐去掌握 React（作为一名 Angular 开发者） | llp的程序猿之路">
+    <meta property="og:description" content="llp的程序猿之路走得磕磕绊绊">
+
+     <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS -->
+    <link rel="stylesheet" href="/css/material.min.css">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+	body, html{
+		font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+	}
+	
+    a{
+        color: #00838F
+    }
+    
+    .mdl-card__media,
+    #search-label,
+    #search-form-label:after,
+    #scheme-Paradox .hot_tags-count,
+    #scheme-Paradox .sidebar_archives-count,
+    #scheme-Paradox .sidebar-colored .sidebar-header,
+    #scheme-Paradox .sidebar-colored .sidebar-badge{
+        background-color: #0097A7 !important
+    }
+    
+	/* Sidebar User Drop Down Menu Text Color */
+	#scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus{
+        color: #0097A7 !important
+    }
+    
+    #post_entry-right-info,
+    .sidebar-colored .sidebar-nav li:hover > a,
+    .sidebar-colored .sidebar-nav li:hover > a i,
+    .sidebar-colored .sidebar-nav li > a:hover,
+    .sidebar-colored .sidebar-nav li > a:hover i,
+    .sidebar-colored .sidebar-nav li > a:focus i,
+    .sidebar-colored .sidebar-nav > .open > a,
+    .sidebar-colored .sidebar-nav > .open > a:hover,
+    .sidebar-colored .sidebar-nav > .open > a:focus,
+    #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a{
+        color: #0097A7 !important
+    }
+    
+    .toTop{
+        background: #757575 !important
+    }
+		
+	.material-layout .material-post>.material-nav,
+	.material-layout .material-index>.material-nav,
+	.material-nav a{
+		color: #757575;
+	}
+		
+	#scheme-Paradox .MD-burger-layer {
+		background-color: #757575;
+	}
+
+	#scheme-Paradox #post-toc-trigger-btn{
+		color: #757575;
+	}
+	
+	.post-toc a:hover{
+		color: #00838F;
+		text-decoration: underline;
+	}
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+        body{
+            background-color: #F5F5F5
+        }
+		
+		/* blog_info bottom background */
+        #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+            background-color: #fff;
+        }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+        .fade {
+            transition: all 800ms linear;
+            -webkit-transform: translate3d(0,0,0);
+            -moz-transform: translate3d(0,0,0);
+            -ms-transform: translate3d(0,0,0);
+            -o-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+            opacity: 1;
+        }
+
+        .fade.out{
+            opacity: 0;
+        }
+    </style>
+
+	<script src="/js/jquery.min.js"></script>
+
+	<link rel="stylesheet" href="/css/highlight/solarized-white.css">
+
+
+	<!-- UC Browser Compatible-->
+	<script>
+		var agent = navigator.userAgent.toLowerCase();
+		if(agent.indexOf('ucbrowser')>0) {
+			document.write('<link rel="stylesheet" href="/css/uc.css">');
+		   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+		}
+	</script>
+
+    <!-- Custom Head -->
+    
+
+    
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?73bb3e6eceb47c2e2f8f79e3bf611006";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+</head>
+	
+	
+
+    <body id="scheme-Paradox">
+
+		
+        <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+				
+			
+			
+            <!-- Main Container -->
+            <main class="material-layout__content" id="main">
+				
+                <!-- Top Anchor -->
+                <div id="top"></div>
+				
+				
+                <!-- Hamburger Button -->
+                <button class="MD-burger-icon sidebar-toggle">
+                    <span class="MD-burger-layer"></span>
+                </button>
+				
+				
+                
+	<!-- Back Button -->
+<!--
+	<div class="material-back" id="backhome-div" tabindex="0">
+		<a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="#" onclick="window.history.back();return false;" target="_self" role="button" data-upgraded=",MaterialButton,MaterialRipple">
+			<i class="material-icons" role="presentation">arrow_back</i>
+			<span class="mdl-button__ripple-container">
+				<span class="mdl-ripple"></span>
+			</span>
+		</a>
+	</div>			
+-->
+	<!-- Left aligned menu below button -->
+	<button id="post-toc-trigger-btn"
+			class="mdl-button mdl-js-button mdl-button--icon">
+	  <i class="material-icons">format_list_numbered</i>
+	</button>
+
+	<ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+		for="post-toc-trigger-btn">
+			
+			<ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#propTypes"><span class="post-toc-number">1.</span> <span class="post-toc-text">propTypes</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#props"><span class="post-toc-number">2.</span> <span class="post-toc-text">props</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用组件"><span class="post-toc-number">3.</span> <span class="post-toc-text">使用组件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#JS里的HTML？！"><span class="post-toc-number">4.</span> <span class="post-toc-text">JS里的HTML？！</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#JSX-编译成-Javascript"><span class="post-toc-number">5.</span> <span class="post-toc-text">JSX 编译成 Javascript</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#但…关注点的分离！"><span class="post-toc-number">6.</span> <span class="post-toc-text">但…关注点的分离！</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#试试看"><span class="post-toc-number">7.</span> <span class="post-toc-text">试试看</span></a></li></ol>
+		
+<!--			<li class="mdl-menu__item">Some Action</li>-->
+	</ul>
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+		
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+	<!-- Paradox Post Header -->
+	
+		<!-- Custom Thumbnail -->
+		<div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/angulartoreact.png)">
+	
+        <p class="article-headline-p">
+            逐渐去掌握 React（作为一名 Angular 开发者）
+        </p>
+    </div>
+
+	
+
+				
+				
+					<!-- Paradox Post Info -->
+					<div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>llp</strong>
+        <span>7月 21, 2016</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <span class="post-count">共计&nbsp;2,445&nbsp;字&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+    <span class="post-read">预计阅读&nbsp;9&nbsp;分钟&nbsp;&nbsp;</span>
+    <!-- Favorite -->
+<!--
+    <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+        <i class="material-icons" role="presentation">favorite</i>
+        <span class="visuallyhidden">favorites</span>
+    </button>
+-->
+
+    <!-- Tags (bookmark) -->
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/AngularJS/">AngularJS</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/JavaScript/">JavaScript</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/React/">React</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/前端/">前端</a>
+    </ul>
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+    
+    <!-- Leancloud Views -->
+    <a class="post_share-link" href="#">
+        <li class="mdl-menu__item">
+            <span id="/2016/07/21/angular-to-react/" class="leancloud-views_num" data-flag-title="逐渐去掌握 React（作为一名 Angular 开发者）">
+     &nbsp;浏览量
+</span>
+        </li>
+    </a>
+    
+    
+    
+    
+    <!-- Share Twitter -->
+    <a class="post_share-link" href="https://twitter.com/intent/tweet?text=逐渐去掌握 React（作为一名 Angular 开发者）&url=http://llp0574.github.io//2016/07/21/angular-to-react/index.html&via=llp" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Twitter
+        </li>
+    </a>
+    
+    <!-- Share Google+ -->
+    <a class="post_share-link" href="https://plus.google.com/share?url=http://llp0574.github.io//2016/07/21/angular-to-react/index.html" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Google+
+        </li>
+    </a>
+    
+    <!-- Share Weibo -->
+    <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=逐渐去掌握 React（作为一名 Angular 开发者）&url=http://llp0574.github.io//2016/07/21/angular-to-react/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <li class="mdl-menu__item">
+            分享到微博
+        </li>
+    </a>
+</ul>
+</div>
+				
+
+                <!-- Post Content -->
+                <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+	
+		<blockquote>
+<p>原文链接 : <a href="https://daveceddia.com/to-react-from-angular/" target="_blank" rel="external">Getting to Grips with React (as an Angular developer)</a><br>原文作者 : <a href="https://daveceddia.com/" target="_blank" rel="external">DAVE CEDDIA</a><br>译者 : <a href="https://github.com/llp0574" target="_blank" rel="external">llp</a>（web前端领域）<br>译者注：翻译如有疏漏，欢迎指出！感谢！转载请保留此头部。</p>
+</blockquote>
+<p>你是一个对 React 感兴趣的 Angular 开发者吗？不用担心，这真的不会让你成为一个背叛者或其他什么，真的。</p>
+<p>或许你早就已经开始玩 React 了：阅读了 Facebook 的官方教程，创建了一些组件…</p>
+<p>也或许你正处于我几个月前处于的境地：对React完全没有经验，除了听说过它有多快，它有个虚拟 DOM 的概念，单向绑定，和一些像 <em>Flux</em> , <em>Redux</em> 和 <em>Reflux</em> 之类乱七八糟的东西。</p>
+<p>在接下来一系列的文章里我将尝试帮助你将你辛苦习来的 “Angular” 主义知识应用到 React 当中。</p>
+<p><img src="https://daveceddia.com/images/directives_eq_components@2x.png" alt="Angular to React"></p>
+<p>在 Angular 里，你可能已经习惯去编写各种指令 <code>directive</code>。如果你是按照<a href="https://medium.com/@bluepnume/sane-scalable-angular-apps-are-tricky-but-not-impossible-lessons-learned-from-paypal-checkout-c5320558d4ef" target="_blank" rel="external">流行的规范</a>去编码的话，相信你程序的各个部分都是由一个或多个指令构建而成，并到处都使用了隔离的作用域 <code>scope</code>（如果这听起来很熟悉但并不像你所做的话，或许你可以阅读一下<a href="https://daveceddia.com/convert-scope-to-controlleras/" target="_blank" rel="external">将scope转化为controllerAs</a>）。</p>
+<p>React 有着相同的概念：编写组件 <code>component</code>。将你的程序按功能拆分成组件块，并尽可能让每个组件块保持独立和可复用性。事实上，这个想法并不是 React 或 Angular 独创的 - 它只是一种很棒的软件开发实践方式。尽可能写一些简短并具备可复用性的代码（函数，组件，指令，随便你怎么称呼它们）。</p>
+<p>一个关键的差别在于 React 里 <strong>所有东西都是组件</strong> ，从根节点到下面所有。Angular 让你使用 <code>ng-controller</code> 去混合和匹配所有指令，并在之后特定地路由出各自的指令和模板… React 让这个事情变简单了一点。所有东西都是组件，页面，按钮甚至是路由，我们随后会讲到这些。</p>
+<p>好了，所以说 React 的“组件”是类似于“指令”的。那么它的代码看起来是怎样的呢？</p>
+<p>下面是一个展示歌曲名字的 Angular 指令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">angular.module(&apos;demo&apos;, []).directive(&apos;songName&apos;, function() &#123;</div><div class="line">  return &#123;</div><div class="line">    scope: &#123;</div><div class="line">      song: &apos;=&apos;</div><div class="line">    &#125;,</div><div class="line">    restrict: &apos;E&apos;,</div><div class="line">    template: &apos;&lt;span class=&quot;song-name&quot;&gt;&#123;&#123; ctrl.song.name &#125;&#125;&lt;/span&gt;&apos;,</div><div class="line">    controller: function() &#123;&#125;,</div><div class="line">    controllerAs: &apos;ctrl&apos;,</div><div class="line">    bindToController: true</div><div class="line">  &#125;;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>接下来是用 React 写的相同功能的组件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var SongName = React.createClass(&#123;</div><div class="line">  propTypes: &#123;</div><div class="line">    song: React.PropTypes.object.isRequired</div><div class="line">  &#125;,</div><div class="line">  render: function() &#123;</div><div class="line">    return &lt;span className=&apos;song-name&apos;&gt;&#123;this.props.song.name&#125;&lt;/span&gt;;</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>你马上就可以发现一些相似之处：它们都期望得到一个 <code>song</code> 对象，并都似乎有各种各样的模板。</p>
+<p>一些不同之处在于：React 相对 Angular 有着更少的代码。我敢说…更简洁了不是吗？React 里，期望的参数(<code>song</code>)有着某种类型验证，并且 HTML 没有引号！</p>
+<p>事实上那个看上去没加引号的 HTML 并不是真正的 HTML。（等下就会讲到）</p>
+<p><code>React.createClass</code> 和 <code>angular.directive</code> 类似 - 它创建了一个组件类。这个组件 <strong>必须</strong> 有一个 <code>render</code> 方法，<code>propTypes</code> 是一个可选对象，但最好把它写上。</p>
+<p>还是要对得起 Angular ，它的1.5版本其实介绍了一个 <code>component</code> 方法来缩短指令的长度，所以上面的指令可以简写成下面这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">angular.module(&apos;demo&apos;, []).component(&apos;songName&apos;, &#123;</div><div class="line">  bindings: &#123;</div><div class="line">    song: &apos;=&apos;</div><div class="line">  &#125;,</div><div class="line">  template: &apos;&lt;span class=&quot;song-name&quot;&gt;&#123;&#123; $ctrl.song.name &#125;&#125;&lt;/span&gt;&apos;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>更简单的写法。它甚至默认没有控制器！我推荐阅读一下<a href="https://toddmotto.com/exploring-the-angular-1-5-component-method/" target="_blank" rel="external">Todd Motto的关于组件方法的文章</a>并在你的代码里尝试一下。</p>
+<p>但它还是没有 <code>propTypes</code> …</p>
+<h3 id="propTypes"><a href="#propTypes" class="headerlink" title="propTypes"></a>propTypes</h3><p><img src="https://daveceddia.com/images/forgot_props@2x.png" alt=""></p>
+<p><code>propTypes</code>是一个验证组件所需参数的方法。你可以把个别参数标记为“必需的”或“可选的”（默认它们都是可选的），把它想象成类型检测吧。</p>
+<p>下面是真正很酷的部分：如果你指定了<code>propTypes</code>并说明一个参数是必需的（像上面那样），然后你忘记把它传进来，你就会在控制台得到一个提示信息。</p>
+<p>比起 Angular 这真的太棒了！当你忘记给指令传参时你就再也不怕莫名其妙地报错了。</p>
+<h3 id="props"><a href="#props" class="headerlink" title="props"></a>props</h3><p>什么是 “prop” ?它实际上是 “property” 的简写（感谢 React 的开发者，让我们再也不用打出 <code>this.properties</code> 或者 <code>this.propertyTypes</code> 了）。</p>
+<p>你可以把 <code>props</code> 看作是传给组件的属性。就像在指令里，你会在 HTML 元素里传递属性一样 - <code>props</code> 会在 JSX 元素里被当作属性传递。</p>
+<h3 id="使用组件"><a href="#使用组件" class="headerlink" title="使用组件"></a>使用组件</h3><p>下面是 Angular 里指令的使用方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// Notice how you have to mentally translate &apos;songName&apos; to &apos;song-name&apos;?</div><div class="line">&lt;song-name song=&quot;ctrl.song&quot;&gt;&lt;/song-name&gt;</div></pre></td></tr></table></figure>
+<p>然后下面是 React 里组件的使用方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// Notice how you DON&apos;T need to mentally translate SongName to anything?</div><div class="line">&lt;SongName song=&#123;theSong&#125;/&gt;</div></pre></td></tr></table></figure>
+<p>所有没有子元素的标签在 JSX 里都可以自终止。</p>
+<p>但让我们先花几分钟来讲讲 JSX吧…</p>
+<h3 id="JS里的HTML？！"><a href="#JS里的HTML？！" class="headerlink" title="JS里的HTML？！"></a>JS里的HTML？！</h3><p>在我对 React 了解不多的时候，我知道它是把 HTML 和 JS 混合起来的，然后我就想这样做真的很 <em>丑陋</em> 啊。我意思是，这对于最佳实践的思考来说已经很多年不会这么写了不是吗？从那段使用 jQuery 的黑暗日子开始，我们就已经知道在 JS 里写 HTML 元素是一件很取巧而且开发体验相当糟糕的事情，所以为什么 React 会再次犯同样的错误呢？</p>
+<p>所以，这里有两件事情需要搞清楚：</p>
+<ol>
+<li><strong>那并不是字符串</strong>。<br>你注意到它是怎么做到不给 “HTML” 加引号的吗？那是因为它并不是 HTML。不加引号也并不是一种语法糖，React 是不会将那个东西转换成 HTML 的。</li>
+<li><strong>那并不是HTML</strong>。<br>那是 <em>JSX</em> 。我知道它长得很像 HTML ，马上你可能会想：“JSX嘛 …只是对 HTML 做了一些细微的改变然后换了个名字而已”，好吧，你也可以那么说。我倒觉得它是给我们提供了一种用函数调用去创建 DOM 元素的语法糖。</li>
+</ol>
+<h3 id="JSX-编译成-Javascript"><a href="#JSX-编译成-Javascript" class="headerlink" title="JSX 编译成 Javascript"></a>JSX 编译成 Javascript</h3><p>创建 DOM 元素的函数调用？是的，看看下面的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// This JSX...</div><div class="line">&lt;span className=&apos;song-name&apos;&gt;&#123;this.props.song.name&#125;&lt;/span&gt;</div><div class="line"></div><div class="line">// Compiles to this function call:</div><div class="line">React.createElement(&apos;span&apos;, &#123;className: &apos;song-name&apos;&#125;, this.props.song.name);</div><div class="line">// React.createElement(&apos;tagName&apos;, props, children);</div></pre></td></tr></table></figure>
+<p>看起来还挺有道理的，不是吗？ HTML 创建嵌套的 DOM 节点，那我们就用嵌套的函数调用替代了嵌套的 DOM 节点…</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">// This is valid JSX:</div><div class="line">&lt;div&gt;</div><div class="line">  &lt;span className=&apos;greeting&apos;&gt;</div><div class="line">    &lt;strong&gt;Hello&lt;/strong&gt;</div><div class="line">    &lt;strong&gt;World&lt;/strong&gt;</div><div class="line">  &lt;/span&gt;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">// ...which compiles to this call:</div><div class="line">React.createElement(&apos;div&apos;, null,</div><div class="line">  React.createElement(&apos;span&apos;, &#123;className: &apos;greeting&apos;&#125;,</div><div class="line">      React.createElement(&apos;strong&apos;, null, &apos;Hello&apos;),</div><div class="line">      React.createElement(&apos;strong&apos;, null, &apos;World&apos;)</div><div class="line">    ));</div></pre></td></tr></table></figure>
+<p>实现上来说，这些 <code>React.createElement</code> 方法并没有创建真正的 DOM 节点，它们创建了虚拟的 DOM 节点。</p>
+<h3 id="但…关注点的分离！"><a href="#但…关注点的分离！" class="headerlink" title="但…关注点的分离！"></a>但…关注点的分离！</h3><p>所以说我们并不是把 HTML 字符串写到 Javascript 里的！</p>
+<p>但代码逻辑始终还是和表现层混合起来的！那可不能算对！这么多年的软件开发实践告诉我们这样做是很不好的。放心，现在只是还没做完呢，你并没有把视图和逻辑混合起来。</p>
+<p>我认为这是一种类似“<a href="https://en.wikipedia.org/wiki/Cargo_cult_programming" target="_blank" rel="external">货物崇拜</a>”的东西，我们经常在没真正搞清楚为什么的情况下去赞同和执行。有很多很好的理由去说明为什么需要把逻辑和视图层给分离开，但当你回头再看会发现同样也有很多很好的理由去合并它们。</p>
+<p>或许你已经写过一些带有控制器和分离的模板文件的 Angular 指令了是吧？</p>
+<p>告诉我你有多么经常在看不到或者无法修改控制器的情况下去到模板文件里去修改一些东西？又有多么经常在没有接触到模板的情况下去修改控制器？</p>
+<p>这些看上去算是你对关注点的分离吗？</p>
+<p>我们喜欢把 JS 和 HTML 分离到不同的文件里去让它们“关注点分离”，可复用性我们来了！</p>
+<p>但其实它们很少会那样工作。一个指令的控制器和模板通常会紧紧关联在一起，所以很自然地，它们就像是硬币的两面。把代码分离到不同的文件里并不会自动导致关注点分离。</p>
+<p>如果你还没注意到的话，其实我是想尝试通过上面的说法告诉你模板和逻辑控制其实是可以共存在一个文件里的，而且这样做或许看起来更有道理一些。</p>
+<h3 id="试试看"><a href="#试试看" class="headerlink" title="试试看"></a>试试看</h3><p>我敢打赌你还是充满疑惑。正常，我曾经也是的。</p>
+<p>个人来说，我发现从长期以来信服的理论当中跳出来到一个看似完全相反的位置确实是一件相当困难的事情。我试过亲自去尝试那么做并证明给自己看这个新方法并不是那么糟糕。</p>
+<p>希望你也可以去做同样的事情，只需要一点点时间。去尝试一下 <a href="https://facebook.github.io/react/docs/tutorial.html" target="_blank" rel="external">React 的官方教程</a>（不需要什么乱七八糟的工具 - 下载并运行他们的服务就可以开始写代码了），或者也可以试一下我的<a href="https://daveceddia.com/test-drive-react/" target="_blank" rel="external">三分钟输出 Hello World 教程</a>（不需要编译哦！）。</p>
+<p>或许就可以像我做的那样，你会发现写 React 组件确实很有意思。又或者你会发现 React 并不是你想要的东西，但至少你尝试并验证过了。</p>
+<p>如果你决定使用它了，那就回来这儿吧，我等你！</p>
+
+	
+	
+	
+	
+</div>
+				
+				
+
+                <!-- Post Comments -->
+                
+    <!-- 使用多说评论 -->
+    <link rel="stylesheet" href="/css/duoshuo.min.css">
+<style>
+    #ds-thread #ds-reset .ds-post-button{
+        background-color: #0097A7 !important;
+    }
+    #ds-wrapper #ds-reset .ds-icons-32{
+        background-color: #0097A7 !important;
+    }
+    #ds-reset .ds-highlight {
+        color: #0097A7 !important;
+    }
+</style>
+<div id="comments">
+    <!-- 多说评论框 start -->
+        <div class="ds-thread" 
+            data-thread-key="2016/07/21/angular-to-react/" 
+            data-url="http://llp0574.github.io/2016/07/21/angular-to-react/"
+            data-title="逐渐去掌握 React（作为一名 Angular 开发者）"></div>
+    <!-- 多说评论框 end -->
+</div>
+
+
+
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    
+    <!-- Prev Nav -->
+    
+        <a href="/2016/07/22/angular-controller-data-share/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2016/07/20/core-plot/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+        </div>
+    </div>
+
+				
+				
+					<!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay "></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored  sidebar-fixed-left" role="navigation">
+	<div id="sidebar-main">
+	    <!-- Sidebar Header -->
+		<div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+    <i class="material-icons">clear_all</i>
+    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="llp's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        llp0574@gmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+		<!-- Sidebar Navigation  -->
+		<ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+			
+                <li>
+                    <a href="mailto:llp0574@gmail.com" target="_blank" title="Email Me">
+						<i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    <li id="sidebar-first-li">
+        <a href="/" target="_self">
+            <i class="material-icons sidebar-material-icons">home</i>
+             主页
+        </a>
+    </li>
+
+    <!-- I'm Feeling Lucky -->
+<!--
+    <li class="dropdown">
+        <a href="" target="_self">
+            <i class="material-icons sidebar-material-icons">explore</i>
+             sidebar.imlucky
+        </a>
+    </li>
+-->
+
+	
+    <!-- Archives  -->
+    <li class="dropdown">
+        <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+            <i class="material-icons sidebar-material-icons">inbox</i>
+             归档
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+            <a class="sidebar_archives-link" href="/archives/2016/11/">十一月 2016<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">十月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">九月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">七月 2016<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/02/">二月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/01/">一月 2016<span class="sidebar_archives-count">2</span></a>
+        </ul>
+    </li>
+
+    <!-- Divider -->
+    <li class="divider"></li>
+
+
+    <!-- Pages  -->
+	
+		<li>
+			<a href="/about" title="关于我">
+				关于我
+			</a>
+		</li>
+	
+		<li>
+			<a href="/tags" title="标签云">
+				标签云
+			</a>
+		</li>
+	
+
+    <!-- Article Numebr  -->
+    <li>
+        <a href="/archives">
+             文章总数
+             <span class="sidebar-badge">14</span>
+        </a>
+    </li>
+</ul>
+
+		<!-- Sidebar Divider -->
+		<div class="sidebar-divider"></div>
+
+		<!-- Sidebar Footer -->
+		<!-- 
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持。 :) 
+-->
+
+<!-- Theme Material -->
+<a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+	<div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+		主题 - Material
+		<span class="sidebar-badge badge-circle">i</span>
+	</div>
+</a>
+
+<!-- Help & Support -->
+<!--
+<a href="mailto:hiviosey@gmail.com" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+		sidebar.help
+		<span class="mdl-button__ripple-container">
+			<span class="mdl-ripple"></span>
+		</span>
+	</div>
+</a>
+-->
+
+<!-- Feedback -->
+<!--
+<a href="https://github.com/viosey/hexo-theme-material/issues" target="_blank" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+         sidebar.feedback
+                    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+</a>
+-->
+
+<!-- Abount Theme -->
+<!--
+<a href="https://blog.viosey.com/index.php/Material.html" target="_blank" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+         sidebar.about_theme
+        <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+</a>-->
+
+	</div>
+    
+    <!-- Sidebar Sponsor -->
+    
+
+
+</aside>
+
+				
+				
+				
+					<!-- Footer Top Button -->
+					<div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+				
+				
+				<!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+	
+	
+		<!-- Paradox Footer Left Section -->
+		<div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+    
+    
+    <!-- Facebook -->
+    
+    
+    
+    <!-- Google + -->
+    
+    
+    
+    <!-- Weibo -->
+    
+    <a href="http://weibo.com/u/1806141607" target="view_window"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-weibo.png);">
+        <span class="visuallyhidden">Weibo</span>
+    </button></a>
+    
+    
+    <!-- Instagram -->
+    
+    
+    
+    <!-- Tumblr -->
+    
+    
+    
+    <!-- Github -->
+    
+    <a href="https://github.com/llp0574" target="view_window"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.png);">
+        <span class="visuallyhidden">Github</span>
+    </button></a>
+    
+</div>
+
+
+		<!--Copyright-->
+		<div id="copyright">Copyright&nbsp;©&nbsp;<script type="text/javascript">var fd = new Date();document.write(fd.getFullYear());</script>&nbsp;llp的程序猿之路</div>
+
+		<!-- Paradox Footer Right Section -->
+
+		<!-- 
+		I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+		It will not impact the appearance and can give developers a lot of support :)
+
+		很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+		它不会影响美观并可以给开发者很大的支持。 :) 
+		-->
+
+		<div class="mdl-mini-footer--right-section">
+			<div>
+				<div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+				<div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+			</div>
+		</div>
+	
+    
+</footer>
+                
+				<!-- Import File -->
+<script src="/js/highlight.min.js"></script>
+<script src="/js/js.min.js"></script>
+<script src="/js/nprogress.js"></script>
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    
+    $('#nprogress .bar').css({
+        'background': '#FF4081'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #FF4081, 0 0 15px #FF4081'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#FF4081',
+        'border-left-color': '#FF4081'
+    });
+    
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+    <!-- Leancloud -->
+	<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+	<script>
+		AV.initialize("dFsFONvyzhvCLBqr0vdTUuQI-gzGzoHsz", "gKQoW3SRT0IvN2krRAjKgAL2");
+	</script>
+    <script>
+	function showTime(Counter) {
+		var query = new AV.Query(Counter);
+		$(".leancloud-views_num").each(function() {
+			var url = $(this).attr("id").trim();
+			query.equalTo("url", url);
+			query.find({
+				success: function(results) {
+					if (results.length == 0) {
+						var content = '0 ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+						return;
+					}
+					for (var i = 0; i < results.length; i++) {
+						var object = results[i];
+						var content = object.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					}
+				},
+				error: function(object, error) {
+					console.log("Error: " + error.code + " " + error.message);
+				}
+			});
+
+		});
+	}
+
+	function addCount(Counter) {
+		var Counter = AV.Object.extend("Counter");
+		url = $(".leancloud-views_num").attr('id').trim();
+		title = $(".leancloud-views_num").attr('data-flag-title').trim();
+		var query = new AV.Query(Counter);
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length > 0) {
+					var counter = results[0];
+					counter.fetchWhenSave(true);
+					counter.increment("time");
+					counter.save(null, {
+						success: function(counter) {
+							var content =  counter.get('time') + ' ' + $(document.getElementById(url)).text();
+							$(document.getElementById(url)).text(content);
+						},
+						error: function(counter, error) {
+							console.log('Failed to save Visitor num, with error message: ' + error.message);
+						}
+					});
+				} else {
+					var newcounter = new Counter();
+					newcounter.set("title", title);
+					newcounter.set("url", url);
+					newcounter.set("time", 1);
+					newcounter.save(null, {
+						success: function(newcounter) {
+							console.log("newcounter.get('time')="+newcounter.get('time'));
+							var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
+							$(document.getElementById(url)).text(content);
+						},
+						error: function(newcounter, error) {
+							console.log('Failed to create');
+						}
+					});
+				}
+			},
+			error: function(error) {
+				console.log('Error:' + error.code + " " + error.message);
+			}
+		});
+	}
+	$(function() {
+		var Counter = AV.Object.extend("Counter");
+		if ($('.leancloud-views_num').length == 1) {
+			addCount(Counter);
+		} else if ($('.post-title-link').length > 1) {
+			showTime(Counter);
+		}
+	}); 
+</script>
+
+
+
+
+
+    <!-- 多说公共 js 代码 start -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"llp0574"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';ds.async = true;
+            ds.src = 'https://static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+             || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+    <!-- 多说公共 js 代码 end -->
+
+
+
+
+<!-- Swiftye -->
+
+
+<!-- Local Search-->
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $(".post-toc-wrap").parent(".mdl-menu__container").css("position", "fixed");
+    });
+</script>
+
+<!-- MathJax Load-->
+
+            </main>
+        </div>
+		
+    </body>
+		
+	
+</html>

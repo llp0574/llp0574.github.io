@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <!-- Title -->
+    
+    <title>
+        一个健壮且可扩展的 CSS 架构所需的8个简单规则 | llp的程序猿之路
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" sizes="192x192" href="/img/favicon.png">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Meta & INfo -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="llp">
+    <meta name="description" content="llp的程序猿之路走得磕磕绊绊">
+    <meta name="keywords" content="null">
+
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="llp的程序猿之路">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://llp0574.github.io">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="一个健壮且可扩展的 CSS 架构所需的8个简单规则 | llp的程序猿之路">
+    <meta property="og:description" content="llp的程序猿之路走得磕磕绊绊">
+
+     <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS -->
+    <link rel="stylesheet" href="/css/material.min.css">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+	body, html{
+		font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+	}
+	
+    a{
+        color: #00838F
+    }
+    
+    .mdl-card__media,
+    #search-label,
+    #search-form-label:after,
+    #scheme-Paradox .hot_tags-count,
+    #scheme-Paradox .sidebar_archives-count,
+    #scheme-Paradox .sidebar-colored .sidebar-header,
+    #scheme-Paradox .sidebar-colored .sidebar-badge{
+        background-color: #0097A7 !important
+    }
+    
+	/* Sidebar User Drop Down Menu Text Color */
+	#scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus{
+        color: #0097A7 !important
+    }
+    
+    #post_entry-right-info,
+    .sidebar-colored .sidebar-nav li:hover > a,
+    .sidebar-colored .sidebar-nav li:hover > a i,
+    .sidebar-colored .sidebar-nav li > a:hover,
+    .sidebar-colored .sidebar-nav li > a:hover i,
+    .sidebar-colored .sidebar-nav li > a:focus i,
+    .sidebar-colored .sidebar-nav > .open > a,
+    .sidebar-colored .sidebar-nav > .open > a:hover,
+    .sidebar-colored .sidebar-nav > .open > a:focus,
+    #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a{
+        color: #0097A7 !important
+    }
+    
+    .toTop{
+        background: #757575 !important
+    }
+		
+	.material-layout .material-post>.material-nav,
+	.material-layout .material-index>.material-nav,
+	.material-nav a{
+		color: #757575;
+	}
+		
+	#scheme-Paradox .MD-burger-layer {
+		background-color: #757575;
+	}
+
+	#scheme-Paradox #post-toc-trigger-btn{
+		color: #757575;
+	}
+	
+	.post-toc a:hover{
+		color: #00838F;
+		text-decoration: underline;
+	}
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+        body{
+            background-color: #F5F5F5
+        }
+		
+		/* blog_info bottom background */
+        #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+            background-color: #fff;
+        }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+        .fade {
+            transition: all 800ms linear;
+            -webkit-transform: translate3d(0,0,0);
+            -moz-transform: translate3d(0,0,0);
+            -ms-transform: translate3d(0,0,0);
+            -o-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+            opacity: 1;
+        }
+
+        .fade.out{
+            opacity: 0;
+        }
+    </style>
+
+	<script src="/js/jquery.min.js"></script>
+
+	<link rel="stylesheet" href="/css/highlight/solarized-white.css">
+
+
+	<!-- UC Browser Compatible-->
+	<script>
+		var agent = navigator.userAgent.toLowerCase();
+		if(agent.indexOf('ucbrowser')>0) {
+			document.write('<link rel="stylesheet" href="/css/uc.css">');
+		   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+		}
+	</script>
+
+    <!-- Custom Head -->
+    
+
+    
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?73bb3e6eceb47c2e2f8f79e3bf611006";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+</head>
+	
+	
+
+    <body id="scheme-Paradox">
+
+		
+        <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+				
+			
+			
+            <!-- Main Container -->
+            <main class="material-layout__content" id="main">
+				
+                <!-- Top Anchor -->
+                <div id="top"></div>
+				
+				
+                <!-- Hamburger Button -->
+                <button class="MD-burger-icon sidebar-toggle">
+                    <span class="MD-burger-layer"></span>
+                </button>
+				
+				
+                
+	<!-- Back Button -->
+<!--
+	<div class="material-back" id="backhome-div" tabindex="0">
+		<a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="#" onclick="window.history.back();return false;" target="_self" role="button" data-upgraded=",MaterialButton,MaterialRipple">
+			<i class="material-icons" role="presentation">arrow_back</i>
+			<span class="mdl-button__ripple-container">
+				<span class="mdl-ripple"></span>
+			</span>
+		</a>
+	</div>			
+-->
+	<!-- Left aligned menu below button -->
+	<button id="post-toc-trigger-btn"
+			class="mdl-button mdl-js-button mdl-button--icon">
+	  <i class="material-icons">format_list_numbered</i>
+	</button>
+
+	<ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+		for="post-toc-trigger-btn">
+			
+			<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#介绍"><span class="post-toc-number">1.</span> <span class="post-toc-text">介绍</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#主要目标"><span class="post-toc-number">2.</span> <span class="post-toc-text">主要目标</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#具体的规则"><span class="post-toc-number">3.</span> <span class="post-toc-text">具体的规则</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-总是类名优先"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">1. 总是类名优先</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-组件代码放在一起"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">2. 组件代码放在一起</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-使用一致的类命名空间"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">3. 使用一致的类命名空间</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-维护命名空间和文件名之间的严格映射"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">4. 维护命名空间和文件名之间的严格映射</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-避免组件外的样式泄露"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">5. 避免组件外的样式泄露</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#JS-端的快速一览"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">JS 端的快速一览</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-避免组件内的样式泄露"><span class="post-toc-number">3.7.</span> <span class="post-toc-text">6. 避免组件内的样式泄露</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#出于好奇的题外话：预防泄露样式进入组件"><span class="post-toc-number">3.8.</span> <span class="post-toc-text">出于好奇的题外话：预防泄露样式进入组件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-遵守组件边界"><span class="post-toc-number">3.9.</span> <span class="post-toc-text">7. 遵守组件边界</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-松散地整合外部样式"><span class="post-toc-number">3.10.</span> <span class="post-toc-text">8. 松散地整合外部样式</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#在结束前"><span class="post-toc-number">4.</span> <span class="post-toc-text">在结束前</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#结语"><span class="post-toc-number">5.</span> <span class="post-toc-text">结语</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#证书"><span class="post-toc-number">6.</span> <span class="post-toc-text">证书</span></a></li></ol>
+		
+<!--			<li class="mdl-menu__item">Some Action</li>-->
+	</ul>
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+		
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+	<!-- Paradox Post Header -->
+	
+		<!-- Custom Thumbnail -->
+		<div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/css.png)">
+	
+        <p class="article-headline-p">
+            一个健壮且可扩展的 CSS 架构所需的8个简单规则
+        </p>
+    </div>
+
+	
+
+				
+				
+					<!-- Paradox Post Info -->
+					<div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>llp</strong>
+        <span>11月 17, 2016</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <span class="post-count">共计&nbsp;7,371&nbsp;字&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+    <span class="post-read">预计阅读&nbsp;26&nbsp;分钟&nbsp;&nbsp;</span>
+    <!-- Favorite -->
+<!--
+    <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+        <i class="material-icons" role="presentation">favorite</i>
+        <span class="visuallyhidden">favorites</span>
+    </button>
+-->
+
+    <!-- Tags (bookmark) -->
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/css/">css</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/前端/">前端</a>
+    </ul>
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+    
+    <!-- Leancloud Views -->
+    <a class="post_share-link" href="#">
+        <li class="mdl-menu__item">
+            <span id="/2016/11/17/css-architecture/" class="leancloud-views_num" data-flag-title="一个健壮且可扩展的 CSS 架构所需的8个简单规则">
+     &nbsp;浏览量
+</span>
+        </li>
+    </a>
+    
+    
+    
+    
+    <!-- Share Twitter -->
+    <a class="post_share-link" href="https://twitter.com/intent/tweet?text=一个健壮且可扩展的 CSS 架构所需的8个简单规则&url=http://llp0574.github.io//2016/11/17/css-architecture/index.html&via=llp" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Twitter
+        </li>
+    </a>
+    
+    <!-- Share Google+ -->
+    <a class="post_share-link" href="https://plus.google.com/share?url=http://llp0574.github.io//2016/11/17/css-architecture/index.html" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Google+
+        </li>
+    </a>
+    
+    <!-- Share Weibo -->
+    <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=一个健壮且可扩展的 CSS 架构所需的8个简单规则&url=http://llp0574.github.io//2016/11/17/css-architecture/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <li class="mdl-menu__item">
+            分享到微博
+        </li>
+    </a>
+</ul>
+</div>
+				
+
+                <!-- Post Content -->
+                <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+	
+		<blockquote>
+<ul>
+<li>原文地址：<a href="https://github.com/jareware/css-architecture" target="_blank" rel="external">8 simple rules for a robust, scalable CSS architecture</a></li>
+<li>原文作者：<a href="https://github.com/jareware" target="_blank" rel="external">Jarno Rantanen</a></li>
+<li>译文出自：<a href="https://github.com/xitu/gold-miner" target="_blank" rel="external">掘金翻译计划</a></li>
+<li>译者：<a href="https://github.com/llp0574" target="_blank" rel="external">linpu.li</a></li>
+<li>校对者：<a href="https://github.com/galenyuan" target="_blank" rel="external">galenyuan</a>，<a href="https://github.com/StarCrew" target="_blank" rel="external">StarCrew</a></li>
+</ul>
+</blockquote>
+<p>这是一份清单，里面列出了在我多年的专业 Web 开发期间，在复杂的大型 Web 项目中学习到的有关管理 CSS 的事项。我多次被人问起这些东西，所以写一份文档记录下来听起来是个不错的主意。</p>
+<p>我已经尽力尝试用简短的语言去解释它们了，然而这篇文章本质上还是长文慎入：</p>
+<ol>
+<li><a href="#1-always-prefer-classes"><strong>总是类名优先</strong></a></li>
+<li><a href="#2-co-locate-component-code"><strong>组件代码放在一起</strong></a></li>
+<li><a href="#3-use-consistent-class-namespacing"><strong>使用一致的类命名空间</strong></a></li>
+<li><a href="#4-maintain-a-strict-mapping-between-namespaces-and-filenames"><strong>维护命名空间和文件名之间的严格映射</strong></a></li>
+<li><a href="#5-prevent-leaking-styles-outside-the-component"><strong>避免组件外的样式泄露</strong></a></li>
+<li><a href="#6-prevent-leaking-styles-inside-the-component"><strong>避免组件内的样式泄露</strong></a></li>
+<li><a href="#7-respect-component-boundaries"><strong>遵守组件边界</strong></a></li>
+<li><a href="#8-integrate-external-styles-loosely"><strong>松散地整合外部样式</strong></a></li>
+</ol>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a><a href="#introduction"></a>介绍</h2><p>如果你正在开发前端应用，那么最后你肯定需要关心样式方面的问题。尽管开发前端应用的技术水平持续增长，CSS 仍然是给 Web 应用赋予样式的唯一方式（而且最近，在某些情况下，<a href="https://facebook.github.io/react-native/" target="_blank" rel="external">原生应用也一样</a>）。目前在市面上有两大类样式解决方案，即：</p>
+<ul>
+<li>CSS 预编译器，已经存在很长时间了（如 <a href="http://sass-lang.com/" target="_blank" rel="external">SASS</a>、<a href="http://lesscss.org/" target="_blank" rel="external">LESS</a> 及其他）</li>
+<li>CSS-in-JS 库，一个相对较新的样式解决方案（如 <a href="https://github.com/blakeembrey/free-style" target="_blank" rel="external">free-style</a> 和很多<a href="https://github.com/MicheleBertoli/css-in-js" target="_blank" rel="external">其他的</a>）</li>
+</ul>
+<p>两种方法间的抉择不在本文过多赘述，并且像往常一样，它们都有各自的支持者和反对者。说完这些，在下面的内容里，我将会专注于第一种方法，所以如果你选择了后者，那么这篇文章可能就没什么吸引力了。</p>
+<h2 id="主要目标"><a href="#主要目标" class="headerlink" title="主要目标"></a><a href="#high-level-goals"></a>主要目标</h2><p>但更具体地说，怎样才能被称为健壮且可扩展呢？</p>
+<ul>
+<li><strong>面向组件</strong> - 处理 UI 复杂性的最佳实践就是将 UI 分割成一个个的小组件。如果你正在使用一个合理的框架，JavaScript 方面就将原生支持（组件化）。举个例子，<a href="https://facebook.github.io/react/" target="_blank" rel="external">React</a> 就鼓励高度组件化和分割。我们希望有一个 CSS 架构去匹配。</li>
+<li><strong>沙箱化（Sandboxed）</strong> - 如果一个组件的样式会对其他组件产生不必要以及意想不到的影响，那么将 UI 分割成组件并不会对我们的认知负荷起到帮助作用。就这方面而言，CSS的基本功能，如<a href="https://developer.mozilla.org/en/docs/Web/Guide/CSS/Getting_started/Cascading_and_inheritance" target="_blank" rel="external">层叠（cascade）</a>以及一个针对标识符的独立全局命名空间，都会给你造成负担。如果你熟悉 Web 组件规范的话，那么就可以认为它（此架构）有着 <a href="http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-201/" target="_blank" rel="external">Shadow DOM 的样式隔离好处</a> ，而无需关心浏览器支持（或者规范是否经过严格的推敲）。</li>
+<li><strong>方便</strong> - 我们想要所有好的东西，并且还不想因它们而产生更多的工作。也就是说，我们不想因为采用这个架构而让我们的开发者体验变得更糟。可能的话，我们想（开发者体验）变得更好。</li>
+<li><strong>安全性错误</strong> - 结合之前的一点，我们想要所有东西都可以<strong>默认局部化</strong>，并且全局化只是一个特例。工程师都是很懒的，所以为了得到最容易的方法往往都需要使用合适的解决方案。</li>
+</ul>
+<h2 id="具体的规则"><a href="#具体的规则" class="headerlink" title="具体的规则"></a><a href="#concrete-rules"></a>具体的规则</h2><h3 id="1-总是类名优先"><a href="#1-总是类名优先" class="headerlink" title="1. 总是类名优先"></a><a href="#1-always-prefer-classes"></a>1. 总是类名优先</h3><p>这是显而易见的。</p>
+<p>不要去使用 ID 选择器 (如 <code>#header</code>)，因为每当你认为某样东西只会有一个实例的时候，<a href="https://twitter.com/stedwick/status/525777867146539009" target="_blank" rel="external">在无限的时间范围内</a>，你都将被证明是错的。一个典型的例子就是，当想要在我们构建的大型应用中修复任何数据绑定漏洞的时候（这种情况尤为明显）。我们从为 UI 代码创建两个实例开始，它们并行在同一个 DOM，并都绑定到一个数据模型的共享实例上。这么做是为了保证所有数据模型的变化都可以正确体现到这两个 UI 上。所以任何你可能假设总是唯一的组件，如一个头部模板，就不再唯一了。顺便一提，这对找出其他唯一性假设相关的细微漏洞来说，也是一个很好的基准。我跑题了，但这个故事告诉我们的就是：没有一种情况是使用 ID 选择器会比使用类选择器<strong>更好</strong>，所以只要不使用就行了。</p>
+<p>同样也不应该直接使用元素选择器（如 <code>p</code>）。通常对一个<strong>属于组件</strong>的元素使用元素选择器是可以的（看下面），但是对于元素本身来说，最终你将会为了一个不想使用它们的组件，而不得不<a href="http://csswizardry.com/2012/11/code-smells-in-css/" target="_blank" rel="external">将那些样式给撤销掉</a>。回想一下我们的主要目标，这同样也违背了它们（面向组件，避免折磨人的层叠（cascade），以及默认局部化）。如果你这么选择的话，那么在<code>body</code>上设置一些像字体，行高以及颜色的属性（也叫<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/inheritance" target="_blank" rel="external">可继承属性</a>），对这个规则来说也可以是一个特例，但是如果你真正想做到组件隔离的话，那么放弃这些也完全是可行的（看下面关于<a href="#8-integrate-external-styles-loosely">使用外部样式的部分</a>）。</p>
+<p>所以在极少特例的情况下，你的样式应该总是类名优先。</p>
+<h3 id="2-组件代码放在一起"><a href="#2-组件代码放在一起" class="headerlink" title="2. 组件代码放在一起"></a><a href="#2-co-locate-component-code"></a>2. 组件代码放在一起</h3><p>当使用一个组件的时候，如果所有和组件相关的资源（其 JavaScript 代码，样式，测试用例，文档等等）都可以非常紧密地放在一起，那就更好了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">ui/</div><div class="line">├── layout/</div><div class="line">|   ├── Header.js              // component code</div><div class="line">|   ├── Header.scss            // component styles</div><div class="line">|   ├── Header.spec.js         // component-specific unit tests</div><div class="line">|   └── Header.fixtures.json   // any mock data the component tests might need</div><div class="line">├── utils/</div><div class="line">|   ├── Button.md              // usage documentation for the component</div><div class="line">|   ├── Button.js              // ...and so on, you get the idea</div><div class="line">|   └── Button.scss</div></pre></td></tr></table></figure>
+<p>当你写代码的时候，只需要简单地打开项目的浏览工具，组件的所有其他内容都唾手可得了。样式代码和生成DOM的JavaScript之间有着天然的耦合性，而且我敢打赌你在修改完其中一个之后不久肯定会去修改另外一个。举例来说，这同样适用于组件及其测试代码。可以认为这就是 UI 组件的<a href="https://en.wikipedia.org/wiki/Locality_of_reference" target="_blank" rel="external">访问局部性原理</a>。我以前也会细致地去维护各种独立的镜像文件，它们各自存在 <code>styles/</code>、 <code>tests/</code> 和 <code>docs/</code> 等目录下面，直到我意识到，实际上我一直这么做的唯一原因是因为我就是一直这样做的。</p>
+<h3 id="3-使用一致的类命名空间"><a href="#3-使用一致的类命名空间" class="headerlink" title="3. 使用一致的类命名空间"></a><a href="#3-use-consistent-class-namespacing"></a>3. 使用一致的类命名空间</h3><p>CSS 对类名及其他标识符（如 ID、动画名称等）都有一个独立扁平的命名空间。就像过去在 PHP 里，其社区想通过简单地使用更长且具有结构性的名称来处理这个问题，因此就效仿了命名空间（<a href="http://getbem.com/" target="_blank" rel="external">BEM</a> 就是个例子）。我们也想要选择一个命名空间规范，并坚持下去。</p>
+<p>比如，使用 <code>myapp-Header-link</code> 来当做一个类名，组成它的三个部分都有着特定的功能：</p>
+<ul>
+<li><code>myapp</code> 首先用来将我们的应用和其他可能运行在同一个 DOM 上的应用隔离开来</li>
+<li><code>Header</code> 用来将组件和应用里其他的组件隔离开来</li>
+<li><code>link</code> 用来为局部样式效果保存一个局部名称（在组件的命名空间内）</li>
+</ul>
+<p>作为一个特殊的情况，<code>Header</code> 组件的根元素可以简单地用 <code>myapp-Header</code> 类来标记。对于一个非常简单的组件来说，这可能就是所需要做的全部了。</p>
+<p>不管我们选择怎样的命名空间规范，我们都想要通过它保持一致性。那三个类名组成部分除了有着特定<strong>功能</strong>，也同样有着特定的<strong>含义</strong>。只需要看一下类名，就可以知道它属于哪里了。这样的命名空间将成为我们浏览项目样式的地图。</p>
+<p>目前为止我都假设命名空间的方案为 <code>app-Component-class</code>，这是我个人在工作当中发现确实好用的方案，当然你也可以琢磨出自己的一套来。</p>
+<h3 id="4-维护命名空间和文件名之间的严格映射"><a href="#4-维护命名空间和文件名之间的严格映射" class="headerlink" title="4. 维护命名空间和文件名之间的严格映射"></a><a href="#4-maintain-a-strict-mapping-between-namespaces-and-filenames"></a>4. 维护命名空间和文件名之间的严格映射</h3><p>这只是对之前两条规则的逻辑组合（组件代码放在一起以及类命名空间）：所有影响一个特定组件的样式都应该放到一个文件里，并以组件命名，没有例外。</p>
+<p>如果你正在使用浏览器，然后发现一个组件表现异常，那么你就可以点击右键检查它，接着你就会看到：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;myapp-Header&quot;&gt;...&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>注意到组件名称，然后切换至你的编辑器，按下“快速打开文件”的快捷键，然后开始输入“head”，就可以看到：</p>
+<p><a href="/jareware/css-architecture/blob/master/quick-open-file.png"><img src="https://github.com/jareware/css-architecture/raw/master/quick-open-file.png" alt="Quick open file"></a></p>
+<p>这种来自 UI 组件关联源代码文件的严格映射非常有用，特别是如果你新进入一个团队并且还没有完全熟悉代码结构，通过这个方法你不需要熟悉就可以快速找到你应该写代码的地方了。</p>
+<p>有一个对这种方法的自然推论（但或许不是那么快变得明显）：一个单独的样式文件应该只包含属于一个独立命名空间的样式。为什么？假设我们有一个登录表单，只在 <code>Header</code> 组件内使用。在 JavaScript 代码层面，它被定义成一个名为 <code>Header.js</code> 的辅助组件，并且没有在任何地方被引入。你可能想声明一个类名为 <code>myapp-LoginForm</code>，并在 <code>Header.js</code> 和 <code>Header.scss</code> 里使用。那么假设团队里有一个新人被安排去修复登录表单上一个很小的布局问题，并想通过检查元素发现在哪里开始修改。然而并没有 <code>LoginForm.js</code> 或者 <code>LoginForm.scss</code> 可以被发现，这时他就不得不凭借 <code>grep</code> （Linux 命令）或者靠猜去寻找相关联的源代码文件。这也就是说，如果这个登录表单产生了一个独立的命名空间，那么就应该将其分割成一个独立的组件。一致性在大型项目里是非常有价值的。</p>
+<h3 id="5-避免组件外的样式泄露"><a href="#5-避免组件外的样式泄露" class="headerlink" title="5. 避免组件外的样式泄露"></a><a href="#5-prevent-leaking-styles-outside-the-component"></a>5. 避免组件外的样式泄露</h3><p>我们已经建立了自己的命名空间规范，并且现在想使用它们去沙箱化我们的 UI 组件。如果每个组件都只使用加上它们唯一的命名空间前缀的类名，那我们就可以确定它们的样式不会泄露到其他组件中去。这是非常高效的（看后面的注意事项），但是不得不反复输入命名空间也会变得越来越冗长乏味。</p>
+<p>一个健壮，且仍然非常简单的解决方案就是将整个样式文件包装成一个前缀。注意我们是怎样做到只需要重复一次应用和组件名称：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">.myapp-Header &#123;</div><div class="line">  background: black;</div><div class="line">  color: white;</div><div class="line"></div><div class="line">  &amp;-link &#123;</div><div class="line">    color: blue;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  &amp;-signup &#123;</div><div class="line">    border: 1px solid gray;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面的例子是在 SASS 中实现的，但其中的 <code>&amp;</code> 符号（或许让人有点惊讶）在所有相关的 CSS 预处理器中都做着同样的工作（<a href="http://sass-lang.com/" target="_blank" rel="external">SASS</a>、<a href="https://github.com/postcss/postcss-nested" target="_blank" rel="external">PostCSS</a>、<a href="http://lesscss.org/" target="_blank" rel="external">LESS</a> 以及 <a href="http://stylus-lang.com/" target="_blank" rel="external">Stylus</a>）。出于完整性，接下来给出上面 SASS 代码编译后的结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">.myapp-Header &#123;</div><div class="line">  background: black;</div><div class="line">  color: white;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.myapp-Header-link &#123;</div><div class="line">  color: blue;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.myapp-Header-signup &#123;</div><div class="line">  border: 1px solid gray;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>所有常见的模式也可以使用它很好地表示出来，比如不同的组件状态有着不同的样式（想想 <a href="http://getbem.com/naming/" target="_blank" rel="external">BEM 条件下的修饰符</a>）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">.myapp-Header &#123;</div><div class="line"></div><div class="line">  &amp;-signup &#123;</div><div class="line">    display: block;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  &amp;-isScrolledDown &amp;-signup &#123;</div><div class="line">    display: none;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面的编译结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">.myapp-Header-signup &#123;</div><div class="line">  display: block;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.myapp-Header-isScrolledDown .myapp-Header-signup &#123;</div><div class="line">  display: none;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>只要你的预编译器支持冒泡（SASS、LESS、PostCSS 和 Stylus 都可以做到），甚至媒体查询也可以很方便表示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">.myapp-Header &#123;</div><div class="line"></div><div class="line">  &amp;-signup &#123;</div><div class="line">    display: block;</div><div class="line"></div><div class="line">    @media (max-width: 500px) &#123;</div><div class="line">      display: none;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面的代码就会变成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">.myapp-Header-signup &#123;</div><div class="line">  display: block;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@media (max-width: 500px) &#123;</div><div class="line">  .myapp-Header-signup &#123;</div><div class="line">    display: none;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面的模式让使用长且唯一的类名变得非常方便，因为你再也无需反复输入它们了。方便性是强制的，因为如果不方便，那么我们就会偷工减料了。</p>
+<h3 id="JS-端的快速一览"><a href="#JS-端的快速一览" class="headerlink" title="JS 端的快速一览"></a><a href="#quick-aside-on-the-js-side-of-things"></a>JS 端的快速一览</h3><p>这篇文档是关于样式规范的，但样式是不能凭空独立存在的：我们在 JS 端也需要产生同样的命名空间化类名，并且方便性也是强制的。</p>
+<p>厚着脸皮做个广告，我恰好为此曾经建立了一个非常简单，无任何依赖的 JS 库，叫做 <a href="https://github.com/jareware/css-ns" target="_blank" rel="external"><code>css-ns</code></a>。当在框架层面编译的时候（<a href="https://github.com/jareware/css-ns#use-with-react" target="_blank" rel="external">比如使用 React</a>），它允许在一个特定文件内<strong>强制</strong>建立一个特定的命名空间。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// Create a namespace-bound local copy of React:</div><div class="line">var &#123; React &#125; = require(&apos;./config/css-ns&apos;)(&apos;Header&apos;);</div><div class="line"></div><div class="line">// Create some elements:</div><div class="line">&lt;div className=&quot;signup&quot;&gt;</div><div class="line">  &lt;div className=&quot;intro&quot;&gt;...&lt;/div&gt;</div><div class="line">  &lt;div className=&quot;link&quot;&gt;...&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>将渲染出的 DOM 如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;myapp-Header-signup&quot;&gt;</div><div class="line">  &lt;div class=&quot;myapp-Header-intro&quot;&gt;...&lt;/div&gt;</div><div class="line">  &lt;div class=&quot;myapp-Header-link&quot;&gt;...&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>这真的非常方便，并且上面所有的代码让 JS 端也变成了<strong>默认局部化</strong>。</p>
+<p>但是我再次跑题了，回到 CSS 端。</p>
+<h3 id="6-避免组件内的样式泄露"><a href="#6-避免组件内的样式泄露" class="headerlink" title="6. 避免组件内的样式泄露"></a><a href="#6-prevent-leaking-styles-inside-the-component"></a>6. 避免组件内的样式泄露</h3><p>还记得我说过给每个类名加上组件命名空间的前缀时，这是对沙箱化样式来说很高效的一种方式吗？还记得我说过这里有个“注意事项”吗？</p>
+<p>考虑下面的样式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">.myapp-Header &#123;</div><div class="line">  a &#123;</div><div class="line">    color: blue;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以及下面的组件层：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">+-------------------------+</div><div class="line">| Header                  |</div><div class="line">|                         |</div><div class="line">| [home] [blog] [kittens] | &lt;-- 这些都是 &lt;a&gt; 元素</div><div class="line">+-------------------------+</div></pre></td></tr></table></figure></p>
+<p>这很酷，不是吗？<code>Header</code> 里只有 <code>&lt;a&gt;</code> 元素会变成<a href="https://www.youtube.com/watch?v=axHe_BVY_9c" target="_blank" rel="external">蓝色</a>，因为我们生成的规则如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">.myapp-Header a &#123; color: blue; &#125;</div></pre></td></tr></table></figure>
+<p>但是考虑布局在之后做一下变化：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">+-----------------------------------------+</div><div class="line">| Header                    +-----------+ |</div><div class="line">|                           | LoginForm | |</div><div class="line">|                           |           | |</div><div class="line">| [home] [blog] [kittens]   | [info]    | | &lt;-- 这些是 &lt;a&gt; 元素</div><div class="line">|                           +-----------+ |</div><div class="line">+-----------------------------------------+</div></pre></td></tr></table></figure></p>
+<p>选择器 <code>.myapp-Header a</code> <strong>同样匹配</strong>了 <code>LoginForm</code> 里的 <code>&lt;a&gt;</code> 元素，所以我们搞砸了这里的样式隔离。事实证明，将所有样式包装到一个命名空间里对于隔离组件及其邻居组件来说，是一个高效的方式，<strong>但却不能总是和其子组件隔离</strong>。</p>
+<p>这个问题可以通过两种方法修复：</p>
+<ol>
+<li>绝不在样式表中使用元素名称选择器。如果 <code>Header</code> 里的 <code>&lt;a&gt;</code> 元素都使用 <code>&lt;a class=&quot;myapp-Header-link&quot;&gt;</code> 替代，那么我们就不需要处理这个问题了。再往下看，有时候你会设置一些语义化标签，像 <code>&lt;article&gt;</code>、<code>&lt;aside&gt;</code> 以及 <code>&lt;th&gt;</code>，都放在了正确的位置上，并且你又不想用额外的类名来弄乱它们，这种情况下：</li>
+<li>在你的命名空间之外只使用 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Child_selectors" target="_blank" rel="external"><code>&gt;</code> 操作符</a> 来选择元素。</li>
+</ol>
+<p>根据第二个方法来做调整，我们的样式代码就可以改写如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">.myapp-Header &#123;</div><div class="line">  &gt; a &#123;</div><div class="line">    color: blue;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样就可以确保隔离同样作用于更深层次的组件树，因为生成的选择器变成了 <code>.myapp-Header &gt; a</code>。</p>
+<p>如果这听起来有争议，那么让我通过下面这个同样运行良好的例子更进一步地使你信服：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">.myapp-Header &#123;</div><div class="line">  &gt; nav &gt; p &gt; a &#123;</div><div class="line">    color: blue;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>经过<a href="http://lmgtfy.com/?q=css+nesting+harmful" target="_blank" rel="external">多年的可靠建议</a>，我们一直认为要尽量避免选择器嵌套（包括这个使用了 <code>&gt;</code> 的强关联形式）。但是为什么呢？这个引用的原因归结为以下三个：</p>
+<ol>
+<li>层叠样式最终会毁掉你的一天。要是嵌套越多的选择器，那么就有越高的机会造成一个元素匹配上<strong>多于一个组件</strong>的情况。如果你读到这里，你就会知道我们已经消除了这种可能性了（使用严格的命名空间前缀，并在需要的时候使用强关联子元素选择器）。</li>
+<li>太多的特性会减少可复用性。写给 <code>nav p a</code> 的样式将不能在特定情况下之外的任意地方被复用。但其实我们<strong>从来没想要它可复用</strong>，事实上，我们特意禁止这个可复用的方法，因为这种可复用性并不能在我们想实现组件隔离的目标上产生好的作用。</li>
+<li>太多的特性会让重构变得更加困难。这可以在现实中找到依据，假设你只有一个 <code>.myapp-Header-link a</code>，你可以很自由地在组件的 HTML 中移动 <code>&lt;a&gt;</code> 元素，同样的样式总是会一直生效。然而如果使用 <code>&gt; nav &gt; p &gt; a</code>，就需要更新选择器去匹配组件的 HTML 内这个链接的新位置。但考虑到我们想要 UI 是由一些小且隔离性好的组件组成，这个问题也不是相当重要。当然，如果你不得不在重构的时候考虑整个应用的 HTML 和 CSS，那么这个问题可能就有点严重了。但是现在你是在一个只有十行样式代码的小沙箱内进行操作，并且还知道沙箱外没有其他东西需要考虑，那么这种类型的变化就不是问题了。</li>
+</ol>
+<p>通过这个例子，你应该很好的理解了规则，所以你知道什么时候应该打破它们。在我们的架构里，选择器嵌套不仅仅只是可以用，有时候它还是一件非常正确的事情。为之疯狂吧。</p>
+<h3 id="出于好奇的题外话：预防泄露样式进入组件"><a href="#出于好奇的题外话：预防泄露样式进入组件" class="headerlink" title="出于好奇的题外话：预防泄露样式进入组件"></a><a href="#an-aside-for-the-curious-prevent-leaking-styles-into-the-component"></a>出于好奇的题外话：预防泄露样式<strong>进入</strong>组件</h3><p>所以我们是否已经实现了样式的完美沙箱化，以至于每个组件的存在都可以和页面的其他内容隔离开来呢？做一个快速回顾：</p>
+<ul>
+<li><p>我们已经通过用组件的命名空间给每个类名加前缀来避免<strong>组件向外泄露样式</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">+-------+</div><div class="line">|       |</div><div class="line">|    -----X---&gt;</div><div class="line">|       |</div><div class="line">+-------+</div></pre></td></tr></table></figure>
+</li>
+<li><p>引申开来，这也意味着我们已经避免了<strong>组件间的泄露</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">+-------+     +-------+</div><div class="line">|       |     |       |</div><div class="line">|    ------X------&gt;   |</div><div class="line">|       |     |       |</div><div class="line">+-------+     +-------+</div></pre></td></tr></table></figure>
+</li>
+<li><p>而且我们还通过考虑子选择器来避免<strong>泄露进入子组件</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">+---------------------+</div><div class="line">|           +-------+ |</div><div class="line">|           |       | |</div><div class="line">|    ----X------&gt;   | |</div><div class="line">|           |       | |</div><div class="line">|           +-------+ |</div><div class="line">+---------------------+</div></pre></td></tr></table></figure>
+</li>
+<li><p>但更为关键的是，<strong>外部样式仍然可以泄露进入组件当中</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">      +-------+</div><div class="line">      |       |</div><div class="line">----------&gt;   |</div><div class="line">      |       |</div><div class="line">      +-------+</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>举个例子，假设我们给组件写了下面的样式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">.myapp-Header &#123;</div><div class="line">  &gt; a &#123;</div><div class="line">    color: blue;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>但是接着我们引入一个表现不好的第三方库，有着下面的 CSS：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a &#123;</div><div class="line">  font-family: &quot;Comic Sans&quot;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>没有一个简单的方法可以保护我们的组件不受外部样式的污染</strong>，并且这是我们经常需要调整的地方：</p>
+<p><a href="/jareware/css-architecture/blob/master/give-up.gif"><img src="https://github.com/jareware/css-architecture/raw/master/give-up.gif" alt="Give up"></a></p>
+<p>幸好，对于你自己使用的依赖来说常常会有一个控制方式，并且也可以简单地找一个表现更好的选择。</p>
+<p>而且，我说的是没有一个<strong>简单的</strong>的方法可以保护组件，并不意味着没有方法。<a href="https://www.youtube.com/watch?v=20wUS_bbOHY" target="_blank" rel="external">老兄，当然是有方法的</a>，它们只是有不同的取舍：</p>
+<ul>
+<li>只需强制覆盖它：如果你为每个组件的每个元素去引入一个 <a href="http://cssreset.com/what-is-a-css-reset/" target="_blank" rel="external">CSS 重置样式</a>，并且使用一个优先级总是高于其他第三方库的选择器，那么就非常棒了。但是除非是一个小应用（假设一个第三方“共享”按钮可以嵌入到网站上那种），否则这种方法将会迅速失控。这不算是一个好主意，只是在这里列出来等待完善。</li>
+<li><a href="https://developer.mozilla.org/en/docs/Web/CSS/all" target="_blank" rel="external"><code>all: initial</code></a> 是一个很少人知道的新 CSS 属性，它专门为了这个问题而设计。它可以<a href="https://jsfiddle.net/0d9htatc/" target="_blank" rel="external">阻止继承属性流入</a>，并且<a href="https://jsfiddle.net/e7rw4L8L/" target="_blank" rel="external">只要它赢得了特性之争</a>（并且只要你为每个想保护的属性重复使用它），还可以作为一个本地重置生效。它的实现<a href="https://speakerdeck.com/csswizardry/refactoring-css-without-losing-your-mind?slide=39" target="_blank" rel="external">有些错综复杂</a>，而且还不是所有浏览器都<a href="http://caniuse.com/#feat=css-all" target="_blank" rel="external">支持</a>，但是 <code>all: initial</code> 最后或许可以成为样式隔离的有效方法。</li>
+<li>Shadow DOM 已经被提到过，而它正是为你解决问题的一个工具，因为它允许为 JS 和 CSS 声明组件边界。尽管最近有<a href="https://developer.apple.com/library/content/releasenotes/General/WhatsNewInSafari/Articles/Safari_10_0.html" target="_blank" rel="external">一丝希望的微光</a>，Web 组件规范还是没有在今年取得很大的进步，并且除非你使用的是一些已知可支持的浏览器，否则还是不能将 Shadow DOM 列入考虑范围。</li>
+<li>最后，还有 <code>&lt;iframe&gt;</code>。它提供了 Web 运行环境所能提供的最强的隔离形式（既为 JS 也为 CSS），但同样为运行成本（潜在因素）和维护（保留的内存）带来了巨大的消耗。不过，通常代价是值得的，并且最著名的网络嵌入（Facebook、Twitter、Disqus等等）事实上也是用 iframe 实现的。然而本文档的目的是隔离成千上百个小组件，就此而言，这个方法将数以百倍地消耗我们的性能。</li>
+</ul>
+<p>不管怎样，这个题外话跑得有点远了，回到我们的 CSS 规则。</p>
+<h3 id="7-遵守组件边界"><a href="#7-遵守组件边界" class="headerlink" title="7. 遵守组件边界"></a><a href="#7-respect-component-boundaries"></a>7. 遵守组件边界</h3><p>就像我们赋予 <code>.myapp-Header &gt; a</code> 的样式，当嵌套组件的时候，我们可能还需要给子组件提供一些样式（Web 组件类比再次完美，因为接下来 <code>&gt; a</code> 和 <code>&gt; my-custom-a</code> 的效果并没有什么差异）。考虑下面的布局：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">+---------------------------------+</div><div class="line">| Header           +------------+ |</div><div class="line">|                  | LoginForm  | |</div><div class="line">|                  |            | |</div><div class="line">|                  | +--------+ | |</div><div class="line">| +--------+       | | Button | | |</div><div class="line">| | Button |       | +--------+ | |</div><div class="line">| +--------+       +------------+ |</div><div class="line">+---------------------------------+</div></pre></td></tr></table></figure></p>
+<p>我们马上可以看到用 <code>.myapp-Header .myapp-Button</code> 写样式不会是一个好主意，显然应该用 <code>.myapp-Header &gt; .myapp-Button</code> 来替代。但是我们到底要给子组件提供什么样式呢？</p>
+<p>注意到 <code>LoginForm</code> 靠在了 <code>Header</code> 的右边界上。直观看来，一个可能的样式就是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.myapp-LoginForm &#123;</div><div class="line">  float: right;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们没有违反任何规则，但是我们让 <code>LoginForm</code> 变得有点难以复用了：如果我们接下来的主页想要这个 <code>LoginForm</code>，但是不想要右浮动，那就不走运了。</p>
+<p>这个问题实际的解决方案就是（局部地）放宽之前的规则，只对当前文件所属的命名空间提供样式。具体来说，我们希望用下面的代码替换：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">.myapp-Header &#123;</div><div class="line">  &gt; .myapp-LoginForm &#123;</div><div class="line">    float: right;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样实际上已经很好了，只要我们不允许随意地破坏子组件的沙箱：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">.myapp-Header &#123;</div><div class="line">  &gt; .myapp-LoginForm &#123;</div><div class="line">    color: blue;</div><div class="line">    padding: 20px;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">// COUNTER-EXAMPLE; DON&apos;T DO THIS</div></pre></td></tr></table></figure>
+<p>我们不允许这么做，因为这样做会失去局部变化没有全局影响的安全性。使用上面代码的话，当修改 <code>LoginForm</code> 组件表现的时候，<code>LoginForm.scss</code> 就不再是唯一需要检查的地方了。发生变化再次变得可怕。所以可用与不可用之间的界限到底在哪里？</p>
+<p>我们希望遵守每个子组件<strong>内部</strong>的沙箱，因为我们不想依赖其实现细节。它对于我们来说是个黑盒。相反地，在子组件<strong>外部</strong>的是父组件的沙箱，它占据着主要位置。区分内部和外部正好引出了 CSS 中最基本的概念之一：<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model" target="_blank" rel="external">盒模型</a>。</p>
+<p><a href="/jareware/css-architecture/blob/master/box-model.png"><img src="https://github.com/jareware/css-architecture/raw/master/box-model.png" alt="CSS Box Model"></a></p>
+<p>我做的这个类比很糟糕，但我们继续看：就像<strong>在一个国家内</strong>意味着在其物理边界之内，我们建立了一个边界，父组件只可以在子组件边界之外对（直接）子组件样式产生影响。这意味着关系到位置和大小的属性（如 <code>position</code>、<code>margin</code>、<code>display</code>、<code>width</code>、<code>float</code>、<code>z-index</code> 等等）是可用的，而影响到内部边界的属性（如 <code>border</code> 本身、<code>padding</code>、<code>color</code>、<code>font</code>等）是不可用的。</p>
+<p>按照推论，下面这样显然也是禁止的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">.myapp-Header &#123;</div><div class="line">  &gt; .myapp-LoginForm &#123;</div><div class="line">    &gt; a &#123; // relying on implementation details of LoginForm ;__;</div><div class="line">      color: blue;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">// COUNTER-EXAMPLE; DON&apos;T DO THIS</div></pre></td></tr></table></figure>
+<p>有几个有趣或者说无聊的边界情况，比如：</p>
+<ul>
+<li><code>box-shadow</code> - 一个特定类型的 shadow 可以是一个组件外观不可缺少的部分，因此组件应该自己包含这些样式。话又说回来，这种视觉效果可以在边界外清楚地渲染出来，所以它又可以回到父组件的作用域。</li>
+<li><code>color</code>, <code>font</code> 及其他<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/inheritance" target="_blank" rel="external">可继承属性</a> - <code>.myapp-Header &gt; .myapp-LoginForm { color: red }</code> 这种写法碰到了子组件内部的属性，但从另一方面来说，这又可以在功能上等同于 <code>.myapp-Header { color: red; }</code>，这种写法根据其他规则又是可行的。</li>
+<li><code>display</code> - 如果子组件使用了 <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank" rel="external">Flexbox</a> 布局，那么它很可能依赖于其根元素上设置 <code>display: flex</code> 属性。不过，父组件也可能选择通过 <code>display: none</code> 来隐藏其子组件。</li>
+</ul>
+<p>在这些边界情况下要意识到一件重要的事情，你并不是在冒着打核战争的危险，而只是在引入少量的 CSS 层叠好回到自己的样式。就和其他不好的做法一样，适当地使用层叠是可以的。例如，再仔细看到最后的例子，<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity" target="_blank" rel="external">特性优先级比较</a>正如你所想要的效果一样：当组件可见时，<code>.myapp-LoginForm { display: flex }</code> 的优先级更高。而当拥有者决定用 <code>.myapp-Header-loginBoxHidden &gt; .myapp-LoginBox { display: none }</code> 隐藏组件时，这个样式的优先级更高。</p>
+<h3 id="8-松散地整合外部样式"><a href="#8-松散地整合外部样式" class="headerlink" title="8. 松散地整合外部样式"></a><a href="#8-integrate-external-styles-loosely"></a>8. 松散地整合外部样式</h3><p>为了避免重复工作，有时可能需要在组件间共享样式。为了避免全部工作，有时又可能想使用其他人创建的样式。这两种情况的实现都不应该创建出不必要的耦合到代码库中。</p>
+<p>拿一个具体的例子来说，考虑使用一些来自 <a href="http://getbootstrap.com/css/" target="_blank" rel="external">Bootstrap</a> 的样式，因为这对于使用恼人的框架来说是一个很好的例子。想想我们上面所讨论到的所有事情，关于为样式共享一个独立的全局命名空间，以及不好的冲突，Bootstrap 会：</p>
+<ul>
+<li>导出一大堆选择器（版本 3.3.7 来说, 具体有 2481 个）到命名空间里，不管你实际上是否使用它们。（有趣的一面：IE9 在默认忽略剩余选择器之前只会处理 4095 个选择器。我曾经听说有人花了<strong>很多天</strong>来调试它们，鬼知道他们经历了什么。）</li>
+<li>使用写死的类名如 <code>.btn</code> 和 <code>.table</code>。不敢想象某些不小心复用了这些样式的开发者或者项目。（讽刺脸）</li>
+</ul>
+<p>不管了，我们希望使用 Bootstrap 作为 <code>Button</code> 组件的基础。</p>
+<p>用某段代码替换下面的来整合到 HTML 端：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;button class=&quot;myapp-Button btn&quot;&gt;</div></pre></td></tr></table></figure>
+<p>考虑在样式中<a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#extend" target="_blank" rel="external">扩展</a>这个类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;button class=&quot;myapp-Button&quot;&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.myapp-Button &#123;</div><div class="line">  @extend .btn; // from Bootstrap</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这么做有一个好处，那就是没有给任何人（包括你自己）产生一种想法：在 HTML 组件上去依赖可笑地命名为 <code>btn</code> 的类。<code>Button</code> 所使用的样式的来源是一个完全不需要显示在外面的实现细节。因此，如果你决定放弃 Bootstrap 转而支持另外的框架（或者只是你自己去写样式），那么这种改变无论如何都不会外部可见（呃，除非，这种可见变化是在于 <code>Button</code> 本身长什么样子）。</p>
+<p>同样的原则适用于你自己的辅助类，并且你可以选择使用更合理的类名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.myapp-Button &#123;</div><div class="line">  @extend .myapp-utils-button; // defined elsewhere in your project</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>或者<a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#placeholder_selectors_" target="_blank" rel="external">干脆放弃放出类</a>（<a href="https://csspre.com/placeholder-selectors/" target="_blank" rel="external">大部分预编译器都可以支持</a>）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.myapp-Button &#123;</div><div class="line">  @extend %myapp-utils-button; // defined elsewhere in your project</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>最后，所有的 CSS 预编译器都支持 <a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#mixins" target="_blank" rel="external">mixins</a> 的概念，这可是一个强有力的工具：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.myapp-Button &#123;</div><div class="line">  @include myapp-generateCoolButton($padding: 15px, $withExplosions: true);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>应该注意的是当处理更友好的样式框架时（如 <a href="http://bourbon.io/" target="_blank" rel="external">Bourbon</a> 或者 <a href="http://foundation.zurb.com/" target="_blank" rel="external">Foundation</a>），它们实际上会这么做：定义一大堆 mixin 给你去在需要的时候使用，并且它们本身没有放出任何样式。如 <a href="http://neat.bourbon.io/" target="_blank" rel="external">Neat</a> 框架。</p>
+<h2 id="在结束前"><a href="#在结束前" class="headerlink" title="在结束前"></a><a href="#in-closing"></a>在结束前</h2><blockquote>
+<p>知晓所有规则，所以知道何时打破它们</p>
+</blockquote>
+<p>最后，如前所述，当你理解了你所制定的规则（或者是从网上其他人那儿采取的），你就可以写出对你有意义的特例。比如，如果你觉得直接使用一个辅助类是有附加价值的，那么就可以这么做：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;button class=&quot;myapp-Button myapp-utils-button&quot;&gt;</div></pre></td></tr></table></figure>
+<p>这种附加价值可能是，比如说，你的测试框架之后可以更智能地自动找出什么元素表现为按钮，以及可以被点击。</p>
+<p>或者你可能会在违背程度很小的情况下决定去打破组件隔离，并且分割组件的额外工作可能会变得更好。但我想要提醒的是这就像是个下坡路，而且不要忘了一致性的重要性等等，只要你的团队保持一致，并且你可以完成它们，那么你就是在做对的事情。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a><a href="#the-end"></a>结语</h2><p>如果你喜欢这篇文章，你完全可以 <a href="https://twitter.com/home?status=8%20simple%20rules%20for%20a%20robust,%20scalable%20CSS%20architecture%3A%20https%3A//github.com/jareware/css-architecture" target="_blank" rel="external">tweet 关于它的内容！</a>或者不。</p>
+<h2 id="证书"><a href="#证书" class="headerlink" title="证书"></a><a href="#license"></a>证书</h2><p><a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external">CC BY 4.0</a></p>
+
+	
+	
+	
+	
+</div>
+				
+				
+
+                <!-- Post Comments -->
+                
+    <!-- 使用多说评论 -->
+    <link rel="stylesheet" href="/css/duoshuo.min.css">
+<style>
+    #ds-thread #ds-reset .ds-post-button{
+        background-color: #0097A7 !important;
+    }
+    #ds-wrapper #ds-reset .ds-icons-32{
+        background-color: #0097A7 !important;
+    }
+    #ds-reset .ds-highlight {
+        color: #0097A7 !important;
+    }
+</style>
+<div id="comments">
+    <!-- 多说评论框 start -->
+        <div class="ds-thread" 
+            data-thread-key="2016/11/17/css-architecture/" 
+            data-url="http://llp0574.github.io/2016/11/17/css-architecture/"
+            data-title="一个健壮且可扩展的 CSS 架构所需的8个简单规则"></div>
+    <!-- 多说评论框 end -->
+</div>
+
+
+
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    
+    <!-- Prev Nav -->
+    
+        <a href="/2016/11/25/git-use/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2016/10/14/data-flow-in-vue-and-vuex/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+        </div>
+    </div>
+
+				
+				
+					<!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay "></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored  sidebar-fixed-left" role="navigation">
+	<div id="sidebar-main">
+	    <!-- Sidebar Header -->
+		<div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+    <i class="material-icons">clear_all</i>
+    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="llp's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        llp0574@gmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+		<!-- Sidebar Navigation  -->
+		<ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+			
+                <li>
+                    <a href="mailto:llp0574@gmail.com" target="_blank" title="Email Me">
+						<i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    <li id="sidebar-first-li">
+        <a href="/" target="_self">
+            <i class="material-icons sidebar-material-icons">home</i>
+             主页
+        </a>
+    </li>
+
+    <!-- I'm Feeling Lucky -->
+<!--
+    <li class="dropdown">
+        <a href="" target="_self">
+            <i class="material-icons sidebar-material-icons">explore</i>
+             sidebar.imlucky
+        </a>
+    </li>
+-->
+
+	
+    <!-- Archives  -->
+    <li class="dropdown">
+        <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+            <i class="material-icons sidebar-material-icons">inbox</i>
+             归档
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+            <a class="sidebar_archives-link" href="/archives/2016/11/">十一月 2016<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">十月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">九月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">七月 2016<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/02/">二月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/01/">一月 2016<span class="sidebar_archives-count">2</span></a>
+        </ul>
+    </li>
+
+    <!-- Divider -->
+    <li class="divider"></li>
+
+
+    <!-- Pages  -->
+	
+		<li>
+			<a href="/about" title="关于我">
+				关于我
+			</a>
+		</li>
+	
+		<li>
+			<a href="/tags" title="标签云">
+				标签云
+			</a>
+		</li>
+	
+
+    <!-- Article Numebr  -->
+    <li>
+        <a href="/archives">
+             文章总数
+             <span class="sidebar-badge">14</span>
+        </a>
+    </li>
+</ul>
+
+		<!-- Sidebar Divider -->
+		<div class="sidebar-divider"></div>
+
+		<!-- Sidebar Footer -->
+		<!-- 
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持。 :) 
+-->
+
+<!-- Theme Material -->
+<a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+	<div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+		主题 - Material
+		<span class="sidebar-badge badge-circle">i</span>
+	</div>
+</a>
+
+<!-- Help & Support -->
+<!--
+<a href="mailto:hiviosey@gmail.com" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+		sidebar.help
+		<span class="mdl-button__ripple-container">
+			<span class="mdl-ripple"></span>
+		</span>
+	</div>
+</a>
+-->
+
+<!-- Feedback -->
+<!--
+<a href="https://github.com/viosey/hexo-theme-material/issues" target="_blank" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+         sidebar.feedback
+                    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+</a>
+-->
+
+<!-- Abount Theme -->
+<!--
+<a href="https://blog.viosey.com/index.php/Material.html" target="_blank" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+         sidebar.about_theme
+        <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+</a>-->
+
+	</div>
+    
+    <!-- Sidebar Sponsor -->
+    
+
+
+</aside>
+
+				
+				
+				
+					<!-- Footer Top Button -->
+					<div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+				
+				
+				<!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+	
+	
+		<!-- Paradox Footer Left Section -->
+		<div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+    
+    
+    <!-- Facebook -->
+    
+    
+    
+    <!-- Google + -->
+    
+    
+    
+    <!-- Weibo -->
+    
+    <a href="http://weibo.com/u/1806141607" target="view_window"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-weibo.png);">
+        <span class="visuallyhidden">Weibo</span>
+    </button></a>
+    
+    
+    <!-- Instagram -->
+    
+    
+    
+    <!-- Tumblr -->
+    
+    
+    
+    <!-- Github -->
+    
+    <a href="https://github.com/llp0574" target="view_window"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.png);">
+        <span class="visuallyhidden">Github</span>
+    </button></a>
+    
+</div>
+
+
+		<!--Copyright-->
+		<div id="copyright">Copyright&nbsp;©&nbsp;<script type="text/javascript">var fd = new Date();document.write(fd.getFullYear());</script>&nbsp;llp的程序猿之路</div>
+
+		<!-- Paradox Footer Right Section -->
+
+		<!-- 
+		I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+		It will not impact the appearance and can give developers a lot of support :)
+
+		很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+		它不会影响美观并可以给开发者很大的支持。 :) 
+		-->
+
+		<div class="mdl-mini-footer--right-section">
+			<div>
+				<div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+				<div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+			</div>
+		</div>
+	
+    
+</footer>
+                
+				<!-- Import File -->
+<script src="/js/highlight.min.js"></script>
+<script src="/js/js.min.js"></script>
+<script src="/js/nprogress.js"></script>
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    
+    $('#nprogress .bar').css({
+        'background': '#FF4081'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #FF4081, 0 0 15px #FF4081'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#FF4081',
+        'border-left-color': '#FF4081'
+    });
+    
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+    <!-- Leancloud -->
+	<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+	<script>
+		AV.initialize("dFsFONvyzhvCLBqr0vdTUuQI-gzGzoHsz", "gKQoW3SRT0IvN2krRAjKgAL2");
+	</script>
+    <script>
+	function showTime(Counter) {
+		var query = new AV.Query(Counter);
+		$(".leancloud-views_num").each(function() {
+			var url = $(this).attr("id").trim();
+			query.equalTo("url", url);
+			query.find({
+				success: function(results) {
+					if (results.length == 0) {
+						var content = '0 ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+						return;
+					}
+					for (var i = 0; i < results.length; i++) {
+						var object = results[i];
+						var content = object.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					}
+				},
+				error: function(object, error) {
+					console.log("Error: " + error.code + " " + error.message);
+				}
+			});
+
+		});
+	}
+
+	function addCount(Counter) {
+		var Counter = AV.Object.extend("Counter");
+		url = $(".leancloud-views_num").attr('id').trim();
+		title = $(".leancloud-views_num").attr('data-flag-title').trim();
+		var query = new AV.Query(Counter);
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length > 0) {
+					var counter = results[0];
+					counter.fetchWhenSave(true);
+					counter.increment("time");
+					counter.save(null, {
+						success: function(counter) {
+							var content =  counter.get('time') + ' ' + $(document.getElementById(url)).text();
+							$(document.getElementById(url)).text(content);
+						},
+						error: function(counter, error) {
+							console.log('Failed to save Visitor num, with error message: ' + error.message);
+						}
+					});
+				} else {
+					var newcounter = new Counter();
+					newcounter.set("title", title);
+					newcounter.set("url", url);
+					newcounter.set("time", 1);
+					newcounter.save(null, {
+						success: function(newcounter) {
+							console.log("newcounter.get('time')="+newcounter.get('time'));
+							var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
+							$(document.getElementById(url)).text(content);
+						},
+						error: function(newcounter, error) {
+							console.log('Failed to create');
+						}
+					});
+				}
+			},
+			error: function(error) {
+				console.log('Error:' + error.code + " " + error.message);
+			}
+		});
+	}
+	$(function() {
+		var Counter = AV.Object.extend("Counter");
+		if ($('.leancloud-views_num').length == 1) {
+			addCount(Counter);
+		} else if ($('.post-title-link').length > 1) {
+			showTime(Counter);
+		}
+	}); 
+</script>
+
+
+
+
+
+    <!-- 多说公共 js 代码 start -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"llp0574"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';ds.async = true;
+            ds.src = 'https://static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+             || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+    <!-- 多说公共 js 代码 end -->
+
+
+
+
+<!-- Swiftye -->
+
+
+<!-- Local Search-->
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $(".post-toc-wrap").parent(".mdl-menu__container").css("position", "fixed");
+    });
+</script>
+
+<!-- MathJax Load-->
+
+            </main>
+        </div>
+		
+    </body>
+		
+	
+</html>
